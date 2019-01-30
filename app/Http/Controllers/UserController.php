@@ -8,12 +8,6 @@ use App\Post;
 
 class UserController extends Controller
 {
-    public function createPost(Post $post)
-    {
-        $post->addPost(request()->validate(['content' => 'required']));
-        return redirect('/home');
-    }
-
 
     public function show(User $user, Post $post)
     {
@@ -29,7 +23,8 @@ class UserController extends Controller
     {
         $user->update(request()->validate([
             'name' => 'required',
-            'description' => 'max:500'
+            'description' => 'max:500',
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]));
 
         return redirect()->route('profile', [$user]);

@@ -21,6 +21,7 @@ class CreateUsersTable extends Migration
             $table->integer('follows')->default('0');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('avatar')->default('user.jpg');
             $table->rememberToken();
             $table->timestamps();
         });
