@@ -9,7 +9,7 @@
         @csrf
 
         <div class="field">
-            <label for="avatar" class="button">Editar avatar</label>
+            <label for="avatar" class="button"><i class="fas fa-pen"></i></label>
 
             <div class="col-md-6">
                 <input id="avatar" type="file" name="avatar" onChange="this.form.submit()" style="visibility:hidden;display:none;" class="input form-control {{ $errors->has('content') ? 'is-danger' : '' }}">
@@ -27,7 +27,7 @@
         @csrf
         <div class="field">
             <div class="control">
-                <button type="submit" class="button is-light">Eliminar avatar</button>
+                <button type="submit" class="button is-light"><i class="fas fa-trash-alt"></i></button>
             </div>
         </div>
     </form>
