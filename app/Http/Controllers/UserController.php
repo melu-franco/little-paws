@@ -29,15 +29,19 @@ class UserController extends Controller
         ]);
 
         if($request->hasfile('avatar')){
+            $avatar = $request->file('avatar');
             $filename  = public_path('uploads/avatars/').$user->avatar;
-            if(File::exists($filename)) {
-                $avatar = $request->file('avatar');
-
+            if(File::exists($filename) && $user->avatar != 'user.png') {
                 $filename_new = 'user_'. $user->id .'_'. time() . '.' . $avatar->getClientOriginalExtension();
                 Image::make($avatar)->resize(90, 90)->save(public_path('uploads/avatars/' . $filename_new));
 
                 $user->update(['avatar' => $filename_new]);
                 File::delete($filename);
+            } else {
+                $filename_new = 'user_'. $user->id .'_'. time() . '.' . $avatar->getClientOriginalExtension();
+                Image::make($avatar)->resize(90, 90)->save(public_path('uploads/avatars/' . $filename_new));
+
+                $user->update(['avatar' => $filename_new]);
             }
         }
 
@@ -45,11 +49,15 @@ class UserController extends Controller
     }
 
     public function delete_avatar(User $user){
+        $avatar  = public_path('uploads/avatars/').$user->avatar;
 
-        $user->avatar->delete();
+        if(File::exists($avatar) && $user->avatar != 'user.png' ) {
+            File::delete($avatar);
+            $old_avatar  = 'user.png';
+            $user->update(['avatar' => $old_avatar]);
+        }
 
         return back();
-
     }
 
     public function destroy(User $user)

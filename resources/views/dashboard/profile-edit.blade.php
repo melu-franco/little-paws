@@ -2,16 +2,17 @@
 
 @section('content')
     <h1>Editar</h1>
+    <img src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" style="border-radius:50%;height:5em;object-fit:contain;">
 
     <form method="POST" action="/profile/{{ $user->id }}" enctype="multipart/form-data">
         @method('PATCH')
         @csrf
 
         <div class="field">
-            <label for="avatar" class="label">{{ __('Avatar (optional)') }}</label>
+            <label for="avatar" class="button">Editar avatar</label>
 
             <div class="col-md-6">
-                <input id="avatar" type="file" name="avatar" onChange="this.form.submit()" class="input form-control {{ $errors->has('content') ? 'is-danger' : '' }}">
+                <input id="avatar" type="file" name="avatar" onChange="this.form.submit()" style="visibility:hidden;display:none;" class="input form-control {{ $errors->has('content') ? 'is-danger' : '' }}">
             </div>
             @if ($errors->has('name'))
                 @foreach ($errors->all() as $error)
@@ -20,6 +21,18 @@
             @endif
         </div>
     </form>
+
+    <form method="POST" action="/profile/{{ $user->id }}" class="is-pulled-left"  enctype="multipart/form-data">
+        @method('DELETE')
+        @csrf
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-light">Eliminar avatar</button>
+            </div>
+        </div>
+    </form>
+
+    <div class="is-clearfix"></div>
 
     <form method="POST" action="/profile/{{ $user->id }}">
         @method('PATCH')
@@ -58,6 +71,12 @@
         </div>
     </form>
 
+    <div class="is-pulled-left">
+        <a href="{{ URL::previous() }}" class="button is-dark">Cancelar</a>
+    </div>
+
+    <div class="is-clearfix"></div>
+
     <form method="POST" action="/profile/{{ $user->id }}" class="is-pulled-left">
         @method('DELETE')
         @csrf
@@ -68,11 +87,5 @@
             </div>
         </div>
     </form>
-
-    <div class="is-pulled-left">
-        <a href="{{ URL::previous() }}" class="button is-dark">Cancelar</a>
-    </div>
-
-    <div class="is-clearfix"></div>
 
 @endsection

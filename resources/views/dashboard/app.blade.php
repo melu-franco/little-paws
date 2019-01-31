@@ -10,6 +10,7 @@
     <title>Dashboard</title>
 
     <!-- Scripts -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <!-- Styles -->
