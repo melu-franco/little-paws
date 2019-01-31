@@ -39,6 +39,7 @@
                     @else
                         <li class="nav-item">
                             <a class="nav-link" href="/profile/{{Auth::user()->id}}">
+                                <img src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" style="border-radius:50%;height:3em;object-fit:contain;">
                                 {{ Auth::user()->name }}
                             </a>
                         </li>

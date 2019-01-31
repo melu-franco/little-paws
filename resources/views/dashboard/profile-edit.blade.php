@@ -3,6 +3,24 @@
 @section('content')
     <h1>Editar</h1>
 
+    <form method="POST" action="/profile/{{ $user->id }}" enctype="multipart/form-data">
+        @method('PATCH')
+        @csrf
+
+        <div class="field">
+            <label for="avatar" class="label">{{ __('Avatar (optional)') }}</label>
+
+            <div class="col-md-6">
+                <input id="avatar" type="file" name="avatar" onChange="this.form.submit()" class="input form-control {{ $errors->has('content') ? 'is-danger' : '' }}">
+            </div>
+            @if ($errors->has('name'))
+                @foreach ($errors->all() as $error)
+                    <p class="help is-danger">{{ $error }}</p>
+                @endforeach
+            @endif
+        </div>
+    </form>
+
     <form method="POST" action="/profile/{{ $user->id }}">
         @method('PATCH')
         @csrf

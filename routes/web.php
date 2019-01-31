@@ -25,7 +25,9 @@ Route::post('/like', 'PostController@likes')->name('like');
  */
 Route::get('/profile/{user}', 'UserController@show');
 Route::get('/profile/{user}/edit', 'UserController@edit');
-Route::patch('/profile/{user}', 'UserController@update');
+Route::patch('/profile/{user}', 'UserController@update')->name('profile');
+Route::patch('/profile/{user}', 'UserController@update_avatar')->name('profile-edit');
+Route::delete('/profile/{user}', 'UserController@destroy');
 Route::delete('/profile/{user}', 'UserController@destroy');
 
 Route::get('/search', 'SearchController@index');
