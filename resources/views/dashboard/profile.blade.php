@@ -39,9 +39,23 @@
     @if ($user->posts->count())
         @foreach ($user->posts as $post)
             <div style="background:white;padding:1em;margin:1em 0;border-radius:10px;">
-                <a href="/profile/{{$user->id}}">{{$user->name}}</a>
+
+                <div class="flex">
+                    <a href="/profile/{{$post->user->id}}">
+                        <img src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" style="border-radius:50%;height:3em;object-fit:contain;">
+                    </a>
+                    <div>
+                        <a href="/profile/{{$post->user->id}}">{{$post->user->name}}</a>
+                        <p>{{ $post->created_at->diffForHumans() }}</p>
+                    </div>
+                </div>
+
+                @if($post->image != '')
+                    <img src="/uploads/posts/{{ $post->image }}" alt="Post image" style="width:100%;">
+                @endif
+
                 <p>{{ $post->content }}</p>
-                <p>{{ $post->created_at->diffForHumans() }}</p>
+
                 <div class="flex">
                         @if(Auth::user()->id == $post->user->id)
                             <a href="/posts/{{$post->id}}/edit">Editar</a>

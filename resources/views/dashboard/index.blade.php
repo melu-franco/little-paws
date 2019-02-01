@@ -7,15 +7,28 @@
 
 @section('content')
 
-    <form method="POST" action="/home">
+
+    <a href="/profile/{{Auth::user()->id}}">
+        <img src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" style="border-radius:50%;height:3em;object-fit:contain;">
+    </a>
+
+    <form method="POST" action="/posts" enctype="multipart/form-data">
         @csrf
 
         <div class="field">
-            <label class="label" for="content">Crear publicación</label>
 
             <div class="control">
-                <textarea class="textarea {{ $errors->has('content') ? 'is-danger' : '' }}" name="content" id="content" cols="30" rows="5"></textarea>
+                <textarea class="textarea {{ $errors->has('content') ? 'is-danger' : '' }}" name="content" placeholder="Crear publicación" id="content" cols="30" rows="5"></textarea>
             </div>
+
+            <div class="field">
+                <label for="image" class="button"><i class="fas fa-image"></i> Foto</label>
+
+                <div class="col-md-6">
+                    <input id="image" type="file" name="image" class="input form-control">
+                </div>
+            </div>
+
             @if ($errors->any())
                 @foreach ($errors->all() as $error)
                     <p class="help is-danger">{{ $error }}</p>
@@ -24,18 +37,30 @@
         </div>
         <div class="field">
             <div class="control">
-                <button type="submit" class="button is-primary">Post</button>
+                <button type="submit" class="button is-primary">Compartir</button>
             </div>
         </div>
     </form>
 
     @if ($posts->count())
-        <div>
+        <div class="flex" style="justify-content:space-between;flex-wrap:wrap;">
             @foreach ($posts as $post)
-                <div style="background:white;padding:1em;margin:1em 0;border-radius:10px;" data-postid="{{$post->id}}">
-                    <a href="/profile/{{$post->user->id}}">{{$post->user->name}}</a>
+                <div style="width:49%;background:white;padding:1em;margin:1em 0;border-radius:10px;" data-postid="{{$post->id}}">
+                    <div class="flex">
+                        <a href="/profile/{{$post->user->id}}">
+                            <img src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" style="border-radius:50%;height:3em;object-fit:contain;">
+                        </a>
+                        <div>
+                            <a href="/profile/{{$post->user->id}}">{{$post->user->name}}</a>
+                            <p>{{ $post->created_at->diffForHumans() }}</p>
+                        </div>
+                    </div>
+
+                    @if($post->image != '')
+                        <img src="/uploads/posts/{{ $post->image }}" alt="Post image" style="width:100%;">
+                    @endif
+
                     <p>{{ $post->content }}</p>
-                    <p>{{ $post->created_at->diffForHumans() }}</p>
 
                     <div class="flex">
                         @if(Auth::user()->id == $post->user->id)

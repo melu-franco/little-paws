@@ -4,7 +4,7 @@
     <h1>Editar</h1>
     <img src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" style="border-radius:50%;height:5em;object-fit:contain;">
 
-    <form method="POST" action="/profile/{{ $user->id }}" enctype="multipart/form-data">
+    <form method="POST" action="/profile/{{ $user->id }}/update_avatar" enctype="multipart/form-data">
         @method('PATCH')
         @csrf
 
@@ -12,17 +12,12 @@
             <label for="avatar" class="button"><i class="fas fa-pen"></i></label>
 
             <div class="col-md-6">
-                <input id="avatar" type="file" name="avatar" onChange="this.form.submit()" style="visibility:hidden;display:none;" class="input form-control {{ $errors->has('content') ? 'is-danger' : '' }}">
+                <input id="avatar" type="file" name="avatar" onChange="this.form.submit()" style="visibility:hidden;display:none;" class="input form-control">
             </div>
-            @if ($errors->has('name'))
-                @foreach ($errors->all() as $error)
-                    <p class="help is-danger">{{ $error }}</p>
-                @endforeach
-            @endif
         </div>
     </form>
 
-    <form method="POST" action="/profile/{{ $user->id }}" class="is-pulled-left"  enctype="multipart/form-data">
+    <form method="POST" action="/profile/{{ $user->id }}/delete_avatar" class="is-pulled-left"  enctype="multipart/form-data">
         @method('DELETE')
         @csrf
         <div class="field">
@@ -31,6 +26,12 @@
             </div>
         </div>
     </form>
+
+    @if ($errors->has('avatar'))
+        @foreach ($errors->all() as $error)
+            <p class="help is-danger">{{ $error }}</p>
+        @endforeach
+    @endif
 
     <div class="is-clearfix"></div>
 
