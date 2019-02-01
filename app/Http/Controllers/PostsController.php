@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Post;
 use App\Like;
+use App\Comment;
 use Auth;
 use Validator;
 use Illuminate\Http\Request;
@@ -20,10 +21,10 @@ class PostsController extends Controller
     }
 
 
-    public function index(User $user)
+    public function index(User $user, Comment $comment)
     {
         $posts = Post::latest()->take(20)->get();
-        return view('dashboard.index', compact('posts','user'));
+        return view('dashboard.index', compact('posts','user','comment'));
     }
 
     public function create()
@@ -85,7 +86,7 @@ class PostsController extends Controller
     {
         $post->update(request()->validate(['content' => 'required']));
 
-        return redirect('/home');
+        return redirect('posts');
     }
 
     public function update_image(Post $post, Request $request)
@@ -152,7 +153,7 @@ class PostsController extends Controller
             File::delete($postImage);
         }
 
-        return redirect('/home');
+        return redirect('posts');
     }
 
     public function likes(Request $request, Post $post) {

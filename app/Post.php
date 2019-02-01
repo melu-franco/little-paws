@@ -18,7 +18,14 @@ class Post extends Model
     {
         return $this->belongsTo(Like::class, 'post_id','id');
     }
-    public function likesCounter(){
+
+    public function likesCounter()
+    {
         return $this->likes->count();
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
     }
 }

@@ -3,7 +3,7 @@
             <a href="{{ url('/') }}">Home</a>
             <a href="{{ url('/faq') }}">Faq</a>
         @auth
-            <a href="{{ url('/home') }}">Dashboard</a>
+            <a href="{{ url('/home') }}">Inicio</a>
         @else
             <a href="{{ route('login') }}">Login</a>
 

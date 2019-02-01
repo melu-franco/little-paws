@@ -11,9 +11,10 @@ use File;
 class UserController extends Controller
 {
 
-    public function show(User $user, Post $post)
+    public function show(User $user)
     {
-        return view('dashboard.profile', compact('user'));
+        $posts = Post::where('user_id', $user->id)->latest()->take(20)->get();
+        return view('dashboard.profile', compact('user','posts'));
     }
 
     public function edit(User $user)

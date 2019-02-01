@@ -12,7 +12,7 @@
         <img src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" style="border-radius:50%;height:3em;object-fit:contain;">
     </a>
 
-    <form method="POST" action="/posts" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('post.store') }}" enctype="multipart/form-data">
         @csrf
 
         <div class="field">
@@ -48,7 +48,7 @@
                 <div style="width:49%;background:white;padding:1em;margin:1em 0;border-radius:10px;" data-postid="{{$post->id}}">
                     <div class="flex">
                         <a href="/profile/{{$post->user->id}}">
-                            <img src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" style="border-radius:50%;height:3em;object-fit:contain;">
+                            <img src="/uploads/avatars/{{ $post->user->avatar }}" alt="{{ $post->user->name }}" style="border-radius:50%;height:3em;object-fit:contain;">
                         </a>
                         <div>
                             <a href="/profile/{{$post->user->id}}">{{$post->user->name}}</a>
@@ -67,8 +67,6 @@
                             <a href="/posts/{{$post->id}}/edit">Editar</a>
                             <span>|</span>
                         @endif
-                        <a href="#">Comentar</a>
-                        <span>|</span>
                         <div class="flex">
                             <p>{{ $post->likes}}</p>
                             <a href="#" class="like">
@@ -77,6 +75,29 @@
                             </a>
                         </div>
                     </div>
+
+                    @if ($post->comments->count())
+                        @foreach($post->comments as $comment)
+                            <div class="display-comment">
+                                <strong>{{ $comment->user->name }}</strong>
+                                <p>{{ $comment->content }}</p>
+                            </div>
+                        @endforeach
+                    @endif
+
+                    <form method="post" action="{{ route('comment.add') }}">
+                        @csrf
+                        <div class="field">
+                            <input type="text" name="content" placeholder="Escribir un comentario" class="input form-control" />
+                            <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <button type="submit" class="button is-primary">Enviar comentario</button>
+                            </div>
+                        </div>
+                    </form>
+
                 </div>
             @endforeach
         </div>

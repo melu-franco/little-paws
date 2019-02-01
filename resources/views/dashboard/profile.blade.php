@@ -14,15 +14,23 @@
         <a href="/profile/{{$user->id}}/edit">Editar perfil</a>
     @endif
 
-    {{-- <form method="POST" action="/home">
+    <form method="POST" action="/profile/{user}/posts" enctype="multipart/form-data">
         @csrf
 
         <div class="field">
-            <label class="label" for="content">Escribi un comentario</label>
 
             <div class="control">
-                <textarea class="textarea {{ $errors->has('content') ? 'is-danger' : '' }}" name="content" id="content" cols="30" rows="10"></textarea>
+                <textarea class="textarea {{ $errors->has('content') ? 'is-danger' : '' }}" name="content" placeholder="Crear publicación" id="content" cols="30" rows="5"></textarea>
             </div>
+
+            <div class="field">
+                <label for="image" class="button"><i class="fas fa-image"></i> Foto</label>
+
+                <div class="col-md-6">
+                    <input id="image" type="file" name="image" class="input form-control">
+                </div>
+            </div>
+
             @if ($errors->any())
                 @foreach ($errors->all() as $error)
                     <p class="help is-danger">{{ $error }}</p>
@@ -31,18 +39,18 @@
         </div>
         <div class="field">
             <div class="control">
-                <button type="submit" class="button is-primary">Post</button>
+                <button type="submit" class="button is-primary">Compartir</button>
             </div>
         </div>
-    </form> --}}
+    </form>
 
-    @if ($user->posts->count())
-        @foreach ($user->posts as $post)
+    @if ($posts->count())
+        @foreach ($posts as $post)
             <div style="background:white;padding:1em;margin:1em 0;border-radius:10px;">
 
                 <div class="flex">
                     <a href="/profile/{{$post->user->id}}">
-                        <img src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" style="border-radius:50%;height:3em;object-fit:contain;">
+                        <img src="/uploads/avatars/{{ $post->user->avatar }}" alt="{{ $post->user->name }}" style="border-radius:50%;height:3em;object-fit:contain;">
                     </a>
                     <div>
                         <a href="/profile/{{$post->user->id}}">{{$post->user->name}}</a>
