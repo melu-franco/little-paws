@@ -66,9 +66,13 @@ class UserController extends Controller
         return back();
     }
 
+
+
     public function destroy(User $user)
     {
         $user->delete();
+        $avatar  = public_path('uploads/avatars/').$user->avatar;
+        File::delete($avatar);
         Post::where('user_id', $user->id)->delete();
 
         return redirect('/register');
