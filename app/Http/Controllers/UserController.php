@@ -69,6 +69,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $user->delete();
+        Post::where('user_id', $user->id)->delete();
 
         return redirect('/register');
     }
