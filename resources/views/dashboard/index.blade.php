@@ -43,7 +43,7 @@
     </form>
 
     @if ($posts->count())
-        <div class="flex" style="justify-content:space-between;flex-wrap:wrap;">
+        <div class="flex" style="justify-content:space-between;flex-wrap:wrap;align-items: flex-start;">
             @foreach ($posts as $post)
                 <div style="width:49%;background:white;padding:1em;margin:1em 0;border-radius:10px;" data-postid="{{$post->id}}">
                     <div class="flex">
@@ -76,15 +76,6 @@
                         </div>
                     </div>
 
-                    @if ($post->comments->count())
-                        @foreach($post->comments as $comment)
-                            <div class="display-comment">
-                                <strong>{{ $comment->user->name }}</strong>
-                                <p>{{ $comment->content }}</p>
-                            </div>
-                        @endforeach
-                    @endif
-
                     <form method="post" action="{{ route('comment.add') }}">
                         @csrf
                         <div class="field">
@@ -97,6 +88,36 @@
                             </div>
                         </div>
                     </form>
+
+                    @if ($post->comments->count())
+                        @foreach($post->comments as $comment)
+                            <div class="display-comment" style="padding-left:5%;padding-top:1em;border-top:1px solid #ccc;">
+                                <div class="flex">
+                                    <a href="/profile/{{$comment->user->id}}">
+                                        <img src="/uploads/avatars/{{ $comment->user->avatar }}" alt="{{ $comment->user->name }}" style="border-radius:50%;height:3em;object-fit:contain;">
+                                    </a>
+                                    <div>
+                                        <a href="/profile/{{$comment->user->id}}">
+                                            <strong>{{$comment->user->name}}</strong>
+                                        </a>
+                                        <p>{{ $comment->created_at->diffForHumans() }}</p>
+                                    </div>
+                                </div>
+                                <p>{{ $comment->content }}</p>
+
+                                <form method="POST" action="/comment/{{$comment->id}}">
+                                    @method('DELETE')
+                                    @csrf
+                                    <div class="field">
+                                        <div class="control">
+                                            <button type="submit" class="button is-light">Eliminar</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+                        @endforeach
+                    @endif
 
                 </div>
             @endforeach

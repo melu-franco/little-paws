@@ -31,6 +31,7 @@ Route::delete('/profile/{user}/delete_avatar', 'UserController@delete_avatar');
 Route::delete('/profile/{user}', 'UserController@destroy');
 
 Route::post('/comment/store', 'CommentController@store')->name('comment.add');
+Route::delete('/comment/{comment}', 'CommentController@destroy')->name('comment.delete');
 
 Route::get('/search', 'SearchController@index');
 
