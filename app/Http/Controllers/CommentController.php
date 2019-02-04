@@ -16,14 +16,14 @@ class CommentController extends Controller
         $post = Post::find($request->get('post_id'));
         $post->comments()->save($comment);
 
-        return redirect('posts');
+        return back();
     }
 
     public function destroy(Comment $comment)
     {
         $comment->delete();
 
-        return redirect('posts');
+        return back();
     }
 
 
