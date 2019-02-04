@@ -75,12 +75,11 @@ class RegisterController extends Controller
         ]);
 
         if($request->hasfile('avatar')){
-            $avatar = $request->avatar('avatar');
-            $image_path = public_path('uploads/avatars/');
+            $avatar = $request->file('avatar');
             $avatarName = 'user_'. $user->id .'_'. time() . '.' . $avatar->getClientOriginalExtension();
             Image::make($avatar)
                     ->resize(90, 90)
-                    ->save($image_path . $avatarName);
+                    ->save(public_path('uploads/avatars/' . $avatarName));
 
             $user->update(['avatar' => $avatarName]);
         } else {
