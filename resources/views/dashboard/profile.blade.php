@@ -6,6 +6,45 @@
 @extends('dashboard.app')
 
 @section('content')
+
+    <div class="cover" style="height:16rem;width:100%;margin-bottom:2em;{{ $user->cover != '' ? "background-image:url('/uploads/covers/$user->cover');" : 'background-color:#aaa;'}}background-repeat:no-repeat;background-size:cover;">
+
+        @if(Auth::user()->id == $user->id)
+            <form method="POST" action="/profile/{{ $user->id }}/update_cover" enctype="multipart/form-data">
+                @method('PATCH')
+                @csrf
+
+                <div class="field">
+                    <label for="cover" class="button"><i class="fas fa-pen"></i></label>
+
+                    <div class="col-md-6">
+                        <input id="cover" type="file" name="cover" onChange="this.form.submit()" style="visibility:hidden;display:none;" class="input form-control">
+                    </div>
+                </div>
+            </form>
+
+            @if($user->cover != '')
+                <form method="POST" action="/profile/{{ $user->id }}/delete_cover" class="is-pulled-left" enctype="multipart/form-data">
+                    @method('DELETE')
+                    @csrf
+                    <div class="field">
+                        <div class="control">
+                            <button type="submit" class="button is-light"><i class="fas fa-trash-alt"></i></button>
+                        </div>
+                    </div>
+                </form>
+            @endif
+
+            @if ($errors->has('cover'))
+                @foreach ($errors->all() as $error)
+                    <p class="help is-danger">{{ $error }}</p>
+                @endforeach
+            @endif
+
+        @endif
+
+    </div>
+
     <h1>{{ $user->name }}</h1>
 
     <p>{{ $user->description }}</p>
@@ -79,17 +118,17 @@
                 </div>
 
                 <form method="post" action="{{ route('comment.add') }}">
-                        @csrf
-                        <div class="field">
-                            <input type="text" name="content" placeholder="Escribir un comentario" class="input form-control" />
-                            <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                    @csrf
+                    <div class="field">
+                        <input type="text" name="content" placeholder="Escribir un comentario" class="input form-control" />
+                        <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <button type="submit" class="button is-primary">Enviar comentario</button>
                         </div>
-                        <div class="field">
-                            <div class="control">
-                                <button type="submit" class="button is-primary">Enviar comentario</button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
+                </form>
 
                 @if ($post->comments->count())
                     @foreach($post->comments as $comment)

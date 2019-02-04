@@ -55,13 +55,13 @@
             </div>
         </form>
 
-            @if ($errors->has('image'))
-                @foreach ($errors->all() as $error)
-                    <p class="help is-danger">{{ $error }}</p>
-                @endforeach
-            @endif
+        @if ($errors->has('image'))
+            @foreach ($errors->all() as $error)
+                <p class="help is-danger">{{ $error }}</p>
+            @endforeach
+        @endif
 
-        @else
+    @else
 
         <form method="POST" action="/posts/{{ $post->id }}/update_image" enctype="multipart/form-data">
             @method('PATCH')

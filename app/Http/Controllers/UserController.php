@@ -66,7 +66,38 @@ class UserController extends Controller
         return back();
     }
 
+    public function update_cover(User $user, Request $request)
+    {
+        $request->validate([
+            'cover' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
 
+        if($request->hasfile('cover')){
+            $cover = $request->file('cover');
+            $filename  = public_path('uploads/covers/').$user->cover;
+            $filename_new = 'cover_'. $user->id .'_'. time() . '.' . $cover->getClientOriginalExtension();
+            Image::make($cover)->save(public_path('uploads/covers/' . $filename_new));
+
+            if(File::exists($filename) && $user->cover != '') {
+                File::delete($filename);
+            }
+
+            $user->update(['cover' => $filename_new]);
+        }
+
+        return back();
+    }
+
+    public function delete_cover(User $user){
+        $cover  = public_path('uploads/covers/').$user->cover;
+
+        if(File::exists($cover) && $user->cover != '' ) {
+            File::delete($cover);
+            $user->update(['cover' => '']);
+        }
+
+        return back();
+    }
 
     public function destroy(User $user)
     {

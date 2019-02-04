@@ -11,7 +11,7 @@ class User extends Authenticatable
     use Notifiable;
 
     protected $fillable = [
-        'name', 'description', 'email', 'password','avatar',
+        'name', 'description', 'email', 'password','avatar','cover',
     ];
 
     protected $hidden = [
@@ -25,5 +25,18 @@ class User extends Authenticatable
     public function likes()
     {
         return $this->hasMany(Like::class);
+    }
+
+    function followers()
+    {
+        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+    }
+
+    function follow(User $user) {
+        $this->followers()->attach($user->id);
+    }
+
+    function unfollow(User $user) {
+        $this->followers()->detach($user->id);
     }
 }

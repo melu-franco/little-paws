@@ -28,6 +28,8 @@ Route::get('/profile/{user}/edit', 'UserController@edit');
 Route::patch('/profile/{user}', 'UserController@update')->name('profile');
 Route::patch('/profile/{user}/update_avatar', 'UserController@update_avatar')->name('profile-edit');
 Route::delete('/profile/{user}/delete_avatar', 'UserController@delete_avatar');
+Route::patch('/profile/{user}/update_cover', 'UserController@update_cover');
+Route::delete('/profile/{user}/delete_cover', 'UserController@delete_cover');
 Route::delete('/profile/{user}', 'UserController@destroy');
 
 Route::post('/comment/store', 'CommentController@store')->name('comment.add');
