@@ -45,13 +45,16 @@
 
     </div>
 
+    <div>
+        <img src="/uploads/avatars/{{ $user->avatar }}" alt="{{ $user->name }}" style="border-radius:50%;height:6em;object-fit:contain;">
+    </div>
+
     <h1>{{ $user->name }}</h1>
 
     <p>{{ $user->description }}</p>
 
     @if(Auth::user()->id == $user->id)
         <a href="/profile/{{$user->id}}/edit">Editar perfil</a>
-    @endif
 
     <form method="POST" action="{{ route('post.store') }}" enctype="multipart/form-data">
         @csrf
@@ -82,6 +85,8 @@
             </div>
         </div>
     </form>
+
+    @endif
 
     @if ($posts->count())
         @foreach ($posts as $post)
