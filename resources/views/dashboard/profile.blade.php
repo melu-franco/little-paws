@@ -14,7 +14,7 @@
         <a href="/profile/{{$user->id}}/edit">Editar perfil</a>
     @endif
 
-    <form method="POST" action="/profile/{user}/posts" enctype="multipart/form-data">
+    <form method="POST" action="{{ route('post.store') }}" enctype="multipart/form-data">
         @csrf
 
         <div class="field">
@@ -65,20 +65,62 @@
                 <p>{{ $post->content }}</p>
 
                 <div class="flex">
-                        @if(Auth::user()->id == $post->user->id)
-                            <a href="/posts/{{$post->id}}/edit">Editar</a>
-                            <span>|</span>
-                        @endif
-                        <a href="#">Comentar</a>
+                    @if(Auth::user()->id == $post->user->id)
+                        <a href="/posts/{{$post->id}}/edit">Editar</a>
                         <span>|</span>
-                        <div class="flex">
-                            <p>{{ $post->likes}}</p>
-                            <a href="#" class="like">
-                                <i class="fas fa-paw"></i>
-                                {{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'Dislike' : 'Like' : 'Like' }}
-                            </a>
-                        </div>
+                    @endif
+                    <div class="flex">
+                        <p>{{ $post->likes}}</p>
+                        <a href="#" class="like">
+                            <i class="fas fa-paw"></i>
+                            {{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'Dislike' : 'Like' : 'Like' }}
+                        </a>
                     </div>
+                </div>
+
+                <form method="post" action="{{ route('comment.add') }}">
+                        @csrf
+                        <div class="field">
+                            <input type="text" name="content" placeholder="Escribir un comentario" class="input form-control" />
+                            <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                        </div>
+                        <div class="field">
+                            <div class="control">
+                                <button type="submit" class="button is-primary">Enviar comentario</button>
+                            </div>
+                        </div>
+                    </form>
+
+                @if ($post->comments->count())
+                    @foreach($post->comments as $comment)
+                        <div class="display-comment" style="padding-left:5%;padding-top:1em;border-top:1px solid #ccc;">
+                            <div class="flex">
+                                <a href="/profile/{{$comment->user->id}}">
+                                    <img src="/uploads/avatars/{{ $comment->user->avatar }}" alt="{{ $comment->user->name }}" style="border-radius:50%;height:3em;object-fit:contain;">
+                                </a>
+                                <div>
+                                    <a href="/profile/{{$comment->user->id}}">
+                                        <strong>{{$comment->user->name}}</strong>
+                                    </a>
+                                    <p>{{ $comment->created_at->diffForHumans() }}</p>
+                                </div>
+                            </div>
+                            <p>{{ $comment->content }}</p>
+
+                            <form method="POST" action="/comment/{{$comment->id}}">
+                                @method('DELETE')
+                                @csrf
+                                <div class="field">
+                                    <div class="control">
+                                        <button type="submit" class="button is-light">Eliminar</button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    @endforeach
+                @endif
+
             </div>
         @endforeach
     @endif
