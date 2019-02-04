@@ -7,7 +7,7 @@ use App\User;
 
 class SearchController extends Controller
 {
-    public function index(Request $request){
+    public function search(Request $request){
 
         if($request->search == "") {
             $users = User::paginate(5);
@@ -22,7 +22,4 @@ class SearchController extends Controller
         }
     }
 
-    public function search() {
-
-    }
 }

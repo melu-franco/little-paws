@@ -2,7 +2,7 @@
     <nav class="navbar navbar-expand-md navbar-light navbar-laravel is-fixed-top">
         <div class="container">
             <a class="navbar-brand" href="{{ url('/') }}">
-                {{ config('app.name', 'Social') }}
+                {{ config('app.name', 'Little Paws') }}
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                 <span class="navbar-toggler-icon"></span>
@@ -12,12 +12,11 @@
                 <!-- Left Side Of Navbar -->
                 <div class="navbar-nav m-auto">
                     @auth
-                        <form action="/search" method="get" role="search">
-                            @csrf
+                    <form action="{{ route('search') }}" method="get" role="search">
                             <div class="field flex">
                                 <input type="text" class="input" name="search">
                                 <button type="submit" class="button">
-                                        <i class="fas fa-search"></i>
+                                    <i class="fas fa-search"></i>
                                 </button>
                             </div>
                         </form>
@@ -47,7 +46,9 @@
                             <a class="nav-link" href="{{ url('/home') }}">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link"><i class="fas fa-user-friends"></i></a>
+                            <a href="{{ route('users') }}" class="nav-link">
+                                <i class="fas fa-user-friends"></i>
+                            </a>
                         </li>
                         <li class="nav-item">
                             <a href="" class="nav-link"><i class="fas fa-envelope"></i></a>
