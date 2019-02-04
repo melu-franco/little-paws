@@ -11,7 +11,13 @@ use File;
 class UserController extends Controller
 {
 
-    public function show(User $user)
+    public function show()
+    {
+        $users = User::orderBy('name', 'asc')->get();
+        return view('dashboard.users', compact('users'));
+    }
+
+    public function profile(User $user)
     {
         $posts = Post::where('user_id', $user->id)->latest()->take(20)->get();
         return view('dashboard.profile', compact('user','posts'));
@@ -97,6 +103,26 @@ class UserController extends Controller
         }
 
         return back();
+    }
+
+    public function get_followers(User $user)
+    {
+        $user = User::find(1);
+        $user->followers;
+    }
+
+    public function follow_user(User $user)
+    {
+        $user1 = User::find(1);
+        $user2 = User::find(2);
+        $user1->follow($user2);
+    }
+
+    public function unfollow_user(User $user)
+    {
+        $user1 = User::find(1);
+        $user2 = User::find(2);
+        $user1->unfollow($user2);
     }
 
     public function destroy(User $user)
