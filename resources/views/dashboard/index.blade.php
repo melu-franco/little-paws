@@ -68,10 +68,12 @@
                             <span>|</span>
                         @endif
                         <div class="flex">
-                            <p>{{ $post->likes}}</p>
+                            @if ($post->likes != '0')
+                                <p>{{ $post->likes}}</p>
+                            @endif
                             <a href="#" class="like">
-                                <i class="fas fa-paw"></i>
-                                {{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'Dislike' : 'Like' : 'Like' }}
+                                <i class="far fa-heart"></i>
+                               {{--  {{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'Dislike' : 'Like' : 'Like' }} --}}
                             </a>
                         </div>
                     </div>
