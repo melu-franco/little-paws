@@ -22,8 +22,9 @@ class PostsController extends Controller
 
     public function getFeed(User $user, Comment $comment)
     {
-
-        $posts = Post::where('user_id', auth()->user()->id)
+        $ids = auth()->user()->following()->pluck("followed_id")->toArray();
+        $ids[] = auth()->user()->id;
+        $posts = Post::whereIn('user_id', $ids)
                      ->latest()->take(20)->get();
 
 
