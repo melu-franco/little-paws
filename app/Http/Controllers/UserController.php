@@ -105,24 +105,24 @@ class UserController extends Controller
         return back();
     }
 
-    public function get_followers(User $user)
-    {
-        $user = User::find(1);
-        $user->followers;
-    }
-
+    // Follow user.
     public function follow_user(User $user)
     {
-        $user1 = User::find(1);
-        $user2 = User::find(2);
-        $user1->follow($user2);
+        if(! $user) {
+            return redirect()->back()->with('error', 'User does not exist.');
+        }
+
+        $user->followers()->attach(auth()->user()->id);
+        return redirect()->back();
     }
 
     public function unfollow_user(User $user)
     {
-        $user1 = User::find(1);
-        $user2 = User::find(2);
-        $user1->unfollow($user2);
+        if(! $user) {
+            return redirect()->back()->with('error', 'User does not exist.');
+        }
+        $user->followers()->detach(auth()->user()->id);
+        return redirect()->back();
     }
 
     public function destroy(User $user)

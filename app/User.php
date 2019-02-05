@@ -27,16 +27,19 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
-    function followers()
+    public function followers()
     {
-        return $this->belongsToMany(User::class, 'followers', 'user_id', 'follower_id');
+        return $this->belongsToMany(User::class, 'follows', 'followed_id', 'follower_id')->withTimestamps();
     }
 
-    function follow(User $user) {
-        $this->followers()->attach($user->id);
+    public function following()
+    {
+        return $this->belongsToMany(User::class, 'follows', 'follower_id', 'followed_id')->withTimestamps();
     }
 
-    function unfollow(User $user) {
-        $this->followers()->detach($user->id);
+    public function is_following($user_id) {
+        $ids = $this->following()->pluck("followed_id")->toArray();
+        return boolval(in_array($user_id, $ids));
     }
+
 }

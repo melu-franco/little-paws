@@ -20,10 +20,23 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
+    public function getFeed(User $user, Comment $comment)
+    {
+
+        $posts = Post::where('user_id', auth()->user()->id)
+                     ->latest()->take(20)->get();
+
+
+        return view('dashboard.index', compact('posts','user','comment'));
+    }
+
 
     public function index(User $user, Comment $comment)
     {
-        $posts = Post::latest()->take(20)->get();
+        $follows = $user->following->pluck('followed_id')->toArray();
+        $posts = Post::where('user_id', $follows)
+        ->orWhere('user_id', auth()->user()->id)
+        ->latest()->take(20)->get();
         return view('dashboard.index', compact('posts','user','comment'));
     }
 
