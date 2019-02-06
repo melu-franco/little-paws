@@ -69,7 +69,7 @@
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        <i class="fas fa-cog"></i>
+                                        <i class="fas fa-ellipsis-h"></i>
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -189,7 +189,7 @@
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item dropdown">
                                     <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                        <i class="fas fa-cog"></i>
+                                        <i class="fas fa-ellipsis-h"></i>
                                     </a>
 
                                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

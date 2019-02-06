@@ -55,6 +55,11 @@
                                 <i class="fas fa-envelope"></i>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="" class="nav-link">
+                                <i class="far fa-bell"></i>
+                            </a>
+                        </li>
                         <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <i class="fas fa-cog"></i>
