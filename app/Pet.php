@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Dashboard extends Model
+class Pet extends Model
 {
     //
 }
