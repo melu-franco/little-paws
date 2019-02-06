@@ -23,12 +23,12 @@ class PostsController extends Controller
     public function getFeed(User $user, Comment $comment)
     {
         $ids = auth()->user()->following()->pluck("followed_id")->toArray();
-        $ids[] = auth()->user()->id;
-        $posts = Post::whereIn('user_id', $ids)
+        $posts_following = Post::whereIn('user_id', $ids)
                      ->latest()->take(20)->get();
+        $posts = Post::latest()->take(20)->get();
 
 
-        return view('dashboard.index', compact('posts','user','comment'));
+        return view('dashboard.index', compact('posts','posts_following','user','comment'));
     }
 
 
@@ -167,7 +167,7 @@ class PostsController extends Controller
             File::delete($postImage);
         }
 
-        return redirect('posts');
+        return back();
     }
 
     public function likes(Request $request, Post $post) {
