@@ -168,6 +168,8 @@ return [
          * Package Service Providers...
          */
 
+        Evilnet\Inbox\InboxServiceProvider::class,
+
         /*
          * Application Service Providers...
          */

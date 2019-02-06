@@ -51,7 +51,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link"><i class="fas fa-envelope"></i></a>
+                            <a href="{{ route('inbox') }}" class="nav-link">
+                                <i class="fas fa-envelope"></i>
+                            </a>
                         </li>
                         <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>

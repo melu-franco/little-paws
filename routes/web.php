@@ -5,6 +5,9 @@
 Route::get('/', 'PagesController@index');
 Route::get('/faq', 'PagesController@faq');
 
+Auth::routes();
+Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
 Route::group(['middleware' => ['auth', 'verified']], function()
 {
     //Posts controller
@@ -14,7 +17,7 @@ Route::group(['middleware' => ['auth', 'verified']], function()
     Route::patch('/posts/{post}', 'PostsController@update');
     Route::patch('/posts/{post}/update_image', 'PostsController@update_image');
     Route::delete('/posts/{post}/delete_image', 'PostsController@delete_image');
-    Route::delete('/posts/{post}', 'PostsController@destroy');
+    Route::delete('/posts/{post}', 'PostsController@destroy')->name('post.delete');
     Route::post('/posts/likes', 'PostController@likes')->name('like');
 
     //Users controller
@@ -32,13 +35,20 @@ Route::group(['middleware' => ['auth', 'verified']], function()
     Route::post('profile/{user}/follow', 'UserController@follow_user')->name('user.follow');
     Route::post('/{user}/unfollow', 'UserController@unfollow_user')->name('user.unfollow');
 
-    //Comments controller
+    //Comments
     Route::post('/comment/store', 'CommentController@store')->name('comment.add');
     Route::delete('/comment/{comment}', 'CommentController@destroy')->name('comment.delete');
+
+    //Messages
+    Route::get('/inbox/conversation', 'InboxController@create')->name('conversation.create');
+    Route::post('/inbox/conversation', 'InboxController@store')->name('conversation.store');
+    Route::get('/inbox/conversation/{id}', 'InboxController@show')->name('conversation.show');
+    Route::post('/inbox/message/{id}', 'InboxController@addMessage')->name('message');
+    Route::get('/inbox', 'InboxController@index')->name('inbox');
+    Route::delete('/inbox/conversation/{id}', 'InboxController@destroy')->name('conversation.delete');
 
     //Search users
     Route::get('/search', 'SearchController@search')->name('search');
 });
 
-Auth::routes();
-Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
+
