@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Pet;
+use App\PetType;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
@@ -21,22 +22,19 @@ class PetController extends Controller
         //
     }
 
- 
+
     public function create()
     {
 
-        $pet_types = DB::table('pet_types')
-        ->get();
+        $pet_types = DB::table('pet_types')->get();
 
         return view('dashboard.pet-create', compact('pet_types'));
     }
 
 
-    public function store(Request $request)
+    public function store(Request $request, Pet $pet)
     {
         $user_id = auth()->user()->id;
-
-        $pet_types = Pet::petType();
 
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
@@ -48,7 +46,7 @@ class PetController extends Controller
         $pet = Pet::create([
             'user_id' => $user_id,
             'name' => request('name'),
-            'avatar' => $pet_types->avatar,
+            'avatar' => $pet->pet_type()->avatar,
             'description' => request('description'),
             'pet_type_id' => request('pet_type_id'),
 
@@ -62,7 +60,9 @@ class PetController extends Controller
                     ->save(public_path('uploads/avatars/pets/' . $avatarName));
 
             $pet->update(['avatar' => $avatarName]);
-        } 
+        } else {
+            $pet->update(['avatar' => $pet->pet_type()->avatar]);
+        }
 
         return redirect('/home');
     }

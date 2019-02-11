@@ -1,12 +1,12 @@
 <?php
 
 namespace App;
-use DB;
-
 use Illuminate\Database\Eloquent\Model;
 
 class Pet extends Model
 {
+    protected $table = 'pets';
+
     protected $fillable = [
         'name', 'description', 'avatar', 'pet_type_id', 'user_id',
     ];
@@ -15,12 +15,8 @@ class Pet extends Model
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
 
-    public static function petType(){
-        return DB::table('pets')
-                ->leftJoin('pet_types', 'pets.id', '=', 'pet_types.id')
-                ->select('pet_types.avatar as avatar', 'pet_types.title as title', 'pets.*')
-                ->get();
+    public function pet_type(){
+        return $this->belongsTo(PetType::class, 'pet_type_id', 'id', 'title', 'avatar');
     }
 
-    
 }
