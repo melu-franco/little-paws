@@ -3,7 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Pet;
+use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Model;
+use DB;
+
 
 class PetController extends Controller
 {
@@ -17,25 +21,50 @@ class PetController extends Controller
         //
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function create()
     {
-        //
+
+        $pet_types = DB::table('pet_types')
+        ->get();
+
+        return view('dashboard.pet-create', compact('pet_types'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $user_id = auth()->user()->id;
+
+        $pet_types = Pet::petType();
+
+        $this->validate($request, [
+            'name' => ['required', 'string', 'max:255'],
+            'avatar' => ['image','mimes:jpeg,png,jpg,gif,svg','max:2048'],
+            'description' => ['max:1000'],
+            'pet_type_id' => ['required'],
+        ]);
+
+        $pet = Pet::create([
+            'user_id' => $user_id,
+            'name' => request('name'),
+            'avatar' => $pet_types->avatar,
+            'description' => request('description'),
+            'pet_type_id' => request('pet_type_id'),
+
+        ]);
+
+        if($request->hasfile('avatar')){
+            $avatar = $request->file('avatar');
+            $avatarName = 'pet_'. $pet->id .'_'. time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)
+                    ->resize(90, 90)
+                    ->save(public_path('uploads/avatars/pets/' . $avatarName));
+
+            $pet->update(['avatar' => $avatarName]);
+        } 
+
+        return redirect('/home');
     }
 
     /**

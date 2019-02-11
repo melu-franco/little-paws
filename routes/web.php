@@ -39,16 +39,21 @@ Route::group(['middleware' => ['auth', 'verified']], function()
     Route::post('/comment/store', 'CommentController@store')->name('comment.add');
     Route::delete('/comment/{comment}', 'CommentController@destroy')->name('comment.delete');
 
-    //Messages
-    Route::get('/inbox/conversation', 'InboxController@create')->name('conversation.create');
-    Route::post('/inbox/conversation', 'InboxController@store')->name('conversation.store');
-    Route::get('/inbox/conversation/{id}', 'InboxController@show')->name('conversation.show');
-    Route::post('/inbox/message/{id}', 'InboxController@addMessage')->name('message');
-    Route::get('/inbox', 'InboxController@index')->name('inbox');
-    Route::delete('/inbox/conversation/{id}', 'InboxController@destroy')->name('conversation.delete');
-
     //Search users
     Route::get('/search', 'SearchController@search')->name('search');
+
+    Route::view('/register-success', 'dashboard.register-success');
+
+    Route::get('/pet-create', 'PetController@create')->name('pet.create');
+    Route::post('/pet', 'PetController@store')->name('pet.store');
+    Route::get('/pet/{pet}', 'PetController@show');
+    Route::get('/pet/{pet}/edit', 'PetController@edit');
+    Route::patch('/pet/{pet}', 'PetController@update');
+    Route::patch('/pet/{pet}/update_image', 'PetController@update_image');
+    Route::delete('/pet/{pet}/delete_image', 'PetController@delete_image');
+    Route::delete('/pet/{pet}', 'PetController@destroy')->name('pet.delete');
+
+
 });
 
 

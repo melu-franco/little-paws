@@ -51,7 +51,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('inbox') }}" class="nav-link">
+                            <a href="" class="nav-link">
                                 <i class="fas fa-envelope"></i>
                             </a>
                         </li>

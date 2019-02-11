@@ -1,0 +1,35 @@
+@import "../modules/all";
+@import 'fonts';
+
+//Font Family
+$primary-font: $montserrat; 
+$secondary-font: $opensans;
+
+//Font Weights
+$bold: 600;
+$semi-bold: 500;
+$regular: 400;
+$light: 300;
+
+// Base Font
+$base-font-size: 16px;
+$base-line-height: 1.4em;
+
+// Font sizes
+$font-size-medium: 1.4em;
+$font-size-normal: 1em; 
+$font-size-small: 0.8em;
+$font-size-xsmall: 0.75em;
+
+$title-size-big: 4.5em;
+$title-size-medium: 3em;
+$title-size-small: 1rem;
+
+//Media Queries
+$mobile-width: 640px;
+$tablet-width: 768px;
+$desktop-width: 1024px;
+$breakpoints: (phone: 640px, tablet: 768px, desktop: 1024px) !default;
+
+
+

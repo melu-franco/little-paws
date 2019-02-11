@@ -1,0 +1,100 @@
+@mixin size($width, $height) {
+    width: $width;
+    height: $height;
+}
+
+@mixin bg-img($img, $pos) {
+    background: $img no-repeat $pos;
+}
+
+@mixin bg-size($bg-size) {
+    -webkit-background-size: $bg-size;
+    -moz-background-size: $bg-size;
+    -o-background-size: $bg-size;
+    -ms-background-size: $bg-size;
+    background-size: $bg-size;
+}
+
+@mixin rotate($deg) {
+    -webkit-transform: rotate($deg);
+    -moz-transform: rotate($deg);
+    -o-transform: rotate($deg);
+    -ms-transform: rotate($deg);
+    transform: rotate($deg);
+}
+
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+    -moz-border-radius: $radius;
+    -o-border-radius: $radius;
+    -ms-border-radius: $radius;
+    border-radius: $radius;
+}
+
+@mixin placeholder($color,$f-size,$f-family,$transform,$spacing) {
+    &::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+        color: $color;
+        font-size: $f-size;
+        line-height: inherit;
+        font-family: $f-family;
+        text-transform: $transform;
+        letter-spacing: $spacing;
+    }
+    &::-moz-placeholder { /* Firefox 19+ */
+        color: $color;
+        font-size: $f-size;
+        line-height: inherit;
+        font-family: $f-family;
+        text-transform: $transform;
+        letter-spacing: $spacing;
+    }
+    &:-ms-input-placeholder { /* IE 10+ */
+        color: $color;
+        font-size: $f-size;
+        line-height: inherit;
+        font-family: $f-family;
+        text-transform: $transform;
+        letter-spacing: $spacing;
+    }
+    &:-moz-placeholder { /* Firefox 18- */
+        color: $color;
+        font-size: $f-size;
+        line-height: inherit;
+        font-family: $f-family;
+        text-transform: $transform;
+        letter-spacing: $spacing;
+    }
+}
+
+@mixin transition($secs) {
+    -webkit-transition: all $secs ease-in-out;
+    -moz-transition: all $secs ease-in-out;
+    -ms-transition: all $secs ease-in-out;
+    -o-transition: all $secs ease-in-out;
+    transition: all $secs ease-in-out;  
+}
+
+@mixin ease-in($speed) {
+    -webkit-transition: all cubic-bezier(.79,.09,.62,1) $speed;
+    -moz-transition: all cubic-bezier(.79,.09,.62,1) $speed;
+    -o-transition: all cubic-bezier(.79,.09,.62,1) $speed;
+    transition: all cubic-bezier(.79,.09,.62,1) $speed;
+}
+
+@mixin mobile {
+  @media (max-width: #{$mobile-width}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
