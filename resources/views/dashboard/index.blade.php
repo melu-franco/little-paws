@@ -7,6 +7,17 @@
 
 @section('content')
 
+    <div class="pets">
+        <h4>Pets</h4>
+        <div class="flex">
+            <a href=""><i class="material-icons">add</i></a>
+            @foreach ($pets as $pet)
+                <a href="">
+                    <img src="{{$pet->avatar}}" alt="{{$pet->name}}" style="height:5em;">
+                </a>
+            @endforeach
+        </div>
+    </div>
 
     <a href="/profile/{{Auth::user()->id}}">
         <img src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" style="border-radius:50%;height:3em;object-fit:contain;">

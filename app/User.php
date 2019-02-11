@@ -27,6 +27,11 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
+    public function pets()
+    {
+        return $this->hasMany(Pet::class);
+    }
+
     public function followers()
     {
         return $this->belongsToMany(User::class, 'follows', 'followed_id', 'follower_id')->withTimestamps();

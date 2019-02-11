@@ -16,7 +16,15 @@ class Pet extends Model
     }
 
     public function pet_type(){
-        return $this->belongsTo(PetType::class, 'pet_type_id', 'id', 'title', 'avatar');
+        return $this->belongsTo(PetType::class, 'pet_type_id', 'id');
+    }
+
+    public function getAvatarAttribute($value) {
+        if($value) {
+            return '/uploads/avatars/pets/'.$value;
+        } else {
+            return '/img/pets_avatars/'.$this->pet_type->avatar;
+        }
     }
 
 }

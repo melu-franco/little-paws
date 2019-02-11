@@ -11,7 +11,8 @@ Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');
 Route::group(['middleware' => ['auth', 'verified']], function()
 {
     //Posts controller
-    Route::get('/home', 'PostsController@getFeed')->name('posts');
+    Route::get('/home', 'FeedController@index')->name('feed');
+
     Route::post('/posts', 'PostsController@store')->name('post.store');
     Route::get('/posts/{post}/edit', 'PostsController@edit');
     Route::patch('/posts/{post}', 'PostsController@update');

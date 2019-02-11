@@ -20,17 +20,6 @@ class PostsController extends Controller
         $this->middleware('auth');
     }
 
-    public function getFeed(User $user, Comment $comment)
-    {
-        $ids = auth()->user()->following()->pluck("followed_id")->toArray();
-        $posts_following = Post::whereIn('user_id', $ids)
-                     ->latest()->take(20)->get();
-        $posts = Post::latest()->take(20)->get();
-
-
-        return view('dashboard.index', compact('posts','posts_following','user','comment'));
-    }
-
 
     public function index(User $user, Comment $comment)
     {

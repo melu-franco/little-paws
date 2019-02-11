@@ -46,10 +46,8 @@ class PetController extends Controller
         $pet = Pet::create([
             'user_id' => $user_id,
             'name' => request('name'),
-            'avatar' => $pet->pet_type()->avatar,
             'description' => request('description'),
             'pet_type_id' => request('pet_type_id'),
-
         ]);
 
         if($request->hasfile('avatar')){
@@ -60,8 +58,6 @@ class PetController extends Controller
                     ->save(public_path('uploads/avatars/pets/' . $avatarName));
 
             $pet->update(['avatar' => $avatarName]);
-        } else {
-            $pet->update(['avatar' => $pet->pet_type()->avatar]);
         }
 
         return redirect('/home');
