@@ -1,0 +1,23 @@
+.sidebar {
+    width: 20rem;
+    height: 100vh;
+    position: fixed;
+    background: $white;
+    border-right: 1px solid $border-color;
+
+    & > div {
+        padding: 2em;
+    }
+    &__title {
+        font-family: $opensans;
+    }
+}
+
+.aside {
+    margin-top: 2.2em;
+    height: 5em;
+    width: 18rem;
+    margin-left: auto;
+    background: $white;
+    border: 1px solid $border-color;
+}

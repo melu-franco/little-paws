@@ -18,18 +18,24 @@
 
     <!-- Styles -->
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dashboard.css') }}" rel="stylesheet">
 
 </head>
-<body class="has-navbar-fixed-top" style="padding-top:6rem;">
+<body class="has-navbar-fixed-top">
 
-    @include('dashboard.header')
+    @include('dashboard.menu.header')
 
-   <div class="container">
-       @yield('content')
-    </div>
+   <div class="app d-flex">
+        @include('dashboard.menu.sidebar')
 
-    @include('dashboard.footer')
+       <div class="wrapper d-flex">
+           <main class="main">
+               @yield('content')
+            </main>
+
+            @include('dashboard.menu.aside')
+       </div>
+   </div>
 
 </body>
 </html>

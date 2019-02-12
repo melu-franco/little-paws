@@ -1,5 +1,28 @@
 
 $red: #fa4169;
 $blue: #4380ff;
-$green: #06d6a0;
+$green: #38b593;
 $black: #414852;
+
+$gray: #adadad;
+$light-gray: #eaeaea;
+$very-light-gray: #FBFBFD;
+
+$border-color: $light-gray;
+
+.color-red {
+    color: $red;
+}
+.color-blue {
+    color: $blue;
+}
+.color-green {
+    color: $green;
+}
+.color-gray {
+    color: $gray;
+}
+.color-black {
+    color: $black;
+}
+

@@ -1,0 +1,15 @@
+.d-flex {
+    display: flex;
+}
+
+.flex {
+    &-wrap {
+        flex-wrap: wrap;
+    }
+    &-jc-center {
+        justify-content: center;
+    }
+    &-ai-center {
+        align-items: center;
+    }
+}

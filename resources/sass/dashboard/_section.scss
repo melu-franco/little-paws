@@ -1,0 +1,76 @@
+.section {
+    .tab {
+        .tablinks {
+            color: $red;
+            font-weight: $bold;
+            font-size: rem(14);
+            text-transform: uppercase;
+            font-family: $montserrat;
+        }
+    }
+    &--main {
+        .main-wrapper {
+            margin-bottom: 2em;
+            background: $white;
+            border: 1px solid $border-color;
+        }
+        .w-pad {
+            padding: 1em;
+        }
+    }
+
+    &--post-create {
+        .post {
+            &__title {
+                display: flex;
+                font-size: rem(14);
+                font-weight: $bold;
+                padding-top: .6em;
+                padding-bottom: .6em;
+                 align-items: center;
+                 font-family: $opensans;
+                i {
+                    color: $blue;
+                    font-size: rem(20);
+                    margin-right: .5em;
+                }
+            }
+        }
+    }
+}
+
+.post-card {
+    &__user {
+        &__info {
+            margin-left: .5em;
+            .owner {
+                color: $black;
+                font-weight: $bold;
+                font-family: $montserrat;
+            }
+            .time {
+                color: $gray;
+                margin-top: .2em;
+                font-size: rem(13);
+                font-weight: $regular;
+                font-family: $montserrat;
+            }
+        }
+    }
+    &__edit {
+        .dropdown {
+            width: 25px;
+        }
+    }
+
+    &__content {
+        img {
+            width: 100%;
+            object-fit: contain;
+        }
+        p {
+            font-weight: $bold;
+            font-family: $opensans;
+        }
+    }
+}

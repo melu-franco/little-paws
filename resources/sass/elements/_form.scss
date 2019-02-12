@@ -1,0 +1,18 @@
+.form {
+    input, textarea, button {
+        outline: 0;
+        border: none;
+    }
+    textarea {
+        resize: none;
+        padding: 1em;
+    }
+    &-group {
+        margin: 0;
+    }
+    &--post {
+        textarea {
+            width: 100%;
+        }
+    }
+}

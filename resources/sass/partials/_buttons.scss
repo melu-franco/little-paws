@@ -1,0 +1,16 @@
+.btn {
+    border: none;
+    background: transparent;
+    &-border {
+        display: inline-flex;
+        border-radius: 10px;
+        border: 1px solid #ddd;
+    }
+    &-icon {
+        font-size: rem(15);
+        font-weight: $bold;
+        i {
+            margin-right: .2em;
+        }
+    }
+}
