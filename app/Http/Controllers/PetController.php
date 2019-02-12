@@ -39,7 +39,7 @@ class PetController extends Controller
         $this->validate($request, [
             'name' => ['required', 'string', 'max:255'],
             'avatar' => ['image','mimes:jpeg,png,jpg,gif,svg','max:2048'],
-            'description' => ['max:1000'],
+            'description' => ['max:500'],
             'pet_type_id' => ['required'],
         ]);
 
@@ -63,48 +63,62 @@ class PetController extends Controller
         return redirect('/home');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Pet  $pet
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Pet $pet)
+    public function show(User $user, Pet $pet)
     {
-        //
+        return view('dashboard.pet-profile', compact('user','pet'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Pet  $pet
-     * @return \Illuminate\Http\Response
-     */
     public function edit(Pet $pet)
     {
-        //
+        return view('dashboard.pet-profile-edit', compact('pet'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Pet  $pet
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Pet $pet)
+    public function update(User $user)
     {
-        //
+        $pet->update(request()->validate([
+            'name' => 'required',
+            'description' => 'max:500',
+        ]));
+
+        return redirect()->route('pet-profile', [$pet]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Pet  $pet
-     * @return \Illuminate\Http\Response
-     */
+    public function update_avatar(Pet $pet, Request $request)
+    {
+        $request->validate([
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if($request->hasfile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename  = public_path('uploads/avatars/pets/').$pet->avatar;
+            $filename_new = 'pet_'. $pet->id .'_'. time() . '.' . $avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(90, 90)->save(public_path('uploads/avatars/pets/' . $filename_new));
+
+            if(File::exists($filename)) {
+                File::delete($filename);
+            }
+
+            $user->update(['avatar' => $filename_new]);
+        }
+
+        return back();
+    }
+
+    public function delete_avatar(User $user){
+        $avatar  = public_path('uploads/avatars/pets/').$pet->avatar;
+
+        if(File::exists($avatar)) {
+            File::delete($avatar);
+        }
+
+        return back();
+    }
+
     public function destroy(Pet $pet)
     {
-        //
+        $pet->delete();
+        $avatar  = public_path('uploads/avatars/pets/').$pet->avatar;
+        File::delete($avatar);
     }
 }

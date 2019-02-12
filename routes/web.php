@@ -31,6 +31,14 @@ Route::group(['middleware' => ['auth', 'verified']], function()
     Route::delete('/profile/{user}/delete_cover', 'UserController@delete_cover');
     Route::delete('/profile/{user}', 'UserController@destroy');
 
+    //User Pet controller
+    Route::get('/pet/{pet}', 'PetController@show')->name('pet.show');
+    Route::get('/pet/{pet}/edit', 'PetController@edit')->name('pet.edit');
+    Route::patch('/pet/{pet}', 'PetController@update')->name('pet.update');
+    Route::patch('/pet/{pet}/update_avatar', 'PetController@update_avatar')->name('pet-avatar.edit');
+    Route::delete('/pet/{pet}/delete_avatar', 'PetController@delete_avatar')->name('pet-avatar.delete');
+    Route::delete('/pet/{pet}', 'PetController@destroy')->name('pet.delete');
+
     //Follow users
     Route::get('/users', 'UserController@show')->name('users');
     Route::post('profile/{user}/follow', 'UserController@follow_user')->name('user.follow');
