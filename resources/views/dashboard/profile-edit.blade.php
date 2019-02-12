@@ -10,10 +10,7 @@
 
         <div class="field">
             <label for="avatar" class="button"><i class="fas fa-pen"></i></label>
-
-            <div class="col-md-6">
-                <input id="avatar" type="file" name="avatar" onChange="this.form.submit()" style="visibility:hidden;display:none;" class="input form-control">
-            </div>
+            <input id="avatar" type="file" name="avatar" onChange="this.form.submit()" class="hidden">
         </div>
     </form>
 

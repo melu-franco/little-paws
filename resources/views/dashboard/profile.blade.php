@@ -67,6 +67,19 @@
 
     </div>
 
+    <div class="section--pets pets">
+        <h2 class="title title--medium">Pet List</h2>
+        <div class="pets__list flex">
+            <a href="" class="pet__list__item add"><i class="material-icons">add</i></a>
+            @foreach ($pets as $pet)
+                <a href="" class="pet__list__item">
+                    <img src="{{$pet->avatar}}" alt="{{$pet->name}}" style="height:5em;">
+                </a>
+            @endforeach
+        </div>
+    </div>
+
+
     <div>
         <img src="/uploads/avatars/{{ $user->avatar }}" alt="{{ $user->name }}" style="border-radius:50%;height:6em;object-fit:contain;">
     </div>

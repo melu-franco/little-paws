@@ -11,8 +11,11 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.sass('resources/sass/app.scss', 'public/css').version();
+mix.sass('resources/sass/dashboard.scss', 'public/css').version();
+mix.sass('resources/sass/styles.scss', 'public/css').version();
+
 mix.js('resources/js/app.js', 'public/js').version();
+
 mix.scripts([
     'node_modules/jquery/dist/jquery.min.js',
     'resources/js/like.js'
