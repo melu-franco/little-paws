@@ -1,19 +1,52 @@
 .section {
     &--auth {
+        &__title {
+            margin-bottom: .2em;
+            font-size: rem(30);
+            font-weight: $bold;
+            font-family: $montserrat;
+        }
+        &__desc {
+            font-size: rem(15);
+        }
         .auth-bg {
-            width: 45%;
+            width: 50%;
+            height: 100vh;
+            &.register__bg {
+                background: url('/img/bg-register.png') no-repeat center;
+                background-size: contain;
+            }
         }
         .auth-content{
-            width: 55%;
+            width: 50%;
             height: 100%;
             min-height: 100vh;
+            padding: 5em 10%;
             display: flex;
             text-align: center;
             align-items: center;
+            flex-direction: column;
+            .link--back {
+                margin-left: auto;
+            }
+            .form {
+                margin-top: 1.5em;
+                button[type='submit'] {
+                    margin: 1em 0;
+                }
+            }
         }
         .align-center {
             margin: auto;
-            width: 50%;
+            width: 100%;
+        }
+        .auth-redirect {
+            margin-top: 1em;
+            font-size: rem(14);
+            a {
+                font-weight: $semi-bold;
+                font-family: $montserrat;
+            }
         }
     }
 }

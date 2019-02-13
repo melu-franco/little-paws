@@ -21,7 +21,9 @@ class UserController extends Controller
     public function profile(User $user)
     {
         $posts = Post::where('user_id', $user->id)->latest()->take(20)->get();
-        return view('dashboard.profile', compact('user','posts'));
+        $pets = Pet::where('user_id', auth()->user()->id)->get();
+
+        return view('dashboard.profile', compact('user','posts','pets'));
     }
 
     public function edit(User $user)

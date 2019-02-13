@@ -2,6 +2,10 @@
     box-sizing: border-box;
 }
 
+*:focus {
+    outline: none;
+}
+
 html {
     font-size: $base-font-size;
     font-family: $opensans;
@@ -54,5 +58,6 @@ a {
 @import 'header';
 @import 'sidebar';
 @import 'section';
+@import 'profile';
 @import '../elements/text';
 @import '../elements/form';

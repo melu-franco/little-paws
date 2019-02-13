@@ -1,8 +1,10 @@
 .form {
-    
     textarea {
         resize: none;
-        padding: 1em;
+    }
+    .avatar img {
+        border-radius: 50%;
+        object-fit: contain;
     }
     &-group {
         margin: 0;
@@ -11,15 +13,32 @@
     &--post {
         textarea {
             width: 100%;
+            border: none;
+            padding: 1em;
+            @include placeholder($gray,rem(16),$opensans);
+        }
+        .avatar img {
+            height: 3em;
+        }
+    }
+    &--comment {
+        textarea {
+            width: 100%;
+            border: none;
+            padding: .5em 1em 0;
+            @include placeholder($gray,rem(16),$opensans);
+        }
+        .avatar img {
+            height: 2em;
         }
     }
     .label-icon {
         top: 0.8rem;
         left: 1em;
-        color: $gray; 
+        color: $gray;
         position: absolute;
     }
-    &__input {
+    &__input, &__textarea {
         margin: .8em auto;
         display: block;
         border-radius: 30px;
@@ -29,4 +48,176 @@
         border: 1px solid $border-color;
         @include placeholder($gray,rem(15),$opensans);
     }
+    &__textarea {
+        padding-top: 1em;
+    }
+
+    &.-blue {
+        .form__input {
+            border-color: $blue-op;
+        }
+    }
+    &.-red {
+        .form__input {
+            border-color: $red-op;
+        }
+    }
+
+    .setting {
+        margin: 0 auto 3px;
+        padding: 12px;
+        width: 100%;
+
+        &.-no-pad {
+            padding: 0;
+            margin: 0;
+        }
+
+        a[data-action], .choose-file {
+            cursor: pointer;
+            color: #555;
+            font-size: 14px;
+            line-height: 24px;
+            text-align: left;
+            transition: color 0.2s;
+            &:hover {
+                color: $green;
+              }
+            i {
+                width: 1.25em;
+                text-align: center;
+            }
+            &.disabled {
+                opacity: 0.35;
+                cursor: default;
+                pointer-events: none;
+                &:hover {
+                    color: #555;
+                }
+            }
+        }
+
+        .post-foto {
+            a.disabled {
+                display: none;
+            }
+            a.remove i {
+                font-size: 20px;
+            }
+        }
+      }
+
+
+      .image_picker .settings_wrap {
+        overflow: hidden;
+        position: relative;
+        .drop_target,
+        .settings_actions {
+            text-align: left;
+        }
+
+          .settings_actions {
+            margin-top: 12px;
+            &.vertical a {
+                display: block;
+              }
+          }
+
+          .drop_target {
+            position: relative;
+            cursor: pointer;
+            margin-right: 18px;
+            background: hsl(0, 0%, 90%);
+            border-radius: 50%;
+            width: 72px;
+            height: 72px;
+            transition: all 0.2s;
+            input[type="file"] {
+                visibility: hidden;
+              }
+            &:before {
+                content: '\f0ee';
+                font-family: FontAwesome;
+                position: absolute;
+                display: block;
+                width: 100%;
+                line-height: 60px;
+                text-align: center;
+                font-size: 32px;
+                padding: 0.2em;
+                color: rgba(0, 0, 0, 0.3);
+                transition: color 0.2s;
+            }
+            &:hover,
+            &.dropping {
+              background: $green;
+              border-top-color: $green;
+            }
+            &:hover:before,
+            &.dropping:before {
+              color: rgba(0, 0, 0, 0.6);
+            }
+            &.image-hidden {
+                width: auto;
+                height: auto;
+                margin: 0;
+                background: transparent;
+                &::before {
+                    content: "";
+                    padding: 0;
+                    height: 0;
+                    display: none;
+                }
+                .image_preview[data-image="true"] {
+                    width: 5em;
+                    height: 5em;
+                    border-radius: 0;
+                    margin-bottom: 1em;
+                    & + a.disabled {
+                        display: block;
+                    }
+                }
+            }
+          }
+
+          .image_preview {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: no-repeat center;
+            background-size: contain;
+            position: relative;
+            z-index: 2;
+          }
+      }
+
+
+
+    .pets {
+
+        .control {
+            margin: 2em 0;
+            input:checked + label {
+                img {
+                    border-color: $red;
+                }
+            }
+        }
+        .pet {
+            width: 30%;
+            cursor: pointer;
+            margin-bottom: 1em;
+            img {
+                height: 8em;
+                width: 8em;
+                padding: 4px;
+                border-radius: 50%;
+                border: 4px solid transparent;
+            }
+            font-size: rem(14);
+            font-family: $montserrat;
+            font-weight: $semi-bold;
+        }
+    }
+
 }

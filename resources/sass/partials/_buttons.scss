@@ -5,6 +5,9 @@
         display: inline-flex;
         border-radius: 10px;
         border: 1px solid #ddd;
+        &:hover {
+            border-color: $gray;
+        }
     }
     &-icon {
         font-size: rem(15);
@@ -12,5 +15,32 @@
         i {
             margin-right: .2em;
         }
+    }
+    &-round {
+        font-size: rem(15);
+        text-transform: uppercase;
+        font-weight: $bold;
+        border-radius: 30px;
+        padding: .9em 1em;
+        font-family: $montserrat;
+        &.-small {
+            padding: .5em 1em;
+            text-transform: none;
+        }
+    }
+    &.-red {
+        color: $white;
+        background: $red;
+    }
+    &.-blue {
+        color: $white;
+        background: $blue;
+    }
+    &.-green {
+        color: $white;
+        background: $green;
+    }
+    &.-large {
+        width: 100%;
     }
 }

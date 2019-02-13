@@ -10,19 +10,22 @@ $very-light-gray: #FBFBFD;
 
 $border-color: $light-gray;
 
-.color-red {
+$blue-op: #4380ff50;
+$red-op: #fa416950;
+
+.-color-red {
     color: $red;
 }
-.color-blue {
+.-color-blue {
     color: $blue;
 }
-.color-green {
+.-color-green {
     color: $green;
 }
-.color-gray {
+.-color-gray {
     color: $gray;
 }
-.color-black {
+.-color-black {
     color: $black;
 }
 

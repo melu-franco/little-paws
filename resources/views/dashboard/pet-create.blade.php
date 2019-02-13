@@ -10,6 +10,9 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
 
         <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
         <!-- Styles -->
@@ -17,55 +20,67 @@
 
     </head>
     <body>
-        
-        <section class="section section--auth d-flex pet-create">
 
-            <div class="auth-bg pet-create__bg"></div>
+        <section class="section section--auth d-flex pet-create">
 
             <div class="auth-content pet-create__form">
                 <div class="align-center">
-                    <h1>Agregar mascota</h1>
-        
+                    <h1 class="section--auth__title">Agregar mascota</h1>
+
                     <form method="POST" class="form" action="{{ route('pet.store') }}" enctype="multipart/form-data">
                         @csrf
-        
-                        <div class="field">
-                            <p>Tipo de mascota</p>
-                            <div class="control">
+
+                        <div class="form-group pets">
+                            <h2 class="title title--medium -mayus">Tipo de mascota</h2>
+                            <div class="control d-flex flex-wrap">
                                 @foreach ($pet_types as $pet)
-                                    <label for="pet-{{$pet->id}}">{{$pet->title}}</label>
-                                    <input type="radio" name="pet_type_id" value="{{$pet->id}}" id="pet-{{$pet->id}}">
+                                    <input class="hidden" type="radio" name="pet_type_id" value="{{$pet->id}}" id="pet-{{$pet->id}}">
+                                    <label class="pet pet-{{$pet->id}}" for="pet-{{$pet->id}}">
+                                        <img src="/img/pets_avatars/{{$pet->avatar}}" alt="{{$pet->title}}">
+                                        {{$pet->title}}
+                                    </label>
                                 @endforeach
                             </div>
                         </div>
-        
-                        <div class="field">
-                                <label for="avatar" class="label">{{ __('Avatar (optional)') }}</label>
-        
-                                <div class="control">
-                                    <input id="avatar" type="file" class="form-control" name="avatar">
+
+                        <div class="form-group avatar">
+                            <div class="setting image_picker">
+                                <div class="settings_wrap d-flex">
+                                    <label class="drop_target">
+                                        <div class="image_preview"></div>
+                                        <input id="inputFile" name="avatar" type="file"/>
+                                    </label>
+                                    <div class="settings_actions vertical">
+                                        <label for="inputFile" class="choose-file"><i class="fa fa-picture-o"></i> Subir archivo</label>
+                                        <a class="disabled" data-action="remove_current_image"><i class="fa fa-ban"></i> Eliminar archivo</a>
+                                    </div>
                                 </div>
                             </div>
-        
-                        <div class="field">
-                            <label for="name" class="label">Nombre</label>
-        
-                            <div class="control">
-                                <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-                            </div>
-        
+
+                            @if ($errors->has('avatar'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('avatar') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+
+                        <div class="form-group">
+                            <label for="name" class="label-icon"><i class="material-icons">person</i></label>
+
+                            <input id="name" type="text" placeholder="Nombre" class="form__input user {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+
                             @if ($errors->has('name'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                             @endif
                         </div>
-        
-                        <div class="field">
-                            <label class="label" for="description">Info</label>
-        
+
+                        <div class="form-group">
+                            <label class="label-icon" for="description"><i class="material-icons">create</i></label>
+
                             <div class="control">
-                                <textarea class="textarea {{ $errors->has('content') ? 'is-danger' : '' }}" name="description" id="description" cols="30" rows="5"></textarea>
+                                <textarea class="form__textarea {{ $errors->has('content') ? 'is-danger' : '' }}" placeholder="Descripción.." name="description" id="description" cols="30" rows="5"></textarea>
                             </div>
                             @if ($errors->has('description'))
                                 @foreach ($errors->all() as $error)
@@ -73,21 +88,24 @@
                                 @endforeach
                             @endif
                         </div>
-        
+
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-round -large -blue">
                                 Crear
                             </button>
                         </div>
-        
+
                         <div class="form-group">
-                            <a href="{{ URL::previous() }}" class="btn btn-primary">
+                            <a href="{{ URL::previous() }}" class="link -color-blue">
                                 Cancelar
                             </a>
                         </div>
                     </form>
                 </div>
             </div>
+
+            <div class="auth-bg pet-create__bg"></div>
+
         </section>
 
     </body>

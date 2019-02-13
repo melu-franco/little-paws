@@ -16,3 +16,14 @@
 .-mayus {
     text-transform: uppercase;
 }
+
+.link {
+    &--back {
+        color: $gray;
+        font-size: rem(13);
+        align-items: center;
+        i {
+            margin-right: .4em;
+        }
+    }
+}

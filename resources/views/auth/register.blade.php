@@ -27,90 +27,93 @@
 
             <div class="auth-content register__form">
 
+                <a class="link link--back d-flex" href="{{ URL::previous() }}">Volver</a>
+
                <div class="align-center">
-                    <a class="link link--back" href="{{ URL::previous() }}">Volver</a>
-    
-                    <h1 class="section--auth__title">Crear cuenta</h1>
-    
-                    <form method="POST" action="{{ route('register') }}" class="form" enctype="multipart/form-data">
+                    <h1 class="section--auth__title -color-blue">Crear cuenta</h1>
+                    <p class="section--auth__desc -color-gray">Completá el formulario</p>
+
+                    <form method="POST" action="{{ route('register') }}" class="form -blue" enctype="multipart/form-data">
                         @csrf
-    
+
                         <div class="form-group avatar">
                             <div class="setting image_picker">
-                                <div class="settings_wrap">
+                                <div class="settings_wrap d-flex">
                                     <label class="drop_target">
                                         <div class="image_preview"></div>
                                         <input id="inputFile" name="avatar" type="file"/>
                                     </label>
-                                    <div class="settings_actions vertical"><a data-action="choose_from_uploaded"><i class="fa fa-picture-o"></i> Choose from Uploads</a><a class="disabled" data-action="remove_current_image"><i class="fa fa-ban"></i> Remove Current Image</a></div>
-                                    
+                                    <div class="settings_actions vertical">
+                                        <label for="inputFile" class="choose-file"><i class="fa fa-picture-o"></i> Subir archivo</label>
+                                        <a class="disabled" data-action="remove_current_image"><i class="fa fa-ban"></i> Eliminar archivo</a>
+                                    </div>
                                 </div>
                             </div>
-    
+
                             @if ($errors->has('avatar'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('avatar') }}</strong>
                                 </span>
                             @endif
                         </div>
-    
+
                         <div class="form-group">
                             <label for="name" class="label-icon"><i class="material-icons">person</i></label>
 
                             <input id="name" type="text" placeholder="Nombre" class="form__input user {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-    
+
                             @if ($errors->has('name'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('name') }}</strong>
                                 </span>
                             @endif
                         </div>
-    
+
                         <div class="form-group">
-                            <label for="name" class="label-icon"><i class="material-icons">mail</i></label>
+                            <label for="email" class="label-icon"><i class="material-icons">mail</i></label>
 
                             <input id="email" type="email" placeholder="E-mail" class="form__input email{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-    
+
                             @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('email') }}</strong>
                                 </span>
                             @endif
                         </div>
-    
+
                         <div class="form-group">
-                            <label for="name" class="label-icon"><i class="material-icons">lock</i></label>
+                            <label for="password" class="label-icon"><i class="material-icons">lock</i></label>
 
                             <input id="password" type="password" placeholder="Contraseña" class="form__input pass{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-    
+
                             @if ($errors->has('password'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('password') }}</strong>
                                 </span>
                             @endif
                         </div>
-    
+
                         <div class="form-group">
-                            <label for="name" class="label-icon"><i class="material-icons">lock</i></label>
+                            <label for="password-confirm" class="label-icon"><i class="material-icons">lock</i></label>
 
                             <input id="password-confirm" type="password" placeholder="Repetir contraseña" class="form__input pass-confirm{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" required>
-    
+
                             @if ($errors->has('password_confirmation'))
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $errors->first('password_confirmation') }}</strong>
                                 </span>
                             @endif
                         </div>
-    
+
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">
+                            <button type="submit" class="btn btn-round -large -blue">
                                 Crear
                             </button>
                         </div>
                     </form>
-    
-                    <div class="">
-                        ¿Ya tenés cuenta? <a class="color-main" href="/login">Login</a>
+
+                    <div class="auth-redirect">
+                        ¿Ya tenés cuenta? <a class="-color-red" href="/login">Login</a>
                     </div>
                </div>
 

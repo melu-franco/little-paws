@@ -12,6 +12,7 @@
         .main-wrapper {
             margin-bottom: 2em;
             background: $white;
+            border-radius: 5px;
             border: 1px solid $border-color;
         }
         .w-pad {
@@ -40,23 +41,32 @@
 }
 
 .post-card {
-    &__user {
-        &__info {
-            margin-left: .5em;
-            .owner {
-                color: $black;
-                font-weight: $bold;
-                font-family: $montserrat;
-            }
-            .time {
-                color: $gray;
-                margin-top: .2em;
-                font-size: rem(13);
-                font-weight: $regular;
-                font-family: $montserrat;
-            }
+    &__user__info,
+    .comment__user__info {
+        margin-left: .5em;
+        .owner {
+            color: $black;
+            font-weight: $bold;
+            font-family: $montserrat;
+        }
+        .time {
+            color: $gray;
+            font-size: rem(13);
+            font-weight: $regular;
+            font-family: $montserrat;
         }
     }
+
+    .comment {
+        padding-left: 3em;
+        &__p {
+            margin-top: 1em;
+            font-size: rem(14);
+            font-weight: $bold;
+            font-family: $opensans;
+        }
+    }
+
     &__edit {
         .dropdown {
             width: 25px;
@@ -64,6 +74,7 @@
     }
 
     &__content {
+        margin-bottom: -2px;
         img {
             width: 100%;
             object-fit: contain;
@@ -71,6 +82,29 @@
         p {
             font-weight: $bold;
             font-family: $opensans;
+            &.w-pad {
+                padding-top: 0;
+            }
+        }
+    }
+    &__reactions {
+        padding: .8em;
+        .btn-reaction {
+            width: 33.3%;
+            color: $black;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            justify-content: center;
+            i {
+                font-size: rem(20);
+                margin-right: .2em;
+            }
+            span {
+                font-size: rem(13);
+                font-weight: $bold;
+                font-family: $montserrat;
+            }
         }
     }
 }

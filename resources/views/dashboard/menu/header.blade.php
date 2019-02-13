@@ -10,7 +10,7 @@
                         <button type="submit" class="btn btn-search">
                             <i class="material-icons">search</i>
                         </button>
-                        <input type="text" class="form__input search" name="search" placeholder="Buscar..">
+                        <input type="text" class="search" name="search" placeholder="Buscar..">
                     </div>
                 </form>
 
@@ -44,6 +44,9 @@
 
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="/profile/{{Auth::user()->id}}/pets">
+                                <i class="fas fa-paw"></i> Ver mascotas
+                                </a>
                             <a class="dropdown-item" href="/profile/{{Auth::user()->id}}/edit">
                                <i class="material-icons">edit</i> Editar perfil
                             </a>

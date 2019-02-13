@@ -16,7 +16,7 @@
                 <ul class="navbar-nav ml-auto post-card__edit">
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                            <i class="material-icons color-gray">more_horizontal</i>
+                            <i class="material-icons -color-gray">more_horizontal</i>
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -41,77 +41,94 @@
         </div>
 
        <div class="post-card__content">
+
+            <p class="w-pad">{{ $post->content }}</p>
+
             @if($post->image != '')
                 <img src="/uploads/posts/{{ $post->image }}" alt="Post image" style="width:100%;">
             @endif
 
-            <p class="w-pad">{{ $post->content }}</p>
-
        </div>
-        <div class="flex">
-            <div class="flex">
+        <div class="d-flex post-card__reactions border-top">
+            <a href="#" class="like btn-reaction">
+                <i class="far fa-heart"></i>
+                <span>Like</span>
+                @if ($post->likes != '0')
+                    <span>{{ $post->likes}}</span>
+                @endif
+                {{--  {{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'Dislike' : 'Like' : 'Like' }} --}}
+            </a>
 
-                <a href="#" class="like button">
-                    <i class="far fa-heart"></i>
-                    @if ($post->likes != '0')
-                        <span>{{ $post->likes}}</span>
-                    @endif
-                    {{--  {{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'Dislike' : 'Like' : 'Like' }} --}}
-                </a>
+            <a href="#" class="btn-reaction">
+                <i class="far fa-comment"></i>
+                <span>Comentar</span>
+                @if ($post->comments->count())
+                    <span>{{ $post->comments->count() }}</span>
+                @endif
+                {{--  {{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'Dislike' : 'Like' : 'Like' }} --}}
+            </a>
 
-                <a href="#" class="button">
-                    <i class="far fa-comment"></i>
-                    @if ($post->comments->count())
-                        <span>{{ $post->comments->count() }}</span>
-                    @endif
-                    {{--  {{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'Dislike' : 'Like' : 'Like' }} --}}
-                </a>
-            </div>
+            <a href="#" class="btn-reaction">
+                <i class="material-icons">share</i>
+                <span>Compartir</span>
+            </a>
         </div>
+
+        <form method="post" class="form form--comment" action="{{ route('comment.add') }}">
+            @csrf
+            <div class="form-group d-flex w-pad border-top flex-ai-center">
+                <a href="/profile/{{Auth::user()->id}}" class="avatar">
+                    <img src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" style="">
+                </a>
+                <textarea class="no-border {{ $errors->has('content') ? 'is-danger' : '' }}" name="content" placeholder="Escribí un comentario.." id="content" cols="30"></textarea>
+                <input type="hidden" name="post_id" value="{{ $post->id }}" />
+
+                <button type="submit" class="btn"><i class="material-icons -color-green">send</i></button>
+            </div>
+        </form>
 
         @if ($post->comments->count())
             @foreach($post->comments as $comment)
-                <div class="display-comment" style="padding-left:5%;padding-top:1em;border-top:1px solid #ccc;">
-                    <div class="flex">
-                        <a href="/profile/{{$comment->user->id}}">
-                            <img src="/uploads/avatars/{{ $comment->user->avatar }}" alt="{{ $comment->user->name }}" style="border-radius:50%;height:2em;object-fit:contain;">
-                        </a>
-                        <div>
-                            <a href="/profile/{{$comment->user->id}}">
-                                <strong>{{$comment->user->name}}</strong>
+                <div class="comment w-pad border-top">
+                    <div class="d-flex">
+                        <div class="d-flex">
+                            <a href="/profile/{{$comment->user->id}}" class="avatar">
+                                <img src="/uploads/avatars/{{ $comment->user->avatar }}" alt="{{ $comment->user->name }}" style="border-radius:50%;height:2em;object-fit:contain;">
                             </a>
-                            <p>{{ $comment->created_at->diffForHumans() }}</p>
-                        </div>
-                    </div>
-                    <p>{{ $comment->content }}</p>
-
-                    @if ( Auth::user()->id == $comment->user->id)
-                        <form method="POST" action="/comment/{{$comment->id}}">
-                            @method('DELETE')
-                            @csrf
-                            <div class="field">
-                                <div class="control">
-                                    <button type="submit" class="button is-light">Eliminar</button>
-                                </div>
+                            <div class="comment__user__info">
+                                <a class="owner" href="/profile/{{$comment->user->id}}">{{$comment->user->name}}</a>
+                                <p class="time">{{ $comment->created_at->diffForHumans() }}</p>
                             </div>
-                        </form>
-                    @endif
+                        </div>
+
+                        @if (Auth::user()->id == $comment->user->id)
+                        <ul class="navbar-nav ml-auto post-card__edit">
+                                <li class="nav-item dropdown">
+                                    <a id="navbarDropdown" class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                        <i class="material-icons -color-gray">more_horizontal</i>
+                                    </a>
+
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                        <a class="dropdown-item" href="{{ route('comment.delete', [$comment->id]) }}"
+                                        onclick="event.preventDefault(); document.getElementById('delete-comment').submit();">
+                                            <i class="fas fa-trash-alt"></i> Eliminar
+                                        </a>
+
+                                        <form id="delete-comment" action="{{ route('comment.delete', [$comment->id]) }}" method="POST" style="display: none;">
+                                            @csrf
+                                            @method('DELETE')
+                                        </form>
+                                    </div>
+                                </li>
+                            </ul>
+                        @endif
+
+                    </div>
+                    <p class="comment__p">{{ $comment->content }}</p>
+
 
                 </div>
             @endforeach
         @endif
-
-        <form method="post" action="{{ route('comment.add') }}">
-            @csrf
-            <div class="field">
-                <input type="text" name="content" placeholder="Escribir un comentario" class="input form-control" />
-                <input type="hidden" name="post_id" value="{{ $post->id }}" />
-            </div>
-            <div class="field">
-                <div class="control">
-                    <button type="submit" class="button is-primary">Comentar</button>
-                </div>
-            </div>
-        </form>
 
     </div>

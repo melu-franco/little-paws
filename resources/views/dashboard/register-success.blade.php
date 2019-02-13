@@ -24,11 +24,11 @@
 
             <div class="auth-content register-success__content">
                 <div class="align-center">
-                    <h1>Usuario registrado con éxito</h1>
-    
-                    <a href="{{route('pet.create')}}" class="btn btn-round">Agregar perfil de mascota</a>
-    
-                    <a href="/home" class="btn btn-round">Ir a la home</a>
+                    <h1 class="section--auth__title">Usuario registrado con éxito</h1>
+
+                    <a href="{{route('pet.create')}}" class="btn btn-round -large -red">Agregar perfil de mascota</a>
+
+                    <a href="/home" class="btn btn-round -large -blue">Ir a la home</a>
                 </div>
             </div>
 

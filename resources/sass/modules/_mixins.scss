@@ -38,8 +38,9 @@ $browser-context: 16; // Default
     height: $height;
 }
 
-@mixin bg-img($img, $pos) {
+@mixin bg-img($img, $pos, $size) {
     background: $img no-repeat $pos;
+    background-size: $size;
 }
 
 @mixin bg-size($bg-size) {

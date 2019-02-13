@@ -36413,7 +36413,7 @@ $dropzone.on('drop', function (e) {
       reader = new FileReader();
 
   reader.onload = function (event) {
-    $dropimg.css('background-image', 'url(' + event.target.result + ')');
+    $dropimg.css('background-image', 'url(' + event.target.result + ')').attr('data-image', 'true');
   };
 
   console.log(file);
@@ -36428,13 +36428,13 @@ $dropinput.change(function (e) {
       reader = new FileReader();
 
   reader.onload = function (event) {
-    $dropimg.css('background-image', 'url(' + event.target.result + ')');
+    $dropimg.css('background-image', 'url(' + event.target.result + ')').attr('data-image', 'true');
   };
 
   reader.readAsDataURL(file);
 });
 $remover.on('click', function () {
-  $dropimg.css('background-image', '');
+  $dropimg.css('background-image', '').removeAttr("data-image");
   $droptarget.removeClass('dropped');
   $remover.addClass('disabled');
   $('.image_title input').val('');
@@ -36534,9 +36534,9 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/macbook/www/little-paws/resources/js/app.js */"./resources/js/app.js");
-__webpack_require__(/*! /Users/macbook/www/little-paws/resources/sass/dashboard.scss */"./resources/sass/dashboard.scss");
-module.exports = __webpack_require__(/*! /Users/macbook/www/little-paws/resources/sass/styles.scss */"./resources/sass/styles.scss");
+__webpack_require__(/*! C:\wamp64\www\little-paws\resources\js\app.js */"./resources/js/app.js");
+__webpack_require__(/*! C:\wamp64\www\little-paws\resources\sass\dashboard.scss */"./resources/sass/dashboard.scss");
+module.exports = __webpack_require__(/*! C:\wamp64\www\little-paws\resources\sass\styles.scss */"./resources/sass/styles.scss");
 
 
 /***/ })

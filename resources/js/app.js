@@ -28,14 +28,14 @@ $dropzone.on('drop', function(e) {
   $droptarget.addClass('dropped');
   $remover.removeClass('disabled');
   e.preventDefault();
-  
+
   var file = e.originalEvent.dataTransfer.files[0],
       reader = new FileReader();
 
   reader.onload = function(event) {
-    $dropimg.css('background-image', 'url(' + event.target.result + ')');
+    $dropimg.css('background-image', 'url(' + event.target.result + ')').attr('data-image','true');
   };
-  
+
   console.log(file);
   reader.readAsDataURL(file);
 
@@ -46,19 +46,19 @@ $dropinput.change(function(e) {
   $droptarget.addClass('dropped');
   $remover.removeClass('disabled');
   $('.image_title input').val('');
-  
+
   var file = $dropinput.get(0).files[0],
       reader = new FileReader();
-  
+
   reader.onload = function(event) {
-    $dropimg.css('background-image', 'url(' + event.target.result + ')');
+    $dropimg.css('background-image', 'url(' + event.target.result + ')').attr('data-image','true');
   }
-  
+
   reader.readAsDataURL(file);
 });
 
 $remover.on('click', function() {
-  $dropimg.css('background-image', '');
+  $dropimg.css('background-image', '').removeAttr("data-image");
   $droptarget.removeClass('dropped');
   $remover.addClass('disabled');
   $('.image_title input').val('');

@@ -20,14 +20,14 @@
 
         @if ($posts->count())
 
-            <div id="Latest" class="section--posts">
+            <div id="Latest" class="section--posts tabcontent">
 
                 @foreach ($posts as $post)
                     @include('dashboard.posts')
                 @endforeach
             </div><!-- Latest -->
 
-            <div id="Following" class="tabcontent flex" style="justify-content:space-between;flex-wrap:wrap;align-items: flex-start;">
+            <div id="Following" class="section--posts tabcontent">
 
                 @foreach ($posts_following as $post)
                     <div style="width:49%;background:white;padding:1em;margin:1em 0;border-radius:10px;" data-postid="{{$post->id}}">
