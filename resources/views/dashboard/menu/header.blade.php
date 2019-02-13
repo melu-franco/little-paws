@@ -44,9 +44,6 @@
 
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/profile/{{Auth::user()->id}}/pets">
-                                <i class="fas fa-paw"></i> Ver mascotas
-                                </a>
                             <a class="dropdown-item" href="/profile/{{Auth::user()->id}}/edit">
                                <i class="material-icons">edit</i> Editar perfil
                             </a>
