@@ -7,28 +7,65 @@
 
 require('./bootstrap');
 
-/* window.Vue = require('vue');
- */
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+var $dropzone = $('.image_picker'),
+    $droptarget = $('.drop_target'),
+    $dropinput = $('#inputFile'),
+    $dropimg = $('.image_preview'),
+    $remover = $('[data-action="remove_current_image"]');
 
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-
-/* Vue.component('example-component', require('./components/ExampleComponent.vue').default);
- */
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
-
-/* const app = new Vue({
-    el: '#app'
+$dropzone.on('dragover', function() {
+  $droptarget.addClass('dropping');
+  return false;
 });
- */
+
+$dropzone.on('dragend dragleave', function() {
+  $droptarget.removeClass('dropping');
+  return false;
+});
+
+$dropzone.on('drop', function(e) {
+  $droptarget.removeClass('dropping');
+  $droptarget.addClass('dropped');
+  $remover.removeClass('disabled');
+  e.preventDefault();
+  
+  var file = e.originalEvent.dataTransfer.files[0],
+      reader = new FileReader();
+
+  reader.onload = function(event) {
+    $dropimg.css('background-image', 'url(' + event.target.result + ')');
+  };
+  
+  console.log(file);
+  reader.readAsDataURL(file);
+
+  return false;
+});
+
+$dropinput.change(function(e) {
+  $droptarget.addClass('dropped');
+  $remover.removeClass('disabled');
+  $('.image_title input').val('');
+  
+  var file = $dropinput.get(0).files[0],
+      reader = new FileReader();
+  
+  reader.onload = function(event) {
+    $dropimg.css('background-image', 'url(' + event.target.result + ')');
+  }
+  
+  reader.readAsDataURL(file);
+});
+
+$remover.on('click', function() {
+  $dropimg.css('background-image', '');
+  $droptarget.removeClass('dropped');
+  $remover.addClass('disabled');
+  $('.image_title input').val('');
+});
+
+$('.image_title input').blur(function() {
+  if ($(this).val() != '') {
+    $droptarget.removeClass('dropped');
+  }
+});

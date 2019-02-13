@@ -40,7 +40,7 @@ class PostsController extends Controller
         $user_id = auth()->user()->id;
 
         $this->validate($request, [
-            'content' => 'required|max:1000',
+            'content' => 'max:1000',
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 

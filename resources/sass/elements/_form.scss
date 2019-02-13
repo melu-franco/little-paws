@@ -1,18 +1,32 @@
 .form {
-    input, textarea, button {
-        outline: 0;
-        border: none;
-    }
+    
     textarea {
         resize: none;
         padding: 1em;
     }
     &-group {
         margin: 0;
+        position: relative;
     }
     &--post {
         textarea {
             width: 100%;
         }
+    }
+    .label-icon {
+        top: 0.8rem;
+        left: 1em;
+        color: $gray; 
+        position: absolute;
+    }
+    &__input {
+        margin: .8em auto;
+        display: block;
+        border-radius: 30px;
+        padding: .7rem 1em;
+        padding-left: 3em;
+        width: 100%;
+        border: 1px solid $border-color;
+        @include placeholder($gray,rem(15),$opensans);
     }
 }

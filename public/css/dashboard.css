@@ -13741,7 +13741,11 @@ html {
 }
 
 .main {
-  width: 70%;
+  width: 65%;
+}
+
+p {
+  line-height: 1.4;
 }
 
 a:hover {
@@ -13754,7 +13758,7 @@ a:hover {
 }
 
 .wrapper {
-  margin: 1em 3em;
+  margin: 2em 3em;
   margin-left: 23em;
   width: 100%;
 }
@@ -13909,9 +13913,8 @@ a:hover {
 }
 
 .aside {
-  margin-top: 2.2em;
   height: 5em;
-  width: 18rem;
+  width: 30%;
   margin-left: auto;
   background: #fff;
   border: 1px solid #eaeaea;
@@ -14002,13 +14005,6 @@ a:hover {
   text-transform: uppercase;
 }
 
-.form input,
-.form textarea,
-.form button {
-  outline: 0;
-  border: none;
-}
-
 .form textarea {
   resize: none;
   padding: 1em;
@@ -14016,9 +14012,59 @@ a:hover {
 
 .form-group {
   margin: 0;
+  position: relative;
 }
 
 .form--post textarea {
   width: 100%;
+}
+
+.form .label-icon {
+  top: 0.8rem;
+  left: 1em;
+  color: #adadad;
+  position: absolute;
+}
+
+.form__input {
+  margin: 0.8em auto;
+  display: block;
+  border-radius: 30px;
+  padding: 0.7rem 1em;
+  padding-left: 3em;
+  width: 100%;
+  border: 1px solid #eaeaea;
+}
+
+.form__input::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: #adadad;
+  font-size: 0.9375rem;
+  line-height: inherit;
+  font-family: "Open Sans", sans-serif;
+}
+
+.form__input::-moz-placeholder {
+  /* Firefox 19+ */
+  color: #adadad;
+  font-size: 0.9375rem;
+  line-height: inherit;
+  font-family: "Open Sans", sans-serif;
+}
+
+.form__input:-ms-input-placeholder {
+  /* IE 10+ */
+  color: #adadad;
+  font-size: 0.9375rem;
+  line-height: inherit;
+  font-family: "Open Sans", sans-serif;
+}
+
+.form__input:-moz-placeholder {
+  /* Firefox 18- */
+  color: #adadad;
+  font-size: 0.9375rem;
+  line-height: inherit;
+  font-family: "Open Sans", sans-serif;
 }
 

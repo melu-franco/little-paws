@@ -9,6 +9,12 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
 
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
         <!-- Styles -->
         <link href= "{{ asset('css/styles.css') }}" rel="stylesheet">
 
@@ -17,80 +23,96 @@
 
         <section class="section section--auth d-flex register">
 
-            <div class="register__bg"></div>
+            <div class="auth-bg register__bg"></div>
 
-            <div class="register__form">
+            <div class="auth-content register__form">
 
-                <a href="">Volver</a>
+               <div class="align-center">
+                    <a class="link link--back" href="{{ URL::previous() }}">Volver</a>
+    
+                    <h1 class="section--auth__title">Crear cuenta</h1>
+    
+                    <form method="POST" action="{{ route('register') }}" class="form" enctype="multipart/form-data">
+                        @csrf
+    
+                        <div class="form-group avatar">
+                            <div class="setting image_picker">
+                                <div class="settings_wrap">
+                                    <label class="drop_target">
+                                        <div class="image_preview"></div>
+                                        <input id="inputFile" name="avatar" type="file"/>
+                                    </label>
+                                    <div class="settings_actions vertical"><a data-action="choose_from_uploaded"><i class="fa fa-picture-o"></i> Choose from Uploads</a><a class="disabled" data-action="remove_current_image"><i class="fa fa-ban"></i> Remove Current Image</a></div>
+                                    
+                                </div>
+                            </div>
+    
+                            @if ($errors->has('avatar'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('avatar') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="name" class="label-icon"><i class="material-icons">person</i></label>
 
-                <h1>Crear cuenta</h1>
+                            <input id="name" type="text" placeholder="Nombre" class="form__input user {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+    
+                            @if ($errors->has('name'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('name') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="name" class="label-icon"><i class="material-icons">mail</i></label>
 
-                <form method="POST" action="{{ route('register') }}" class="form" enctype="multipart/form-data">
-                    @csrf
+                            <input id="email" type="email" placeholder="E-mail" class="form__input email{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+    
+                            @if ($errors->has('email'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('email') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="name" class="label-icon"><i class="material-icons">lock</i></label>
 
-                    <div class="form-group avatar">
-                        <label for="avatar" class="">Avatar (opcional)</label>
-                        <input id="avatar" type="file" class="" name="avatar">
+                            <input id="password" type="password" placeholder="Contraseña" class="form__input pass{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+    
+                            @if ($errors->has('password'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('password') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+    
+                        <div class="form-group">
+                            <label for="name" class="label-icon"><i class="material-icons">lock</i></label>
 
-                        <p>Cambiar imagen</p>
-
-                        @if ($errors->has('avatar'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('avatar') }}</strong>
-                            </span>
-                        @endif
+                            <input id="password-confirm" type="password" placeholder="Repetir contraseña" class="form__input pass-confirm{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" required>
+    
+                            @if ($errors->has('password_confirmation'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+    
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary">
+                                Crear
+                            </button>
+                        </div>
+                    </form>
+    
+                    <div class="">
+                        ¿Ya tenés cuenta? <a class="color-main" href="/login">Login</a>
                     </div>
-
-                    <div class="form-group">
-                        <input id="name" type="text" placeholder="Nombre" class="form__input user {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
-
-                        @if ($errors->has('name'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('name') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-
-                    <div class="form-group">
-                        <input id="email" type="email" placeholder="E-mail" class="form__input email{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
-
-                        @if ($errors->has('email'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-
-                    <div class="form-group">
-                        <input id="password" type="password" placeholder="Contraseña" class="form__input pass{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
-
-                        @if ($errors->has('password'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('password') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-
-                    <div class="form-group">
-                        <input id="password-confirm" type="password" placeholder="Repetir contraseña" class="form__input pass-confirm{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" required>
-
-                        @if ($errors->has('password_confirmation'))
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $errors->first('password_confirmation') }}</strong>
-                            </span>
-                        @endif
-                    </div>
-
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">
-                            Crear
-                        </button>
-                    </div>
-                </form>
-
-                <div class="">
-                    ¿Ya tenés cuenta? <a class="color-main" href="/login">Login</a>
-                </div>
+               </div>
 
             </div>
         </section>

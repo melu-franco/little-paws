@@ -1,0 +1,23 @@
+
+// Fonts
+@import "node_modules/font-awesome/scss/font-awesome.scss";
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+// Reset
+@import "partials/reset";
+
+// Modules and Variables
+@import "partials/base";
+
+// Partials
+@import "partials/figures";
+@import "partials/buttons";
+@import "partials/grids";
+
+//Elements
+@import "elements/main";
+
+
+
