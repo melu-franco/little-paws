@@ -3,8 +3,8 @@
         <div class="d-flex w-pad">
 
             <div class="post-card__user d-flex flex-ai-center ">
-                <a href="/profile/{{$post->user->id}}">
-                    <img src="/uploads/avatars/{{ $post->user->avatar }}" alt="{{ $post->user->name }}" style="border-radius:50%;height:3em;object-fit:contain;">
+                <a href="/profile/{{$post->user->id}}" class="avatar">
+                    <img src="/uploads/avatars/{{ $post->user->avatar }}" alt="{{ $post->user->name }}">
                 </a>
                 <div class="post-card__user__info">
                     <a class="owner" href="/profile/{{$post->user->id}}">{{$post->user->name}}</a>

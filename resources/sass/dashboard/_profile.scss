@@ -7,8 +7,12 @@
         background-repeat: no-repeat;
         background-size: cover;
         position: relative;
+        border: 1px solid $border-color;
         &__bg {
             height: 82%;
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
         }
     }
     &__avatar{
@@ -17,14 +21,16 @@
         position: absolute;
         img {
             border-radius: 50%;
-            height: 7em;
-            object-fit: contain;
+            width: 8em;
+            height: 8em;
+            object-fit: cover;
+            border: 4px solid white;
         }
     }
     &__name {
         color: white;
         padding-left: .6em;
-        padding-top: 2.5em;
+        padding-top: 3em;
         font-weight: $bold;
         font-size: rem(18);
         font-family: $montserrat;
@@ -34,6 +40,21 @@
         background: $white;
         border-bottom-left-radius: 5px;
         border-bottom-right-radius: 5px;
+        border-top: 1px solid $border-color;
+    }
+    &__info {
+        width: 35%;
+        margin-top: 3%;
+    }
+    &__content {
+        width: 62%;
+        margin-left: auto;
+    }
+    &__intro {
+        width: 100%;
+        border-radius: 5px;
+        background: $white;
+        padding: 1em;
         border: 1px solid $border-color;
     }
 
@@ -56,10 +77,18 @@
                     justify-content: center;
                     border: 2px dotted $gray;
                     border-radius: 50%;
+                    i {
+                        color: $blue;
+                    }
+                    + .pets__list__name {
+                        color: $blue,
+                    }
                 }
                 img {
                     width: 100%;
                     height: 100%;
+                    object-fit: cover;
+                    border-radius: 50%;
                 }
             }
             &__name {
@@ -67,7 +96,7 @@
                 display: block;
                 margin: .4em auto;
                 text-align: center;
-                font-weight: $bold;
+                font-weight: $regular;
                 font-size: rem(14);
                 font-family: $montserrat;
             }

@@ -26,6 +26,13 @@ a {
     }
 }
 
+.visible-sm {
+    display: none !important;
+    @include mobile {
+        display: block !important;
+    }
+}
+
 .container {
     max-width: auto !important;
 }
@@ -34,6 +41,16 @@ a {
     margin: 2em 3em;
     margin-left: 23em;
     width: 100%;
+    &--profile {
+        margin-left: 7em;
+        margin-right: 7em;
+        .main {
+            width: 70%;
+        }
+        .aside {
+            width:25%;
+        }
+    }
 }
 
 .has-navbar-fixed-top {

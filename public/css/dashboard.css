@@ -13684,7 +13684,7 @@ table {
 }
 
 .-color-green {
-  color: #38b593;
+  color: #58dd95;
 }
 
 .-color-gray {
@@ -13711,7 +13711,7 @@ table {
 }
 
 .btn-icon {
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   font-weight: 600;
 }
 
@@ -13720,9 +13720,9 @@ table {
 }
 
 .btn-round {
-  font-size: 0.9375rem;
+  font-size: 0.875rem;
   text-transform: uppercase;
-  font-weight: 600;
+  font-weight: 500;
   border-radius: 30px;
   padding: 0.9em 1em;
   font-family: "Montserrat", sans-serif;
@@ -13745,7 +13745,7 @@ table {
 
 .btn.-green {
   color: #fff;
-  background: #38b593;
+  background: #58dd95;
 }
 
 .btn.-large {
@@ -13798,6 +13798,16 @@ a:hover {
   text-decoration: none;
 }
 
+.visible-sm {
+  display: none !important;
+}
+
+@media (max-width: 640px) {
+  .visible-sm {
+    display: block !important;
+  }
+}
+
 .container {
   max-width: auto !important;
 }
@@ -13806,6 +13816,19 @@ a:hover {
   margin: 2em 3em;
   margin-left: 23em;
   width: 100%;
+}
+
+.wrapper--profile {
+  margin-left: 7em;
+  margin-right: 7em;
+}
+
+.wrapper--profile .main {
+  width: 70%;
+}
+
+.wrapper--profile .aside {
+  width: 25%;
 }
 
 .has-navbar-fixed-top {
@@ -13868,9 +13891,10 @@ a:hover {
 
 .nav-link.avatar img {
   border-radius: 50%;
+  width: 2em;
   height: 2em;
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .nav__ul {
@@ -14002,6 +14026,14 @@ a:hover {
   margin-right: 0.5em;
 }
 
+.post-card__user .avatar img {
+  width: 3em;
+  height: 3em;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+
 .post-card__user__info,
 .post-card .comment__user__info {
   margin-left: 0.5em;
@@ -14088,10 +14120,14 @@ a:hover {
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  border: 1px solid #eaeaea;
 }
 
 .profile__cover__bg {
   height: 82%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .profile__avatar {
@@ -14102,15 +14138,17 @@ a:hover {
 
 .profile__avatar img {
   border-radius: 50%;
-  height: 7em;
-  -o-object-fit: contain;
-     object-fit: contain;
+  width: 8em;
+  height: 8em;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border: 4px solid white;
 }
 
 .profile__name {
   color: white;
   padding-left: 0.6em;
-  padding-top: 2.5em;
+  padding-top: 3em;
   font-weight: 600;
   font-size: 1.125rem;
   font-family: "Montserrat", sans-serif;
@@ -14121,6 +14159,24 @@ a:hover {
   background: #fff;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
+  border-top: 1px solid #eaeaea;
+}
+
+.profile__info {
+  width: 35%;
+  margin-top: 3%;
+}
+
+.profile__content {
+  width: 62%;
+  margin-left: auto;
+}
+
+.profile__intro {
+  width: 100%;
+  border-radius: 5px;
+  background: #fff;
+  padding: 1em;
   border: 1px solid #eaeaea;
 }
 
@@ -14149,9 +14205,20 @@ a:hover {
   border-radius: 50%;
 }
 
+.profile .pets__list__item .add i {
+  color: #4380ff;
+}
+
+.profile .pets__list__item .add + .pets__list__name {
+  color: #4380ff;
+}
+
 .profile .pets__list__item img {
   width: 100%;
   height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
 }
 
 .profile .pets__list__name {
@@ -14159,7 +14226,7 @@ a:hover {
   display: block;
   margin: 0.4em auto;
   text-align: center;
-  font-weight: 600;
+  font-weight: 400;
   font-size: 0.875rem;
   font-family: "Montserrat", sans-serif;
 }
@@ -14198,8 +14265,8 @@ a:hover {
 
 .form .avatar img {
   border-radius: 50%;
-  -o-object-fit: contain;
-     object-fit: contain;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .form-group {
@@ -14246,7 +14313,10 @@ a:hover {
 }
 
 .form--post .avatar img {
+  width: 3em;
   height: 3em;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .form--comment textarea {
@@ -14288,7 +14358,10 @@ a:hover {
 }
 
 .form--comment .avatar img {
+  width: 2em;
   height: 2em;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .form .label-icon {
@@ -14380,7 +14453,7 @@ a:hover {
 
 .form .setting a[data-action]:hover,
 .form .setting .choose-file:hover {
-  color: #38b593;
+  color: #58dd95;
 }
 
 .form .setting a[data-action] i,
@@ -14458,8 +14531,8 @@ a:hover {
 
 .form .image_picker .settings_wrap .drop_target:hover,
 .form .image_picker .settings_wrap .drop_target.dropping {
-  background: #38b593;
-  border-top-color: #38b593;
+  background: #58dd95;
+  border-top-color: #58dd95;
 }
 
 .form .image_picker .settings_wrap .drop_target:hover:before,
@@ -14497,7 +14570,7 @@ a:hover {
   height: 100%;
   border-radius: 50%;
   background: no-repeat center;
-  background-size: contain;
+  background-size: cover;
   position: relative;
   z-index: 2;
 }

@@ -10,16 +10,16 @@
         }
     }
     &-icon {
-        font-size: rem(15);
+        font-size: rem(14);
         font-weight: $bold;
         i {
             margin-right: .2em;
         }
     }
     &-round {
-        font-size: rem(15);
+        font-size: rem(14);
         text-transform: uppercase;
-        font-weight: $bold;
+        font-weight: $semi-bold;
         border-radius: 30px;
         padding: .9em 1em;
         font-family: $montserrat;

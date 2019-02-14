@@ -8,7 +8,8 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 use DB;
-
+use Image;
+use File;
 
 class PetController extends Controller
 {
@@ -53,9 +54,12 @@ class PetController extends Controller
         if($request->hasfile('avatar')){
             $avatar = $request->file('avatar');
             $avatarName = 'pet_'. $pet->id .'_'. time() . '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)
-                    ->resize(90, 90)
-                    ->save(public_path('uploads/avatars/pets/' . $avatarName));
+            $image = Image::make($avatar->getRealPath());
+
+            $image->resize(180, 180,function ($constraint) {
+                $constraint->aspectRatio();
+            })
+            ->save(public_path('uploads/avatars/pets/' . $avatarName));
 
             $pet->update(['avatar' => $avatarName]);
         }

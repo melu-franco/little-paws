@@ -51,7 +51,12 @@ class UserController extends Controller
             $avatar = $request->file('avatar');
             $filename  = public_path('uploads/avatars/').$user->avatar;
             $filename_new = 'user_'. $user->id .'_'. time() . '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(90, 90)->save(public_path('uploads/avatars/' . $filename_new));
+
+            Image::make($avatar->getRealPath())
+            ->resize(180, 180,function ($constraint) {
+                $constraint->aspectRatio();
+            })
+            ->save(public_path('uploads/avatars/' . $filename_new));
 
             if(File::exists($filename) && $user->avatar != 'user.png') {
                 File::delete($filename);

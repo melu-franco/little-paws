@@ -4,7 +4,7 @@
     }
     .avatar img {
         border-radius: 50%;
-        object-fit: contain;
+        object-fit: cover;
     }
     &-group {
         margin: 0;
@@ -18,7 +18,9 @@
             @include placeholder($gray,rem(16),$opensans);
         }
         .avatar img {
+            width: 3em;
             height: 3em;
+            object-fit: cover;
         }
     }
     &--comment {
@@ -29,7 +31,9 @@
             @include placeholder($gray,rem(16),$opensans);
         }
         .avatar img {
+            width: 2em;
             height: 2em;
+            object-fit: cover;
         }
     }
     .label-icon {
@@ -185,7 +189,7 @@
             height: 100%;
             border-radius: 50%;
             background: no-repeat center;
-            background-size: contain;
+            background-size: cover;
             position: relative;
             z-index: 2;
           }

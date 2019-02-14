@@ -26,15 +26,7 @@
     @include('dashboard.menu.header')
 
    <div class="app d-flex">
-        @include('dashboard.menu.sidebar')
-
-       <div class="wrapper d-flex">
-           <main class="main">
-               @yield('content')
-            </main>
-
-            @include('dashboard.menu.aside')
-       </div>
+        @yield('content')
    </div>
 
 </body>
