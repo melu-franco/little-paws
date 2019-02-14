@@ -44,13 +44,13 @@
 
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/profile/{{Auth::user()->id}}/edit">
+                            <a class="dropdown-item d-flex flex-ai-center" href="/profile/{{Auth::user()->id}}/edit">
                                <i class="material-icons">edit</i> Editar perfil
                             </a>
-                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            <a class="dropdown-item d-flex flex-ai-center" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
                                                 document.getElementById('logout-form').submit();">
-                                <i class="material-icons">input</i> Cerrar sesión
+                                <i class="material-icons">power_settings_new</i> Cerrar sesión
                             </a>
 
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">

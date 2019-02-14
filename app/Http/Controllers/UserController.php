@@ -8,6 +8,7 @@ use App\Post;
 use App\Pet;
 use Image;
 use File;
+use DB;
 
 class UserController extends Controller
 {
@@ -22,8 +23,9 @@ class UserController extends Controller
     {
         $posts = Post::where('user_id', $user->id)->latest()->take(20)->get();
         $pets = Pet::where('user_id', auth()->user()->id)->get();
+        $pet_types = DB::table('pet_types')->get();
 
-        return view('dashboard.profile', compact('user','posts','pets'));
+        return view('dashboard.profile', compact('user','posts','pets','pet_types'));
     }
 
     public function edit(User $user)
@@ -117,7 +119,7 @@ class UserController extends Controller
     public function follow_user(User $user)
     {
         if(! $user) {
-            return redirect()->back()->with('error', 'User does not exist.');
+            return redirect()->back()->with('error', 'Usuario inexistente.');
         }
 
         $user->followers()->attach(auth()->user()->id);
@@ -127,7 +129,7 @@ class UserController extends Controller
     public function unfollow_user(User $user)
     {
         if(! $user) {
-            return redirect()->back()->with('error', 'User does not exist.');
+            return redirect()->back()->with('error', 'Usuario inexistente.');
         }
         $user->followers()->detach(auth()->user()->id);
         return redirect()->back();

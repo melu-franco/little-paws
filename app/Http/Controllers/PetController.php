@@ -77,7 +77,7 @@ class PetController extends Controller
         return view('dashboard.pet-profile-edit', compact('pet'));
     }
 
-    public function update(User $user)
+    public function update(Pet $pet)
     {
         $pet->update(request()->validate([
             'name' => 'required',

@@ -13840,8 +13840,25 @@ button {
      object-fit: cover;
 }
 
+.form .invalid-feedback {
+  bottom: 0;
+  display: block;
+  text-align: left;
+  position: absolute;
+  padding-left: 1em;
+}
+
+.form .invalid-feedback strong {
+  color: #fa4169;
+  font-weight: 600;
+  font-size: 0.75rem;
+  font-family: "Montserrat", sans-serif;
+}
+
 .form-group {
   margin: 0;
+  padding-bottom: 0.8em;
+  margin-bottom: 0.5em;
   position: relative;
 }
 
@@ -13890,6 +13907,15 @@ button {
      object-fit: cover;
 }
 
+.form--post .invalid-feedback {
+  bottom: 0.5em;
+  padding: 0;
+}
+
+.form--post .add-image {
+  padding: 0.2em 1em;
+}
+
 .form--comment textarea {
   width: 100%;
   border: none;
@@ -13935,6 +13961,15 @@ button {
      object-fit: cover;
 }
 
+.form--comment .form-group {
+  margin: 0;
+}
+
+.form--comment .invalid-feedback {
+  bottom: 1em;
+  padding-left: 3em;
+}
+
 .form .label-icon {
   top: 0.8rem;
   left: 1em;
@@ -13944,11 +13979,11 @@ button {
 
 .form__input,
 .form__textarea {
-  margin: 0.8em auto;
+  margin: 0 auto;
   display: block;
   border-radius: 30px;
   padding: 0.7rem 1em;
-  padding-left: 3em;
+  padding-left: 3.8em;
   width: 100%;
   border: 1px solid #eaeaea;
 }
@@ -13989,6 +14024,11 @@ button {
   font-family: "Open Sans", sans-serif;
 }
 
+.form__input.is-invalid,
+.form__textarea.is-invalid {
+  border-color: #fa4169 !important;
+}
+
 .form__textarea {
   padding-top: 1em;
 }
@@ -14003,7 +14043,7 @@ button {
 
 .form .setting {
   margin: 0 auto 3px;
-  padding: 12px;
+  padding: 1em 0;
   width: 100%;
 }
 

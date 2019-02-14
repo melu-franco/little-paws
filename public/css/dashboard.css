@@ -14010,6 +14010,10 @@ a:hover {
   padding: 1em;
 }
 
+.section--posts.tabcontent {
+  display: none;
+}
+
 .section--post-create .post__title {
   display: flex;
   font-size: 0.875rem;
@@ -14169,6 +14173,7 @@ a:hover {
 
 .profile__content {
   width: 62%;
+  margin-top: 3%;
   margin-left: auto;
 }
 
@@ -14180,8 +14185,30 @@ a:hover {
   border: 1px solid #eaeaea;
 }
 
+.profile__intro .title {
+  margin-bottom: 1em;
+}
+
+.profile__intro p {
+  color: #adadad;
+  margin-bottom: 1em;
+  font-size: 0.875rem;
+}
+
+.profile__intro a {
+  display: block;
+  font-size: 0.875rem;
+  text-align: center;
+  font-weight: 500;
+  font-family: "Montserrat", sans-serif;
+}
+
 .profile .pets {
+  padding: 1em;
+  background: #fff;
   margin: 2em 0 3em;
+  overflow: hidden;
+  border: 1px solid #eaeaea;
 }
 
 .profile .pets .title {
@@ -14189,8 +14216,6 @@ a:hover {
 }
 
 .profile .pets__list__item {
-  height: 5em;
-  width: 5em;
   margin-right: 1em;
   display: block;
 }
@@ -14214,8 +14239,8 @@ a:hover {
 }
 
 .profile .pets__list__item img {
-  width: 100%;
-  height: 100%;
+  height: 5em;
+  width: 5em;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
@@ -14269,8 +14294,25 @@ a:hover {
      object-fit: cover;
 }
 
+.form .invalid-feedback {
+  bottom: 0;
+  display: block;
+  text-align: left;
+  position: absolute;
+  padding-left: 1em;
+}
+
+.form .invalid-feedback strong {
+  color: #fa4169;
+  font-weight: 600;
+  font-size: 0.75rem;
+  font-family: "Montserrat", sans-serif;
+}
+
 .form-group {
   margin: 0;
+  padding-bottom: 0.8em;
+  margin-bottom: 0.5em;
   position: relative;
 }
 
@@ -14319,6 +14361,15 @@ a:hover {
      object-fit: cover;
 }
 
+.form--post .invalid-feedback {
+  bottom: 0.5em;
+  padding: 0;
+}
+
+.form--post .add-image {
+  padding: 0.2em 1em;
+}
+
 .form--comment textarea {
   width: 100%;
   border: none;
@@ -14364,6 +14415,15 @@ a:hover {
      object-fit: cover;
 }
 
+.form--comment .form-group {
+  margin: 0;
+}
+
+.form--comment .invalid-feedback {
+  bottom: 1em;
+  padding-left: 3em;
+}
+
 .form .label-icon {
   top: 0.8rem;
   left: 1em;
@@ -14373,11 +14433,11 @@ a:hover {
 
 .form__input,
 .form__textarea {
-  margin: 0.8em auto;
+  margin: 0 auto;
   display: block;
   border-radius: 30px;
   padding: 0.7rem 1em;
-  padding-left: 3em;
+  padding-left: 3.8em;
   width: 100%;
   border: 1px solid #eaeaea;
 }
@@ -14418,6 +14478,11 @@ a:hover {
   font-family: "Open Sans", sans-serif;
 }
 
+.form__input.is-invalid,
+.form__textarea.is-invalid {
+  border-color: #fa4169 !important;
+}
+
 .form__textarea {
   padding-top: 1em;
 }
@@ -14432,7 +14497,7 @@ a:hover {
 
 .form .setting {
   margin: 0 auto 3px;
-  padding: 12px;
+  padding: 1em 0;
   width: 100%;
 }
 

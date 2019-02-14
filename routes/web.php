@@ -23,13 +23,13 @@ Route::group(['middleware' => ['auth', 'verified']], function()
 
     //Users controller
     Route::get('/profile/{user}', 'UserController@profile');
-    Route::get('/profile/{user}/edit', 'UserController@edit');
+    Route::get('/profile/{user}/edit', 'UserController@edit')->name('user.edit');
     Route::patch('/profile/{user}', 'UserController@update')->name('profile');
-    Route::patch('/profile/{user}/update_avatar', 'UserController@update_avatar')->name('profile-edit');
-    Route::delete('/profile/{user}/delete_avatar', 'UserController@delete_avatar');
-    Route::patch('/profile/{user}/update_cover', 'UserController@update_cover');
-    Route::delete('/profile/{user}/delete_cover', 'UserController@delete_cover');
-    Route::delete('/profile/{user}', 'UserController@destroy');
+    Route::patch('/profile/{user}/update_avatar', 'UserController@update_avatar')->name('user-avatar.edit');
+    Route::delete('/profile/{user}/delete_avatar', 'UserController@delete_avatar')->name('user-avatar.delete');
+    Route::patch('/profile/{user}/update_cover', 'UserController@update_cover')->name('user-cover.edit');
+    Route::delete('/profile/{user}/delete_cover', 'UserController@delete_cover')->name('user-cover.delete');
+    Route::delete('/profile/{user}', 'UserController@destroy')->name('user.delete');
 
     //User Pet controller
     Route::get('/pet/{pet}', 'PetController@show')->name('pet.show');

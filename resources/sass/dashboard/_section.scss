@@ -20,6 +20,12 @@
         }
     }
 
+    &--posts {
+        &.tabcontent {
+            display: none;
+        }
+    }
+
     &--post-create {
         .post {
             &__title {

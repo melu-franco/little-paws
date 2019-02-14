@@ -14,9 +14,16 @@
                 <img src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}">
             </a>
             <textarea class="no-border {{ $errors->has('content') ? 'is-danger' : '' }}" name="content" placeholder="¿Qué estás pensando?" id="content" cols="30" rows="2"></textarea>
+            @if ($errors->has('content') || $errors->has('image'))
+                @foreach ($errors->all() as $error)
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $error }}</strong>
+                </span>
+                @endforeach
+            @endif
         </div>
 
-        <div class="form-group w-pad">
+        <div class="form-group add-image">
 
             <div class="setting image_picker -no-pad">
                 <div class="settings_wrap post-foto">
@@ -32,17 +39,12 @@
                     <div class="d-flex">
                         <label for="inputFile" class="btn btn-border btn-icon"><i class="material-icons">image</i> Foto</label>
                         <button type="submit" class="btn btn-round -blue -small ml-auto">Compartir</button>
-                </div>
+                    </div>
                 </div>
             </div>
 
         </div>
 
-        @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                <p class="help is-danger">{{ $error }}</p>
-            @endforeach
-        @endif
     </form>
 
 </div>

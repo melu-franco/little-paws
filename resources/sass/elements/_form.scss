@@ -6,8 +6,23 @@
         border-radius: 50%;
         object-fit: cover;
     }
+    .invalid-feedback {
+        bottom: 0;
+        display: block;
+        text-align: left;
+        position: absolute;
+        padding-left: 1em;
+        strong {
+            color: $red;
+            font-weight: $bold;
+            font-size: rem(12);
+            font-family: $montserrat;
+        }
+    }
     &-group {
         margin: 0;
+        padding-bottom: .8em;
+        margin-bottom: .5em;
         position: relative;
     }
     &--post {
@@ -22,6 +37,13 @@
             height: 3em;
             object-fit: cover;
         }
+        .invalid-feedback {
+            bottom: .5em;
+            padding: 0;
+        }
+        .add-image {
+            padding: .2em 1em;
+        }
     }
     &--comment {
         textarea {
@@ -35,6 +57,13 @@
             height: 2em;
             object-fit: cover;
         }
+        .form-group {
+            margin: 0;
+        }
+        .invalid-feedback {
+            bottom: 1em;
+            padding-left: 3em;
+        }
     }
     .label-icon {
         top: 0.8rem;
@@ -43,14 +72,17 @@
         position: absolute;
     }
     &__input, &__textarea {
-        margin: .8em auto;
+        margin: 0 auto;
         display: block;
         border-radius: 30px;
         padding: .7rem 1em;
-        padding-left: 3em;
+        padding-left: 3.8em;
         width: 100%;
         border: 1px solid $border-color;
         @include placeholder($gray,rem(15),$opensans);
+        &.is-invalid {
+            border-color: $red !important;
+        }
     }
     &__textarea {
         padding-top: 1em;
@@ -69,7 +101,7 @@
 
     .setting {
         margin: 0 auto 3px;
-        padding: 12px;
+        padding: 1em 0;
         width: 100%;
 
         &.-no-pad {

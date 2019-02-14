@@ -40,8 +40,8 @@ class PostsController extends Controller
         $user_id = auth()->user()->id;
 
         $this->validate($request, [
-            'content' => 'max:1000',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'content' => ['required_without:image','max:1000'],
+            'image' => ['image','mimes:jpeg,png,jpg,gif,svg','max:2048'],
         ]);
 
         $post = Post::create([

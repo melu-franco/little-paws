@@ -11,7 +11,11 @@ class CommentController extends Controller
 {
     public function store(Request $request, Comment $comment)
     {
-        $comment->content = $request->get('content');
+        $this->validate($request, [
+            'comment' => ['required','max:500'],
+        ]);
+
+        $comment->comment = $request->get('comment');
         $comment->user()->associate($request->user());
         $post = Post::find($request->get('post_id'));
         $post->comments()->save($comment);

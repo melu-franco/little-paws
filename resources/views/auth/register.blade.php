@@ -60,7 +60,7 @@
                         <div class="form-group">
                             <label for="name" class="label-icon"><i class="material-icons">person</i></label>
 
-                            <input id="name" type="text" placeholder="Nombre" class="form__input user {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                            <input id="name" type="text" placeholder="Nombre" class="form__input user {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" autofocus>
 
                             @if ($errors->has('name'))
                                 <span class="invalid-feedback" role="alert">
@@ -72,7 +72,7 @@
                         <div class="form-group">
                             <label for="email" class="label-icon"><i class="material-icons">mail</i></label>
 
-                            <input id="email" type="email" placeholder="E-mail" class="form__input email{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}" required>
+                            <input id="email" type="email" placeholder="E-mail" class="form__input email{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}">
 
                             @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
@@ -84,7 +84,7 @@
                         <div class="form-group">
                             <label for="password" class="label-icon"><i class="material-icons">lock</i></label>
 
-                            <input id="password" type="password" placeholder="Contraseña" class="form__input pass{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password" required>
+                            <input id="password" type="password" placeholder="Contraseña" class="form__input pass{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password">
 
                             @if ($errors->has('password'))
                                 <span class="invalid-feedback" role="alert">
@@ -96,7 +96,7 @@
                         <div class="form-group">
                             <label for="password-confirm" class="label-icon"><i class="material-icons">lock</i></label>
 
-                            <input id="password-confirm" type="password" placeholder="Repetir contraseña" class="form__input pass-confirm{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation" required>
+                            <input id="password-confirm" type="password" placeholder="Repetir contraseña" class="form__input pass-confirm{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation">
 
                             @if ($errors->has('password_confirmation'))
                                 <span class="invalid-feedback" role="alert">

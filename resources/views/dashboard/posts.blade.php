@@ -41,8 +41,9 @@
         </div>
 
        <div class="post-card__content">
-
-            <p class="w-pad">{{ $post->content }}</p>
+            @if($post->content != '')
+                <p class="w-pad">{{ $post->content }}</p>
+            @endif
 
             @if($post->image != '')
                 <img src="/uploads/posts/{{ $post->image }}" alt="Post image" style="width:100%;">
@@ -74,18 +75,7 @@
             </a>
         </div>
 
-        <form method="post" class="form form--comment" action="{{ route('comment.add') }}">
-            @csrf
-            <div class="form-group d-flex w-pad border-top flex-ai-center">
-                <a href="/profile/{{Auth::user()->id}}" class="avatar">
-                    <img src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" style="">
-                </a>
-                <textarea class="no-border {{ $errors->has('content') ? 'is-danger' : '' }}" name="content" placeholder="Escribí un comentario.." id="content" cols="30"></textarea>
-                <input type="hidden" name="post_id" value="{{ $post->id }}" />
-
-                <button type="submit" class="btn"><i class="material-icons -color-green">send</i></button>
-            </div>
-        </form>
+        @include('dashboard.forms.comment-post')
 
         @if ($post->comments->count())
             @foreach($post->comments as $comment)
@@ -124,7 +114,7 @@
                         @endif
 
                     </div>
-                    <p class="comment__p">{{ $comment->content }}</p>
+                    <p class="comment__p">{{ $comment->comment }}</p>
 
 
                 </div>
