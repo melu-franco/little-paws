@@ -97,7 +97,7 @@ class PetController extends Controller
             $avatar = $request->file('avatar');
             $filename  = public_path('uploads/avatars/pets/').$pet->avatar;
             $filename_new = 'pet_'. $pet->id .'_'. time() . '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(90, 90)->save(public_path('uploads/avatars/pets/' . $filename_new));
+            Image::make($avatar)->resize(180, 180)->save(public_path('uploads/avatars/pets/' . $filename_new));
 
             if(File::exists($filename)) {
                 File::delete($filename);

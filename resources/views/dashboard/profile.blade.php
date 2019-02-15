@@ -17,18 +17,20 @@
 
                     @if(Auth::user()->id == $user->id)
 
-                        @include('dashboard.forms.edit-cover')
-
-                        @if($user->cover != '')
-                            @include('dashboard.forms.delete-cover')
-                        @endif
+                        <div class="d-flex flex-jc-between">
+                            @include('dashboard.forms.edit-cover')
+    
+                            @if($user->cover != '')
+                                @include('dashboard.forms.delete-cover')
+                            @endif
+                        </div>
 
                         @if ($errors->has('cover'))
                             @foreach ($errors->all() as $error)
                                 <p class="help is-danger">{{ $error }}</p>
                             @endforeach
                         @endif
-                        <button data-toggle="modal" data-target="#profileModal" class="btn btn-border"> <i class="material-icons">edit</i> Editar perfil</button>
+                        <button data-toggle="modal" data-target="#profileModal" class="btn btn-border -white edit-profile"><i class="fas fa-edit"></i> Editar perfil</button>
 
                     @else
 
@@ -42,13 +44,13 @@
 
                     <div class="profile__avatar d-flex">
 
-                        <div>
+                        <div class="profile__avatar__edit">
                             <img src="/uploads/avatars/{{ $user->avatar }}" alt="{{ $user->name }}">
                             <form method="POST" class="form" action="/profile/{{ $user->id }}/update_avatar" enctype="multipart/form-data">
                                 @method('PATCH')
                                 @csrf
 
-                                <label for="avatar" class="button"><i class="fas fa-pen"></i></label>
+                                <label for="avatar" class="button"><i class="material-icons">photo_cameras</i>Editar</label>
                                 <input id="avatar" type="file" name="avatar" onChange="this.form.submit()" class="hidden">
 
                             </form>
@@ -67,16 +69,14 @@
 
                     <div class="profile__tabs">
                         <ul class="d-flex">
-                            <li><a href="">Posts</a></li>
-                            <li><a href="">Sobre mí</a></li>
-                            <li><a href="">Seguidores <span>{{$user->followers->count()}}</span></a></li>
-                            <li><a href="">Siguiendo <span>{{$user->following->count()}}</span></a></li>
+                            <li class="profile__tabs__item"><button class="btn tablinks active" onclick="openTab(event, 'Posts')">Posts</button></li>
+                            <li class="profile__tabs__item"><button class="btn tablinks" onclick="openTab(event, 'About')">Sobre mí</button></li>
+                            <li class="profile__tabs__item"><button class="btn tablinks" onclick="openTab(event, 'Followers')">Seguidores <span class="-color-gray">{{$user->followers->count()}}</span></button></li>
+                            <li class="profile__tabs__item"><button class="btn tablinks" onclick="openTab(event, 'Following')">Siguiendo <span class="-color-gray">{{$user->following->count()}}</span></button></li>
                         </ul>
                     </div>
 
                 </div>
-
-                <p>{{ $user->description }}</p>
 
                 <div class="d-flex">
                     <div class="profile__info">
@@ -105,15 +105,30 @@
                     </div>
 
                     <div class="profile__content">
-                        @if(Auth::user()->id == $user->id)
-                            @include('dashboard.forms.create-post')
-                        @endif
-
-                        @if ($posts->count())
-                            @foreach ($posts as $post)
-                                @include('dashboard.posts')
-                            @endforeach
-                        @endif
+                        <div id="Posts" class="tabcontent" style="display:block;">
+                            @if(Auth::user()->id == $user->id)
+                                @include('dashboard.forms.create-post')
+                            @endif
+    
+                            @if ($posts->count())
+                                @foreach ($posts as $post)
+                                    @include('dashboard.posts')
+                                @endforeach
+                            @endif
+                        </div>
+                        <div id="About" class="tabcontent" style="display:block;">
+                            <div class="card">
+                                <p>{{ $user->description }}</p>
+                            </div>
+                        </div>
+                        <div id="Followers" class="tabcontent" style="display:block;">
+                            <div class="card">
+                            </div>
+                        </div>
+                        <div id="Following" class="tabcontent" style="display:block;">
+                            <div class="card">
+                            </div>
+                        </div>
 
                     </div>
                 </div>

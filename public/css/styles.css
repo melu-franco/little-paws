@@ -13710,6 +13710,17 @@ table {
   border-color: #adadad;
 }
 
+.btn-border.-white {
+  background: white;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0.3em 0.6em;
+}
+
+.btn-border.-white i {
+  font-size: 1.125rem;
+}
+
 .btn-icon {
   font-size: 0.875rem;
   font-weight: 600;
@@ -13731,6 +13742,23 @@ table {
 .btn-round.-small {
   padding: 0.5em 1em;
   text-transform: none;
+}
+
+.btn-edit {
+  padding: 0.3em 0.6em;
+  color: rgba(255, 255, 255, 0.6);
+  border: none;
+  font-size: 0.875rem;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.btn-edit i {
+  margin-right: 5px;
+}
+
+.btn-edit:hover {
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .btn.-red {
@@ -13762,6 +13790,10 @@ table {
 
 .flex-jc-center {
   justify-content: center;
+}
+
+.flex-jc-between {
+  justify-content: space-between;
 }
 
 .flex-ai-center {
@@ -13804,8 +13836,8 @@ button {
 
 .title--medium {
   color: #414852;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.9375rem;
+  font-weight: 500;
   font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
 }
@@ -13813,7 +13845,7 @@ button {
 .title--small {
   font-size: 0.875rem;
   color: #adadad;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .-mayus {
@@ -14052,6 +14084,10 @@ button {
   margin: 0;
 }
 
+.form .setting .choose-file:hover {
+  color: #58dd95;
+}
+
 .form .setting a[data-action],
 .form .setting .choose-file {
   cursor: pointer;
@@ -14060,11 +14096,6 @@ button {
   line-height: 24px;
   text-align: left;
   transition: color 0.2s;
-}
-
-.form .setting a[data-action]:hover,
-.form .setting .choose-file:hover {
-  color: #58dd95;
 }
 
 .form .setting a[data-action] i,
@@ -14089,7 +14120,11 @@ button {
   display: none;
 }
 
-.form .setting .post-foto a.remove i {
+.form .setting .post-foto a.remove:hover {
+  color: #fa4169;
+}
+
+.form .setting .post-foto i {
   font-size: 20px;
 }
 

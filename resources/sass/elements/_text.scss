@@ -1,15 +1,15 @@
 .title {
     &--medium {
         color: $black;
-        font-size: rem(16);
-        font-weight: $bold;
+        font-size: rem(15);
+        font-weight: $semi-bold;
         font-family: $montserrat;
         text-transform: uppercase;
     }
     &--small {
         font-size: rem(14);
         color: $gray;
-        font-weight: $bold;
+        font-weight: $semi-bold;
     }
 }
 

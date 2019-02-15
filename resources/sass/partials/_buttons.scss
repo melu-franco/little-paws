@@ -8,6 +8,15 @@
         &:hover {
             border-color: $gray;
         }
+        &.-white {
+            background: white;
+            font-size: 14px;
+            font-weight: 600;
+            padding: .3em .6em;
+            i {
+                font-size: rem(18);
+            }
+        }
     }
     &-icon {
         font-size: rem(14);
@@ -26,6 +35,20 @@
         &.-small {
             padding: .5em 1em;
             text-transform: none;
+        }
+    }
+    &-edit {     
+        padding: 0.3em 0.6em;
+        color: rgba(255,255,255,.6);
+        border: none;
+        font-size: rem(14);
+        background: rgba(0,0,0,.6);
+        i {
+            margin-right: 5px;
+        }
+        &:hover {
+            color: rgba(255,255,255,.8);
+            background: rgba(0,0,0,.8);
         }
     }
     &.-red {

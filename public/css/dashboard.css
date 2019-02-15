@@ -13710,6 +13710,17 @@ table {
   border-color: #adadad;
 }
 
+.btn-border.-white {
+  background: white;
+  font-size: 14px;
+  font-weight: 600;
+  padding: 0.3em 0.6em;
+}
+
+.btn-border.-white i {
+  font-size: 1.125rem;
+}
+
 .btn-icon {
   font-size: 0.875rem;
   font-weight: 600;
@@ -13731,6 +13742,23 @@ table {
 .btn-round.-small {
   padding: 0.5em 1em;
   text-transform: none;
+}
+
+.btn-edit {
+  padding: 0.3em 0.6em;
+  color: rgba(255, 255, 255, 0.6);
+  border: none;
+  font-size: 0.875rem;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.btn-edit i {
+  margin-right: 5px;
+}
+
+.btn-edit:hover {
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.8);
 }
 
 .btn.-red {
@@ -13762,6 +13790,10 @@ table {
 
 .flex-jc-center {
   justify-content: center;
+}
+
+.flex-jc-between {
+  justify-content: space-between;
 }
 
 .flex-ai-center {
@@ -13824,7 +13856,7 @@ a:hover {
 }
 
 .wrapper--profile .main {
-  width: 70%;
+  width: 75%;
 }
 
 .wrapper--profile .aside {
@@ -13979,6 +14011,7 @@ a:hover {
 }
 
 .sidebar__title {
+  font-weight: 600;
   font-family: "Open Sans", sans-serif;
 }
 
@@ -14117,7 +14150,7 @@ a:hover {
 }
 
 .profile__cover {
-  height: 18rem;
+  height: 20rem;
   width: 100%;
   border-radius: 5px;
   overflow: hidden;
@@ -14129,32 +14162,126 @@ a:hover {
 
 .profile__cover__bg {
   height: 82%;
+  padding: 1em;
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
 }
 
+.profile__cover__bg .edit-profile {
+  right: 1em;
+  bottom: 5em;
+  position: absolute;
+}
+
+.profile__cover__bg .edit-profile:hover {
+  color: #58dd95;
+  border-color: #eaeaea;
+}
+
+.profile__cover__bg .edit-cover {
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  background: transparent;
+}
+
+.profile__cover__bg .edit-cover span {
+  opacity: 0;
+}
+
+.profile__cover__bg .edit-cover span,
+.profile__cover__bg .edit-cover i {
+  transition: all 0.2s ease-in-out;
+}
+
+.profile__cover__bg .delete-cover {
+  opacity: 0;
+  transition: all 0.2s ease-in-out;
+  color: rgba(255, 255, 255, 0.6);
+  background: transparent;
+}
+
+.profile__cover__bg:hover .edit-cover {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.profile__cover__bg:hover .edit-cover span {
+  opacity: 1;
+}
+
+.profile__cover__bg:hover .delete-cover {
+  opacity: 1;
+}
+
 .profile__avatar {
   left: 2em;
   bottom: 1em;
+  display: block;
   position: absolute;
 }
 
 .profile__avatar img {
+  width: 100%;
+  height: 100%;
   border-radius: 50%;
-  width: 8em;
-  height: 8em;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.profile__avatar__edit {
+  width: 9em;
+  height: 9em;
+  overflow: hidden;
+  border-radius: 50%;
+  position: relative;
   border: 4px solid white;
+}
+
+.profile__avatar__edit:hover {
+  cursor: pointer;
+}
+
+.profile__avatar__edit:hover form {
+  opacity: 1;
+}
+
+.profile__avatar__edit form {
+  bottom: 0;
+  height: 50%;
+  width: 100%;
+  opacity: 0;
+  position: absolute;
+  transition: all 0.2s ease-in-out;
+}
+
+.profile__avatar__edit form label {
+  height: 100%;
+  width: 100%;
+  margin: auto;
+  display: flex;
+  color: #fff;
+  font-size: 0.75rem;
+  font-family: "Montserrat", sans-serif;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.profile__avatar__edit form label i {
+  font-size: 20px;
+  width: 20px;
+  margin-bottom: 5px;
+  color: #fff;
 }
 
 .profile__name {
   color: white;
-  padding-left: 0.6em;
-  padding-top: 3em;
-  font-weight: 600;
-  font-size: 1.125rem;
+  padding-left: 1em;
+  padding-top: 3.6em;
+  font-weight: 500;
+  font-size: 1.25rem;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -14164,6 +14291,31 @@ a:hover {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
   border-top: 1px solid #eaeaea;
+}
+
+.profile__tabs ul {
+  height: 100%;
+  padding-left: 12.2em;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.profile__tabs__item .tablinks {
+  color: #414852;
+  text-align: left;
+  font-size: 0.875rem;
+  font-family: "Montserrat", sans-serif;
+}
+
+.profile__tabs__item .tablinks span {
+  font-family: "Open Sans", sans-serif;
+}
+
+.profile .card {
+  border-radius: 5px;
+  background: #fff;
+  padding: 1em;
+  border: 1px solid #eaeaea;
 }
 
 .profile__info {
@@ -14196,10 +14348,11 @@ a:hover {
 }
 
 .profile__intro a {
+  color: #58dd95;
   display: block;
   font-size: 0.875rem;
   text-align: center;
-  font-weight: 500;
+  font-weight: 400;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -14208,6 +14361,7 @@ a:hover {
   background: #fff;
   margin: 2em 0 3em;
   overflow: hidden;
+  border-radius: 5px;
   border: 1px solid #eaeaea;
 }
 
@@ -14216,6 +14370,7 @@ a:hover {
 }
 
 .profile .pets__list__item {
+  padding: 0;
   margin-right: 1em;
   display: block;
 }
@@ -14258,8 +14413,8 @@ a:hover {
 
 .title--medium {
   color: #414852;
-  font-size: 1rem;
-  font-weight: 600;
+  font-size: 0.9375rem;
+  font-weight: 500;
   font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
 }
@@ -14267,7 +14422,7 @@ a:hover {
 .title--small {
   font-size: 0.875rem;
   color: #adadad;
-  font-weight: 600;
+  font-weight: 500;
 }
 
 .-mayus {
@@ -14506,6 +14661,10 @@ a:hover {
   margin: 0;
 }
 
+.form .setting .choose-file:hover {
+  color: #58dd95;
+}
+
 .form .setting a[data-action],
 .form .setting .choose-file {
   cursor: pointer;
@@ -14514,11 +14673,6 @@ a:hover {
   line-height: 24px;
   text-align: left;
   transition: color 0.2s;
-}
-
-.form .setting a[data-action]:hover,
-.form .setting .choose-file:hover {
-  color: #58dd95;
 }
 
 .form .setting a[data-action] i,
@@ -14543,7 +14697,11 @@ a:hover {
   display: none;
 }
 
-.form .setting .post-foto a.remove i {
+.form .setting .post-foto a.remove:hover {
+  color: #fa4169;
+}
+
+.form .setting .post-foto i {
   font-size: 20px;
 }
 
