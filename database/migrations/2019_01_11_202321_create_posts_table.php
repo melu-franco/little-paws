@@ -18,7 +18,6 @@ class CreatePostsTable extends Migration
             $table->unsignedInteger('user_id');
             $table->string('image')->nullable();
             $table->text('content')->nullable();
-            $table->integer('likes')->default('0');
             $table->timestamps();
         });
 
