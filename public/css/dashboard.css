@@ -14148,6 +14148,10 @@ a:hover {
   padding: 1em;
 }
 
+.section--main.profile {
+  width: 100%;
+}
+
 .section--posts.tabcontent {
   display: none;
 }

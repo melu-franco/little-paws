@@ -22,7 +22,9 @@
         .w-pad {
             padding: 1em;
         }
-        
+        &.profile {
+            width: 100%;
+        }
     }
 
     &--posts {

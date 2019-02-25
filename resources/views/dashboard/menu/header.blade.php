@@ -72,6 +72,6 @@
         <li><a href="{{ route('users') }}"><i class="material-icons">group</i> </a></li>
         <li><a href="javascript:void(0);" data-toggle="modal" data-target="#addPostModal" > <i class="material-icons">add</i> </a></li>
         <li><a href=""></a><i class="material-icons">inbox</i></li>
-        <li><a href="/profile/{{Auth::user()->id}}"> <i class="fas fa-user-edit"></i> </a></li>
+        <li><a href="/profile/{{Auth::user()->id}}"> <i class="material-icons">person</i> </a></li>
     </ul>
 </nav>
