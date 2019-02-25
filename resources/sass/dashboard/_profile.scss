@@ -22,6 +22,9 @@
                     color: $green;
                     border-color:$border-color;
                 }
+                i {
+                    font-size: 1rem;
+                }
             }
 
             .edit-cover {
@@ -53,12 +56,24 @@
                 }
             }
         }
+        @include mobile {
+            background-color: $white !important;
+            background: $white !important;
+        }
     }
     &__avatar{
         left: 2em;
         bottom: 1em;
         display: block;
         position: absolute;
+        @include mobile {
+            left: 0;
+            right: 0;
+            top: 1em;
+            width: 150px;
+            margin: auto;
+            flex-direction: column;
+        }
         
         img {
             width: 100%;
@@ -117,6 +132,12 @@
         font-weight: $semi-bold;
         font-size: rem(20);
         font-family: $montserrat;
+        @include mobile {
+            color: $black;
+            padding: 0;
+            padding-top: .8em;
+            text-align: center;
+        }
     }
     &__tabs {
         height: 18%;
@@ -129,6 +150,9 @@
             padding-left: 12.2em;
             align-items: center;
             justify-content: space-around;
+            @include mobile {
+                padding-left: 0;
+            }
         }
         &__item .tablinks {
             color: $black;
@@ -149,11 +173,18 @@
     &__info {
         width: 35%;
         margin-top: 3%;
+        @include mobile {
+            width: 100%;
+        }
     }
     &__content {
         width: 62%;
         margin-top: 3%;
         margin-left: auto;
+        .tabcontent {display: none;}
+        @include mobile {
+            width: 100%;
+        }
     }
     &__intro {
         width: 100%;
@@ -161,6 +192,9 @@
         background: $white;
         padding: 1em;
         border: 1px solid $border-color;
+        @include mobile {
+            display: none;
+        }
         .title {
             margin-bottom: 1em;
         }
@@ -186,6 +220,12 @@
         overflow: hidden;
         border-radius: 5px;
         border: 1px solid $border-color;
+        @include mobile {
+            background:  transparent;
+            border-radius: 0;
+            border: none;
+            margin: 0;
+        }
         .title {
             margin-bottom: .8em;
         }
@@ -194,6 +234,11 @@
                 padding: 0;
                 margin-right: 1em;
                 display: block;
+                border: none;
+                background: transparent;
+                &:nth-child(3n) {
+                    margin-right: 0
+                }
                 .add {
                     height: 5em;
                     width: 5em;

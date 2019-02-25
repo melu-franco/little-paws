@@ -27,7 +27,7 @@
 
             <div class="auth-content register__form">
 
-                <a class="link link--back d-flex" href="{{ URL::previous() }}">Volver</a>
+                <a class="link link--back d-flex" href="{{ URL::previous() }}"><i class="far fa-arrow-alt-circle-left visible-sm"></i><span class="hidden-sm">Volver</span></a>
 
                <div class="align-center">
                     <h1 class="section--auth__title -color-blue">Crear cuenta</h1>
@@ -45,7 +45,7 @@
                                     </label>
                                     <div class="settings_actions vertical">
                                         <label for="inputFile" class="choose-file"><i class="fa fa-picture-o"></i> Subir archivo</label>
-                                        <a class="disabled" data-action="remove_current_image"><i class="fa fa-ban"></i> Eliminar archivo</a>
+                                        <a class="disabled delete" data-action="remove_current_image"><i class="fa fa-ban"></i> <span>Eliminar archivo</span></a>
                                     </div>
                                 </div>
                             </div>
@@ -60,7 +60,7 @@
                         <div class="form-group">
                             <label for="name" class="label-icon"><i class="material-icons">person</i></label>
 
-                            <input id="name" type="text" placeholder="Nombre" class="form__input user {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" autofocus>
+                            <input id="name" type="text" placeholder="Nombre*" class="form__input user {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" autofocus>
 
                             @if ($errors->has('name'))
                                 <span class="invalid-feedback" role="alert">
@@ -72,7 +72,7 @@
                         <div class="form-group">
                             <label for="email" class="label-icon"><i class="material-icons">mail</i></label>
 
-                            <input id="email" type="email" placeholder="E-mail" class="form__input email{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}">
+                            <input id="email" type="email" placeholder="E-mail*" class="form__input email{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}">
 
                             @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
@@ -84,7 +84,7 @@
                         <div class="form-group">
                             <label for="password" class="label-icon"><i class="material-icons">lock</i></label>
 
-                            <input id="password" type="password" placeholder="Contraseña" class="form__input pass{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password">
+                            <input id="password" type="password" placeholder="Contraseña*" class="form__input pass{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password">
 
                             @if ($errors->has('password'))
                                 <span class="invalid-feedback" role="alert">
@@ -96,7 +96,7 @@
                         <div class="form-group">
                             <label for="password-confirm" class="label-icon"><i class="material-icons">lock</i></label>
 
-                            <input id="password-confirm" type="password" placeholder="Repetir contraseña" class="form__input pass-confirm{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation">
+                            <input id="password-confirm" type="password" placeholder="Repetir contraseña*" class="form__input pass-confirm{{ $errors->has('password_confirmation') ? ' is-invalid' : '' }}" name="password_confirmation">
 
                             @if ($errors->has('password_confirmation'))
                                 <span class="invalid-feedback" role="alert">

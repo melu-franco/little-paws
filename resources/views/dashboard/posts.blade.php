@@ -51,7 +51,9 @@
 
        </div>
         <div class="d-flex post-card__reactions border-top">
-            <a href="#" class="like btn-reaction">
+            <a href="{{ route('like') }}"
+            onclick="event.preventDefault();
+                            document.getElementById('like-form').submit();" class="like btn-reaction">
                 <i class="far fa-heart"></i>
                 <span>Like</span>
                 @if ($post->likes != '0')
@@ -59,6 +61,11 @@
                 @endif
                 {{--  {{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'Dislike' : 'Like' : 'Like' }} --}}
             </a>
+
+            <form id="like-form" action="{{ route('like') }}" method="POST" style="display: none;">
+                @csrf
+                <input type="hidden" name="post_id" value="{{ $post->id }}" />
+            </form>
 
             <a href="#" class="btn-reaction">
                 <i class="far fa-comment"></i>

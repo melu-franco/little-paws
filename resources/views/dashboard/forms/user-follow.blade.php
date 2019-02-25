@@ -2,7 +2,7 @@
     @csrf
     <div class="field">
         <div class="control">
-            <button type="submit" class="button is-light">Seguir</button>
+            <button type="submit" class="btn btn-border btn-icon -white edit-profile"><i class="fas fa-user-plus"></i><span>Seguir</span></button>
         </div>
     </div>
 </form>

@@ -19,7 +19,7 @@ Route::group(['middleware' => ['auth', 'verified']], function()
     Route::patch('/posts/{post}/update_image', 'PostsController@update_image');
     Route::delete('/posts/{post}/delete_image', 'PostsController@delete_image');
     Route::delete('/posts/{post}', 'PostsController@destroy')->name('post.delete');
-    Route::post('/posts/likes', 'PostController@likes')->name('like');
+    Route::post('/posts/likes', 'PostsController@likes')->name('like');
 
     //Users controller
     Route::get('/profile/{user}', 'UserController@profile');
@@ -56,10 +56,10 @@ Route::group(['middleware' => ['auth', 'verified']], function()
     Route::get('/pet-create', 'PetController@create')->name('pet.create');
     Route::post('/pet', 'PetController@store')->name('pet.store');
     Route::get('/pet/{pet}', 'PetController@show');
-    Route::get('/pet/{pet}/edit', 'PetController@edit');
+    Route::get('/pet/{pet}/edit', 'PetController@edit')->name('pet.edit');
     Route::patch('/pet/{pet}', 'PetController@update');
-    Route::patch('/pet/{pet}/update_image', 'PetController@update_image');
-    Route::delete('/pet/{pet}/delete_image', 'PetController@delete_image');
+    Route::patch('/pet/{pet}/update_avatar', 'PetController@update_image');
+    Route::delete('/pet/{pet}/delete_avatar', 'PetController@delete_image');
     Route::delete('/pet/{pet}', 'PetController@destroy')->name('pet.delete');
 
 

@@ -84,7 +84,7 @@ class PetController extends Controller
             'description' => 'max:500',
         ]));
 
-        return redirect()->route('pet-profile', [$pet]);
+        return back();
     }
 
     public function update_avatar(Pet $pet, Request $request)
@@ -103,13 +103,13 @@ class PetController extends Controller
                 File::delete($filename);
             }
 
-            $user->update(['avatar' => $filename_new]);
+            $pet->update(['avatar' => $filename_new]);
         }
 
         return back();
     }
 
-    public function delete_avatar(User $user){
+    public function delete_avatar(Pet $pet){
         $avatar  = public_path('uploads/avatars/pets/').$pet->avatar;
 
         if(File::exists($avatar)) {

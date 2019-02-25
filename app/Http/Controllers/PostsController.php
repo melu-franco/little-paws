@@ -26,7 +26,7 @@ class PostsController extends Controller
         $follows = $user->following->pluck('followed_id')->toArray();
         $posts = Post::where('user_id', $follows)
         ->orWhere('user_id', auth()->user()->id)
-        ->latest()->take(20)->get();
+        ->latest()->get();
         return view('dashboard.index', compact('posts','user','comment'));
     }
 
@@ -159,24 +159,14 @@ class PostsController extends Controller
         return back();
     }
 
-    public function likes(Request $request, Post $post) {
-        $post_id = $request['postId'];
-        $is_visit = $request['isLike'] === 'true';
-        $post = Post::find($post_id);
-        if (!$post) {
-            return null;
-        }
-        $liked = Auth::user()->likes()->where('post_id', $post_id)->first();
-        if($liked == $is_like){
-            $liked->delete();
-            return null;
-        }
-        else{
-            $liked = new Like();
-        }
-        $liked->user_id = Auth::user();
-        $liked->post_id = $post->id;
-        $liked->save();
-        return null;
+    public function likes(Request $request, Post $post, Like $like) {
+
+        $like->like = '1';
+        $like->user()->associate($request->user());
+        $post = Post::find($request->get('post_id'));
+        $post->likes()->save($like);
+
+        return back();
+
     }
 }

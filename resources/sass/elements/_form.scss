@@ -14,15 +14,15 @@
         padding-left: 1em;
         strong {
             color: $red;
-            font-weight: $bold;
-            font-size: rem(12);
+            font-weight: $regular;
+            font-size: rem(11);
             font-family: $montserrat;
         }
     }
     &-group {
         margin: 0;
         padding-bottom: .8em;
-        margin-bottom: .5em;
+        margin-bottom: .2em;
         position: relative;
     }
     &--post {
@@ -103,7 +103,20 @@
         margin: 0 auto 3px;
         padding: 1em 0;
         width: 100%;
-
+        @include mobile {
+            padding-bottom: 0;
+            .choose-file {
+                display: none;
+            }
+            .delete span {
+                display: none;
+            }
+            .delete {
+                .fa-ban {
+                    font-size:18px;
+                }
+            }
+        }
         &.-no-pad {
             padding: 0;
             margin: 0;
@@ -121,6 +134,9 @@
             line-height: 24px;
             text-align: left;
             transition: color 0.2s;
+            @include mobile {
+                opacity: .6;
+            }
            
             i {
                 width: 1.25em;
@@ -164,6 +180,11 @@
             margin-top: 12px;
             &.vertical a {
                 display: block;
+                @include mobile {
+                    &.disabled {
+                        display: none;
+                    }
+                }
               }
           }
 
@@ -176,21 +197,30 @@
             width: 72px;
             height: 72px;
             transition: all 0.2s;
+            @include mobile {
+                width: 95px;
+                height: 95px;
+                margin-left: 30%;
+                margin-right: 5px;
+            }
             input[type="file"] {
                 visibility: hidden;
               }
             &:before {
-                content: '\f0ee';
+                content: '\f030';
                 font-family: FontAwesome;
                 position: absolute;
                 display: block;
                 width: 100%;
                 line-height: 60px;
                 text-align: center;
-                font-size: 32px;
+                font-size: 28px;
                 padding: 0.2em;
                 color: rgba(0, 0, 0, 0.3);
                 transition: color 0.2s;
+                @include mobile {
+                    line-height: 85px;
+                }
             }
             &:hover,
             &.dropping {
@@ -219,6 +249,9 @@
                     margin-bottom: 1em;
                     & + a.disabled {
                         display: block;
+                        @include mobile {
+                            display: none;
+                        }
                     }
                 }
             }
@@ -238,17 +271,19 @@
 
 
     .pets {
-
         .control {
             margin: 2em 0;
-            input:checked + label {
-                img {
-                    border-color: $red;
-                }
+        }
+        input:checked + label {
+            img {
+                border-color: $red;
             }
         }
+        @include mobile {
+            justify-content: space-between;
+        }
         .pet {
-            width: 30%;
+            width: 33%;
             cursor: pointer;
             margin-bottom: 1em;
             img {
@@ -257,6 +292,10 @@
                 padding: 4px;
                 border-radius: 50%;
                 border: 4px solid transparent;
+                @include mobile {
+                    height: 7em;
+                    width: 7em;
+                }
             }
             font-size: rem(14);
             font-family: $montserrat;

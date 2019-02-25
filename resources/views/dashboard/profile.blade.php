@@ -30,7 +30,7 @@
                                 <p class="help is-danger">{{ $error }}</p>
                             @endforeach
                         @endif
-                        <button data-toggle="modal" data-target="#profileModal" class="btn btn-border -white edit-profile"><i class="fas fa-edit"></i> Editar perfil</button>
+                        <button data-toggle="modal" data-target="#profileModal" class="btn btn-border btn-icon -white edit-profile"><i class="fas fa-edit"></i> Editar perfil</button>
 
                     @else
 
@@ -70,7 +70,7 @@
                     <div class="profile__tabs">
                         <ul class="d-flex">
                             <li class="profile__tabs__item"><button class="btn tablinks active" onclick="openTab(event, 'Posts')">Posts</button></li>
-                            <li class="profile__tabs__item"><button class="btn tablinks" onclick="openTab(event, 'About')">Sobre mí</button></li>
+                            <li class="profile__tabs__item"><button class="btn tablinks" onclick="openTab(event, 'Pets')">Mascotas</button></li>
                             <li class="profile__tabs__item"><button class="btn tablinks" onclick="openTab(event, 'Followers')">Seguidores <span class="-color-gray">{{$user->followers->count()}}</span></button></li>
                             <li class="profile__tabs__item"><button class="btn tablinks" onclick="openTab(event, 'Following')">Siguiendo <span class="-color-gray">{{$user->following->count()}}</span></button></li>
                         </ul>
@@ -78,7 +78,7 @@
 
                 </div>
 
-                <div class="d-flex">
+                <div class="d-flex flex-wrap">
                     <div class="profile__info">
                         <div class="profile__intro">
                             <h2 class="title title--medium">Intro</h2>
@@ -87,12 +87,12 @@
                         </div>
                         <div class="section--pets pets">
                             <h2 class="title title--medium">Mascotas</h2>
-                            <div class="pets__list d-flex">
+                            <div class="pets__list d-flex flex-wrap">
                                 @foreach ($pets as $pet)
-                                    <a href="" class="pets__list__item">
+                                     <button data-toggle="modal"  data-target="#PetEditModal" class="pets__list__item">
                                         <img src="{{$pet->avatar}}" alt="{{$pet->name}}">
                                         <span class="pets__list__name">{{$pet->name}}</span>
-                                    </a>
+                                    </button>
                                 @endforeach
                                 <button data-toggle="modal" data-target="#addPetModal" class="btn pets__list__item">
                                     <div class="add">
@@ -107,26 +107,52 @@
                     <div class="profile__content">
                         <div id="Posts" class="tabcontent" style="display:block;">
                             @if(Auth::user()->id == $user->id)
-                                @include('dashboard.forms.create-post')
+                                <div class="hidden-sm">@include('dashboard.forms.create-post')</div>
                             @endif
     
                             @if ($posts->count())
                                 @foreach ($posts as $post)
                                     @include('dashboard.posts')
                                 @endforeach
+                            @else 
+                               <div class="card">
+                                    <p class="t-center">
+                                        @if(Auth::user()->id == $user->id)
+                                        Aún no tenés publicaciones.
+                                        @else 
+                                        Aún no hay información cargada de este usuario.
+                                        @endif
+                                    </p>
+                               </div>
                             @endif
                         </div>
-                        <div id="About" class="tabcontent" style="display:block;">
+                        <div id="Pets" class="tabcontent">
                             <div class="card">
-                                <p>{{ $user->description }}</p>
+                                <h2 class="title title--medium">Mascotas</h2>
+                                @if($user->description != null)
+                                    <p>{{ $user->description }}</p>
+                                @else 
+                                    <p>
+                                        @if(Auth::user()->id == $user->id)
+                                        Aún no agregaste ninguna mascota.
+                                        <button data-toggle="modal" data-target="#addPetModal" class="btn">
+                                            Agregar mascota
+                                        </button>
+                                        @else 
+                                        Aún no hay mascotas cargadas.
+                                        @endif
+                                    </p>
+                                @endif
                             </div>
                         </div>
-                        <div id="Followers" class="tabcontent" style="display:block;">
+                        <div id="Followers" class="tabcontent">
                             <div class="card">
+                                <h2 class="title title--medium">Seguidores</h2>
                             </div>
                         </div>
-                        <div id="Following" class="tabcontent" style="display:block;">
+                        <div id="Following" class="tabcontent">
                             <div class="card">
+                                <h2 class="title title--medium">Siguiendo a</h2>
                             </div>
                         </div>
 
@@ -146,6 +172,13 @@
 
 <div id="addPetModal" class="modal form-modal">
     @include('dashboard.forms.pet-create')
+</div>
+<div id="PetEditModal" class="modal form-modal">
+    @include('dashboard.forms.pet-edit')
+</div>
+
+<div id="addPostModal" class="modal form-modal post-modal">
+    @include('dashboard.forms.create-post-modal')
 </div>
 
 @endsection

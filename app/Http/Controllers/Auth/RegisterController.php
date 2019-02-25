@@ -82,9 +82,7 @@ class RegisterController extends Controller
                     ->save(public_path('uploads/avatars/' . $avatarName));
 
             $user->update(['avatar' => $avatarName]);
-        } else {
-            $user->update(['avatar' => 'user.png']);
-        }
+        } 
 
         return $user;
 

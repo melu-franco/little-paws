@@ -41,7 +41,14 @@
                                     </label>
                                 @endforeach
                             </div>
+                            @if ($errors->has('pet_type_id'))
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $errors->first('pet_type_id') }}</strong>
+                                </span>
+                            @endif
                         </div>
+
+                        <h2 class="title title--medium -mayus">Completar datos</h2>
 
                         <div class="form-group avatar">
                             <div class="setting image_picker">
@@ -52,7 +59,7 @@
                                     </label>
                                     <div class="settings_actions vertical">
                                         <label for="inputFile" class="choose-file"><i class="fa fa-picture-o"></i> Subir archivo</label>
-                                        <a class="disabled" data-action="remove_current_image"><i class="fa fa-ban"></i> Eliminar archivo</a>
+                                        <a class="disabled" data-action="remove_current_image"><i class="fa fa-ban"></i> <span>Eliminar archivo</span></a>
                                     </div>
                                 </div>
                             </div>
@@ -67,7 +74,7 @@
                         <div class="form-group">
                             <label for="name" class="label-icon"><i class="material-icons">person</i></label>
 
-                            <input id="name" type="text" placeholder="Nombre" class="form__input user {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                            <input id="name" type="text" placeholder="Nombre *" class="form__input user {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" autofocus>
 
                             @if ($errors->has('name'))
                                 <span class="invalid-feedback" role="alert">

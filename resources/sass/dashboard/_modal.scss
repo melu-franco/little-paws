@@ -1,3 +1,35 @@
 .modal {
-
+    &-content {
+        .form {
+            &-group {
+                border-top: 1px solid $border-color;
+                .pets__pet .pet {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+            }
+            .input, .textarea {
+                display: block;
+                border: none;
+                padding: 1em;
+            }
+        }
+    }
+    &-title {
+        display: flex;
+        font-size: rem(14);
+        font-weight: $bold;
+        align-items: center;
+        font-family: $opensans;
+        i {
+            color: $blue;
+            font-size: rem(20);
+            margin-right: .5em;
+        }
+    }
+    &-header {
+        justify-content: space-between;
+    }
+    
 }

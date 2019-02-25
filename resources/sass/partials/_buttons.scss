@@ -4,6 +4,7 @@
     &-border {
         display: inline-flex;
         border-radius: 10px;
+        align-items: center;
         border: 1px solid #ddd;
         &:hover {
             border-color: $gray;
@@ -28,7 +29,7 @@
     &-round {
         font-size: rem(14);
         text-transform: uppercase;
-        font-weight: $semi-bold;
+        font-weight: $regular;
         border-radius: 30px;
         padding: .9em 1em;
         font-family: $montserrat;

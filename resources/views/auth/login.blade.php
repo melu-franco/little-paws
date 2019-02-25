@@ -29,7 +29,7 @@
 
             <div class="auth-content login__form">
 
-                <a class="link link--back d-flex" href="{{ URL::previous() }}">Volver</a>
+                <a class="link link--back d-flex" href="{{ URL::previous() }}"><i class="far fa-arrow-alt-circle-left visible-sm"></i><span class="hidden-sm">Volver</span></a>
 
                 <div class="align-center">
 
@@ -40,7 +40,7 @@
 
                         <div class="form-group">
                             <label for="email" class="label-icon"><i class="material-icons">mail</i></label>
-                            <input id="email" type="email" placeholder="E-mail" class="form__input email {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
+                            <input id="email" type="email" placeholder="E-mail*" class="form__input email {{ $errors->has('email') ? 'is-invalid' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
 
                             @if ($errors->has('email'))
                                 <span class="invalid-feedback" role="alert">
@@ -51,7 +51,7 @@
 
                         <div class="form-group">
                             <label for="password" class="label-icon"><i class="material-icons">lock</i></label>
-                            <input id="password" type="password" placeholder="Contraseña" class="form__input pass {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password" required>
+                            <input id="password" type="password" placeholder="Contraseña*" class="form__input pass {{ $errors->has('password') ? 'is-invalid' : '' }}" name="password" required>
 
                             @if ($errors->has('password'))
                                 <span class="invalid-feedback" role="alert">

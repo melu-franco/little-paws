@@ -8,7 +8,7 @@ class Pet extends Model
     protected $table = 'pets';
 
     protected $fillable = [
-        'name', 'description', 'avatar', 'pet_type_id', 'user_id',
+        'user_id', 'name', 'description', 'pet_type_id', 'avatar'
     ];
 
     public function user() {
@@ -16,7 +16,7 @@ class Pet extends Model
     }
 
     public function pet_type(){
-        return $this->belongsTo(PetType::class, 'pet_type_id', 'id');
+        return $this->belongsTo(PetType::class, 'pet_type_id','id');
     }
 
     public function getAvatarAttribute($value) {

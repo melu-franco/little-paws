@@ -18,6 +18,13 @@
     position: fixed;
 }
 
+.is-fixed-bottom {
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+    position: fixed;
+}
+
 .nav {
     height: 100%;
     &__brand {
@@ -29,6 +36,9 @@
         font-weight: $semi-bold;
         font-family: $montserrat;
         border-right: 1px solid $border-color;
+        @include mobile {
+            padding: 0 .5em;
+        }
     }
 
     &-link {
@@ -78,6 +88,25 @@
         }
         input {
             @include placeholder($gray,1em,$opensans);
+        }
+        @include mobile {
+            padding-left: 0;
+        }
+    }
+
+    &-mobile {
+        height: 3em;
+        background: $white;
+        -webkit-box-shadow: 0px 0px 36px -10px rgba(0,0,0,0.5);
+        -moz-box-shadow: 0px 0px 36px -10px rgba(0,0,0,0.5);
+        box-shadow: 0px 0px 36px -10px rgba(0,0,0,0.5);
+        &__list {
+            height: 100%;
+            align-items: center;
+            justify-content: space-around;
+            a {
+                color: $black;
+            }
         }
     }
 }

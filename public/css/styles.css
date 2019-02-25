@@ -13703,6 +13703,7 @@ table {
 .btn-border {
   display: inline-flex;
   border-radius: 10px;
+  align-items: center;
   border: 1px solid #ddd;
 }
 
@@ -13733,7 +13734,7 @@ table {
 .btn-round {
   font-size: 0.875rem;
   text-transform: uppercase;
-  font-weight: 500;
+  font-weight: 400;
   border-radius: 30px;
   padding: 0.9em 1em;
   font-family: "Montserrat", sans-serif;
@@ -13882,15 +13883,15 @@ button {
 
 .form .invalid-feedback strong {
   color: #fa4169;
-  font-weight: 600;
-  font-size: 0.75rem;
+  font-weight: 400;
+  font-size: 0.6875rem;
   font-family: "Montserrat", sans-serif;
 }
 
 .form-group {
   margin: 0;
   padding-bottom: 0.8em;
-  margin-bottom: 0.5em;
+  margin-bottom: 0.2em;
   position: relative;
 }
 
@@ -14079,6 +14080,24 @@ button {
   width: 100%;
 }
 
+@media (max-width: 640px) {
+  .form .setting {
+    padding-bottom: 0;
+  }
+
+  .form .setting .choose-file {
+    display: none;
+  }
+
+  .form .setting .delete span {
+    display: none;
+  }
+
+  .form .setting .delete .fa-ban {
+    font-size: 18px;
+  }
+}
+
 .form .setting.-no-pad {
   padding: 0;
   margin: 0;
@@ -14096,6 +14115,13 @@ button {
   line-height: 24px;
   text-align: left;
   transition: color 0.2s;
+}
+
+@media (max-width: 640px) {
+  .form .setting a[data-action],
+  .form .setting .choose-file {
+    opacity: 0.6;
+  }
 }
 
 .form .setting a[data-action] i,
@@ -14146,6 +14172,12 @@ button {
   display: block;
 }
 
+@media (max-width: 640px) {
+  .form .image_picker .settings_wrap .settings_actions.vertical a.disabled {
+    display: none;
+  }
+}
+
 .form .image_picker .settings_wrap .drop_target {
   position: relative;
   cursor: pointer;
@@ -14157,22 +14189,37 @@ button {
   transition: all 0.2s;
 }
 
+@media (max-width: 640px) {
+  .form .image_picker .settings_wrap .drop_target {
+    width: 95px;
+    height: 95px;
+    margin-left: 30%;
+    margin-right: 5px;
+  }
+}
+
 .form .image_picker .settings_wrap .drop_target input[type=file] {
   visibility: hidden;
 }
 
 .form .image_picker .settings_wrap .drop_target:before {
-  content: "\F0EE";
+  content: "\F030";
   font-family: FontAwesome;
   position: absolute;
   display: block;
   width: 100%;
   line-height: 60px;
   text-align: center;
-  font-size: 32px;
+  font-size: 28px;
   padding: 0.2em;
   color: rgba(0, 0, 0, 0.3);
   transition: color 0.2s;
+}
+
+@media (max-width: 640px) {
+  .form .image_picker .settings_wrap .drop_target:before {
+    line-height: 85px;
+  }
 }
 
 .form .image_picker .settings_wrap .drop_target:hover,
@@ -14211,6 +14258,12 @@ button {
   display: block;
 }
 
+@media (max-width: 640px) {
+  .form .image_picker .settings_wrap .drop_target.image-hidden .image_preview[data-image=true] + a.disabled {
+    display: none;
+  }
+}
+
 .form .image_picker .settings_wrap .image_preview {
   width: 100%;
   height: 100%;
@@ -14225,12 +14278,18 @@ button {
   margin: 2em 0;
 }
 
-.form .pets .control input:checked + label img {
+.form .pets input:checked + label img {
   border-color: #fa4169;
 }
 
+@media (max-width: 640px) {
+  .form .pets {
+    justify-content: space-between;
+  }
+}
+
 .form .pets .pet {
-  width: 30%;
+  width: 33%;
   cursor: pointer;
   margin-bottom: 1em;
   font-size: 0.875rem;
@@ -14246,10 +14305,18 @@ button {
   border: 4px solid transparent;
 }
 
+@media (max-width: 640px) {
+  .form .pets .pet img {
+    height: 7em;
+    width: 7em;
+  }
+}
+
 .section--auth__title {
+  margin-top: 2rem;
   margin-bottom: 0.2em;
-  font-size: 1.875rem;
-  font-weight: 600;
+  font-size: 1.5rem;
+  font-weight: 500;
   font-family: "Montserrat", sans-serif;
 }
 
@@ -14265,6 +14332,12 @@ button {
 .section--auth .auth-bg.register__bg {
   background: url("/img/bg-register.png") no-repeat center;
   background-size: contain;
+}
+
+@media (max-width: 640px) {
+  .section--auth .auth-bg {
+    display: none;
+  }
 }
 
 .section--auth .auth-content {
@@ -14290,6 +14363,27 @@ button {
   margin: 1em 0;
 }
 
+@media (max-width: 640px) {
+  .section--auth .auth-content {
+    width: 100%;
+    padding: 1em 8%;
+  }
+
+  .section--auth .auth-content .link--back {
+    margin-left: 0;
+    margin-right: auto;
+  }
+
+  .section--auth .auth-content .link--back span {
+    display: none;
+  }
+
+  .section--auth .auth-content .link--back i {
+    font-size: 28px;
+    opacity: 0.4;
+  }
+}
+
 .section--auth .align-center {
   margin: auto;
   width: 100%;
@@ -14301,7 +14395,28 @@ button {
 }
 
 .section--auth .auth-redirect a {
-  font-weight: 500;
+  font-weight: 400;
   font-family: "Montserrat", sans-serif;
+}
+
+.section--auth.register-success .done {
+  width: 4em;
+  height: 4em;
+  font-size: 20px;
+  display: flex;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  border: 2px solid #fa4169;
+}
+
+.section--auth.register-success .section--auth__title {
+  margin: 1em 0 2em;
+}
+
+.section--auth.register-success .btn {
+  display: block;
+  margin: 1em 0;
 }
 

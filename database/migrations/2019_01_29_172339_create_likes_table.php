@@ -20,6 +20,11 @@ class CreateLikesTable extends Migration
             $table->boolean('like');
             $table->timestamps();
         });
+        Schema::table('likes', function (Blueprint $table)
+        {
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('post_id')->references('id')->on('posts');
+        });
     }
 
     public function down()

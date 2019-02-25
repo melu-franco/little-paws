@@ -12,6 +12,9 @@
         <!-- Fonts -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
 
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+
         <!-- Styles -->
         <link href= "{{ asset('css/styles.css') }}" rel="stylesheet">
 
@@ -24,7 +27,12 @@
 
             <div class="auth-content register-success__content">
                 <div class="align-center">
-                    <h1 class="section--auth__title">Usuario registrado con éxito</h1>
+                    <div class="done">
+                        <i class="material-icons -color-red">done</i>
+                    </div>
+                    <h1 class="section--auth__title">
+                        Usuario registrado
+                    </h1>
 
                     <a href="{{route('pet.create')}}" class="btn btn-round -large -red">Agregar perfil de mascota</a>
 

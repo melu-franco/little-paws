@@ -1,10 +1,12 @@
 .section {
     &--auth {
         &__title {
+            margin-top: 2rem;
             margin-bottom: .2em;
-            font-size: rem(30);
-            font-weight: $bold;
+            font-size: rem(24);
+            font-weight: $semi-bold;
             font-family: $montserrat;
+
         }
         &__desc {
             font-size: rem(15);
@@ -15,6 +17,9 @@
             &.register__bg {
                 background: url('/img/bg-register.png') no-repeat center;
                 background-size: contain;
+            }
+            @include mobile {
+                display: none;
             }
         }
         .auth-content{
@@ -35,6 +40,21 @@
                     margin: 1em 0;
                 }
             }
+            @include mobile {
+                width: 100%;
+                padding: 1em 8%;
+                .link--back {
+                    margin-left: 0;
+                    margin-right: auto;
+                    span {
+                        display: none;
+                    }
+                    i {
+                        font-size: 28px;
+                        opacity: .4;
+                    }
+                }
+            }
         }
         .align-center {
             margin: auto;
@@ -44,8 +64,29 @@
             margin-top: 1em;
             font-size: rem(14);
             a {
-                font-weight: $semi-bold;
+                font-weight: $regular;
                 font-family: $montserrat;
+            }
+        }
+
+        &.register-success {
+            .done {
+                width: 4em;
+                height: 4em;
+                font-size: 20px;
+                display: flex;
+                margin: auto;
+                justify-content: center;
+                align-items: center;
+                border-radius: 50%;
+                border: 2px solid $red;
+            }
+            .section--auth__title {
+                margin: 1em 0 2em;
+            }
+            .btn {
+                display: block;
+                margin: 1em 0;
             }
         }
     }

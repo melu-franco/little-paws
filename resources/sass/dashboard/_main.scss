@@ -13,6 +13,10 @@ html {
 
 .main {
     width: 65%;
+    @include mobile {
+        order: 2;
+        width: 100%;
+    }
 }
 
 p {
@@ -26,6 +30,17 @@ a {
     }
 }
 
+.t-center {
+    text-align: center;
+}
+
+.hidden-sm {
+    display: block !important;
+    @include mobile {
+        display: none !important;
+    }
+}
+
 .visible-sm {
     display: none !important;
     @include mobile {
@@ -36,11 +51,17 @@ a {
 .container {
     max-width: auto !important;
 }
-
+.w-pad {
+    padding: 1em;
+}
 .wrapper {
     margin: 2em 3em;
     margin-left: 23em;
     width: 100%;
+    @include mobile {
+        margin: 1em 0;
+        flex-direction: column;
+    }
     &--profile {
         margin-left: 7em;
         margin-right: 7em;
@@ -49,6 +70,12 @@ a {
         }
         .aside {
             width:25%;
+        }
+        @include mobile {
+            margin: 0;
+            .main, .aside {
+                width: 100%;
+            }
         }
     }
 }
@@ -76,6 +103,7 @@ a {
 @import 'sidebar';
 @import 'section';
 @import 'profile';
+@import 'users';
 @import 'modal';
 @import '../elements/text';
 @import '../elements/form';

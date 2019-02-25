@@ -14,7 +14,11 @@
 
         <section class="section section--main">
 
-            @include('dashboard.forms.create-post')
+            <div class="hidden-sm">@include('dashboard.forms.create-post')</div>
+
+            <div id="addPostModal" class="modal form-modal post-modal">
+                @include('dashboard.forms.create-post-modal')
+            </div>
 
 
             @if ($posts->count())
@@ -45,11 +49,5 @@
         </div>
     </div>
 </div>
-
-<script type="text/javascript">
-    var token = '{{ Session::token() }}';
-    var urlLike = '{{ route('like') }}';
-</script>
-<script src="{{ asset('js/like.js') }}"></script>
 
 @endsection

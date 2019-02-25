@@ -14,10 +14,15 @@
             background: $white;
             border-radius: 5px;
             border: 1px solid $border-color;
+            @include mobile {
+                border-radius: 0;
+                border: none;
+            }
         }
         .w-pad {
             padding: 1em;
         }
+        
     }
 
     &--posts {
@@ -47,6 +52,10 @@
 }
 
 .post-card {
+    @include mobile {
+        border-top: 1px solid $border-color !important;
+        border-bottom: 1px solid $border-color !important;
+    }
     &__user {
         .avatar {
             img {
@@ -120,6 +129,17 @@
                 font-size: rem(13);
                 font-weight: $bold;
                 font-family: $montserrat;
+            }
+            @include mobile {
+                width: 25%;
+                justify-content: flex-start;
+                span {
+                    display: none;
+                }
+                &:last-child {
+                    margin-left: auto;
+                    justify-content: flex-end;
+                }
             }
         }
     }

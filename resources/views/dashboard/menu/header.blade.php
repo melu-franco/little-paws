@@ -15,7 +15,7 @@
                 </form>
 
                 <ul class="nav__ul ml-auto d-flex">
-                    <li class="nav__links">
+                    <li class="nav__links hidden-sm">
                        <ul class="d-flex flex-ai-center">
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ url('/home') }}">
@@ -27,11 +27,11 @@
                                     <i class="material-icons">people</i>
                                 </a>
                             </li>
-                            <li class="nav-item">
+                            {{-- <li class="nav-item">
                                 <a href="" class="nav-link">
                                     <i class="material-icons">mail_outline</i>
                                 </a>
-                            </li>
+                            </li> --}}
                        </ul>
                     </li>
                     <li class="nav-item dropdown">
@@ -44,8 +44,8 @@
 
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item d-flex flex-ai-center" href="/profile/{{Auth::user()->id}}/edit">
-                               <i class="material-icons">edit</i> Editar perfil
+                            <a class="dropdown-item d-flex flex-ai-center" href="/profile/{{Auth::user()->id}}">
+                               <i class="material-icons">person</i> Ver perfil
                             </a>
                             <a class="dropdown-item d-flex flex-ai-center" href="{{ route('logout') }}"
                                 onclick="event.preventDefault();
@@ -63,3 +63,15 @@
     </nav>
 
 </header>
+
+<nav class="nav-mobile is-fixed-bottom visible-sm">
+    <ul class="nav-mobile__list d-flex">
+        <li>
+            <a href="/home"> <i class="material-icons">public</i> </a>
+        </li>
+        <li><a href="{{ route('users') }}"><i class="material-icons">group</i> </a></li>
+        <li><a href="javascript:void(0);" data-toggle="modal" data-target="#addPostModal" > <i class="material-icons">add</i> </a></li>
+        <li><a href=""></a><i class="material-icons">inbox</i></li>
+        <li><a href="/profile/{{Auth::user()->id}}"> <i class="fas fa-user-edit"></i> </a></li>
+    </ul>
+</nav>
