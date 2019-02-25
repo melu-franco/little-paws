@@ -14,12 +14,9 @@
 
         <section class="section section--main">
 
-            <div class="hidden-sm">@include('dashboard.forms.create-post')</div>
-
-            <div id="addPostModal" class="modal form-modal post-modal">
-                @include('dashboard.forms.create-post-modal')
+            <div class="hidden-sm">
+                @include('dashboard.forms.create-post')
             </div>
-
 
             @if ($posts->count())
 
@@ -48,6 +45,10 @@
             <button class="btn tablinks" onclick="openTab(event, 'Following')">Siguiendo</button>
         </div>
     </div>
+</div>
+
+<div id="addPostModal" class="modal form-modal post-modal">
+    @include('dashboard.forms.create-post-modal')
 </div>
 
 @endsection

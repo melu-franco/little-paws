@@ -20,11 +20,10 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="/posts/{{$post->id}}/edit">
+                            <a class="dropdown-item" href="javascript.void(0);" data-toggle="modal" data-target="#editPostModal">
                                 <i class="fas fa-edit"></i> Editar
                             </a>
-                            <a class="dropdown-item" href="{{ route('post.delete', [$post->id]) }}"
-                            onclick="event.preventDefault(); document.getElementById('delete-post').submit();">
+                            <a class="dropdown-item" href="javascript.void(0);" data-toggle="modal" data-target="#deletePostModal">
                                 <i class="fas fa-trash-alt"></i> Eliminar
                             </a>
 
@@ -51,29 +50,46 @@
 
        </div>
         <div class="d-flex post-card__reactions border-top">
-            <a href="{{ route('like') }}"
-            onclick="event.preventDefault();
-                            document.getElementById('like-form').submit();" class="like btn-reaction">
-                <i class="far fa-heart"></i>
-                <span>Like</span>
-                @if ($post->likes != '0')
-                    <span>{{ $post->likes}}</span>
-                @endif
-                {{--  {{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'Dislike' : 'Like' : 'Like' }} --}}
-            </a>
 
-            <form id="like-form" action="{{ route('like') }}" method="POST" style="display: none;">
-                @csrf
-                <input type="hidden" name="post_id" value="{{ $post->id }}" />
-            </form>
+            @if (Auth::user()->likes->where('post_id', $post->id)->count())
+                <a href="{{ route('dislike', [Auth::user()->likes()->where('post_id', $post->id)->first()]) }}"
+                onclick="event.preventDefault();
+                                document.getElementById('dislike-form').submit();" class="btn-reaction">
+                    <i class="fas fa-heart -color-red "></i>
+                    <span class="hidden-sm">Like</span>
+                    @if($post->likes->count())
+                        <span class="visible-sm">{{$post->likes->count()}}</span>
+                    @endif
+                    {{--  {{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'Dislike' : 'Like' : 'Like' }} --}}
+                </a>
+
+                <form id="dislike-form" action="{{ route('dislike', [Auth::user()->likes()->where('post_id', $post->id)->first()]) }}" method="POST" style="display: none;">
+                    @csrf
+                    @method('DELETE')
+                </form>
+            @else
+                <a href="{{ route('like') }}"
+                onclick="event.preventDefault();
+                                document.getElementById('like-form').submit();" class="like btn-reaction">
+                    <i class="far fa-heart"></i>
+                    <span class="hidden-sm">Like</span>
+                    @if($post->likes->count())
+                        <span class="visible-sm">{{$post->likes->count()}}</span>
+                    @endif
+                </a>
+
+                <form id="like-form" action="{{ route('like') }}" method="POST" style="display: none;">
+                    @csrf
+                    <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                </form>
+            @endif
 
             <a href="#" class="btn-reaction">
                 <i class="far fa-comment"></i>
-                <span>Comentar</span>
+                <span class="hidden-sm">Comentar</span>
                 @if ($post->comments->count())
-                    <span>{{ $post->comments->count() }}</span>
+                    <span class="visible-sm">{{ $post->comments->count() }}</span>
                 @endif
-                {{--  {{ Auth::user()->likes()->where('post_id', $post->id)->first() ? Auth::user()->likes()->where('post_id', $post->id)->first()->like == 1 ? 'Dislike' : 'Like' : 'Like' }} --}}
             </a>
 
             <a href="#" class="btn-reaction">
@@ -129,3 +145,31 @@
         @endif
 
     </div>
+
+    <div id="deletePostModal" class="modal form-modal delete-post-modal">
+        <div class="modal-dialog">
+            <!-- Modal content-->
+            <div class="modal-content post-delete">
+                <div class="modal-header d-flex">
+                    <h4 class="modal-title">Eliminar publicación</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <p>¿Estas seguro que querés eliminar la publicación?</p>
+                    <p>También podés editarla si solo necesitás cambiar algo.</p>
+                </div>
+                <div class="modal-footer">
+                    <form id="delete-post" action="{{ route('post.delete', [$post->id]) }}" method="POST">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-round -blue -small">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="editPostModal" class="modal form-modal post-modal">
+        @include('dashboard.forms.post-edit')
+    </div>
+

@@ -13899,6 +13899,7 @@ button {
   width: 100%;
   border: none;
   padding: 1em;
+  line-height: 1.4;
 }
 
 .form--post textarea::-webkit-input-placeholder {
@@ -13946,7 +13947,7 @@ button {
 }
 
 .form--post .add-image {
-  padding: 0.2em 1em;
+  padding: 0.4em 1em;
 }
 
 .form--comment textarea {
@@ -14080,7 +14081,7 @@ button {
   width: 100%;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .form .setting {
     padding-bottom: 0;
   }
@@ -14117,7 +14118,7 @@ button {
   transition: color 0.2s;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .form .setting a[data-action],
   .form .setting .choose-file {
     opacity: 0.6;
@@ -14172,7 +14173,7 @@ button {
   display: block;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .form .image_picker .settings_wrap .settings_actions.vertical a.disabled {
     display: none;
   }
@@ -14189,7 +14190,7 @@ button {
   transition: all 0.2s;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .form .image_picker .settings_wrap .drop_target {
     width: 95px;
     height: 95px;
@@ -14216,7 +14217,7 @@ button {
   transition: color 0.2s;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .form .image_picker .settings_wrap .drop_target:before {
     line-height: 85px;
   }
@@ -14258,7 +14259,7 @@ button {
   display: block;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .form .image_picker .settings_wrap .drop_target.image-hidden .image_preview[data-image=true] + a.disabled {
     display: none;
   }
@@ -14282,7 +14283,7 @@ button {
   border-color: #fa4169;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .form .pets {
     justify-content: space-between;
   }
@@ -14305,7 +14306,7 @@ button {
   border: 4px solid transparent;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .form .pets .pet img {
     height: 7em;
     width: 7em;
@@ -14334,7 +14335,7 @@ button {
   background-size: contain;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .section--auth .auth-bg {
     display: none;
   }
@@ -14363,7 +14364,7 @@ button {
   margin: 1em 0;
 }
 
-@media (max-width: 640px) {
+@media (max-width: 768px) {
   .section--auth .auth-content {
     width: 100%;
     padding: 1em 8%;

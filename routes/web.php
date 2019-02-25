@@ -19,7 +19,8 @@ Route::group(['middleware' => ['auth', 'verified']], function()
     Route::patch('/posts/{post}/update_image', 'PostsController@update_image');
     Route::delete('/posts/{post}/delete_image', 'PostsController@delete_image');
     Route::delete('/posts/{post}', 'PostsController@destroy')->name('post.delete');
-    Route::post('/posts/likes', 'PostsController@likes')->name('like');
+    Route::post('/posts/likes', 'PostsController@like')->name('like');
+    Route::delete('/posts/likes/{like}', 'PostsController@dislike')->name('dislike');
 
     //Users controller
     Route::get('/profile/{user}', 'UserController@profile');

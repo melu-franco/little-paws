@@ -74,7 +74,7 @@
             margin: auto;
             flex-direction: column;
         }
-        
+
         img {
             width: 100%;
             height: 100%;
@@ -107,6 +107,7 @@
                     margin: auto;
                     display: flex;
                     color:$white;
+                    cursor: pointer;
                     font-size: rem(12);
                     font-family: $montserrat;
                     flex-direction: column;

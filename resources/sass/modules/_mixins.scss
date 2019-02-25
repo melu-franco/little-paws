@@ -110,7 +110,7 @@ $browser-context: 16; // Default
 }
 
 @mixin mobile {
-  @media (max-width: #{$mobile-width}) {
+  @media (max-width: #{$tablet-width}) {
     @content;
   }
 }

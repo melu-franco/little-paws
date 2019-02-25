@@ -3,7 +3,7 @@
         <div class="modal-content pet-create">
 
             <div class="modal-header d-flex">
-                <h4 class="modal-title">Editar perfil</h4>
+                <h4 class="modal-title"><i class="fas fa-user-edit"></i> Editar perfil</h4>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
@@ -31,7 +31,7 @@
             <button type="submit" class="button is-light"><i class="fas fa-trash-alt"></i></button>
         </form>
 
-        <form method="POST" class="form" action="/profile/{{ $user->id }}">
+        <form id="updatePost" method="POST" class="form" action="/profile/{{ $user->id }}">
             @method('PATCH')
             @csrf
 
@@ -56,19 +56,18 @@
                     @endforeach
                 @endif
             </div>
-
-            <button type="submit" class="btn btn-round  -blue">Guardar</button>
-
         </form>
 
         <form method="POST" action="/profile/{{ $user->id }}">
             @method('DELETE')
             @csrf
-            <button type="submit" class="btn btn-round -red">Eliminar cuenta</button>
+            <button type="submit" class="link -red">Eliminar cuenta</button>
         </form>
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <a href="/profile/{{ $user->id }}" onclick="event.preventDefault(); document.getElementById('updatePost').submit();" class="btn btn-round -small -blue">
+                Guardar
+            </a>
         </div>
     </div>
 </div>

@@ -30,6 +30,7 @@
             width: 100%;
             border: none;
             padding: 1em;
+            line-height: 1.4;
             @include placeholder($gray,rem(16),$opensans);
         }
         .avatar img {
@@ -42,7 +43,7 @@
             padding: 0;
         }
         .add-image {
-            padding: .2em 1em;
+            padding: .4em 1em;
         }
     }
     &--comment {
@@ -137,7 +138,7 @@
             @include mobile {
                 opacity: .6;
             }
-           
+
             i {
                 width: 1.25em;
                 text-align: center;
@@ -162,7 +163,7 @@
                   }
             } i {
                 font-size: 20px;
-                
+
             }
         }
       }

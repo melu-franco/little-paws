@@ -89,7 +89,7 @@ class PostsController extends Controller
     {
         $post->update(request()->validate(['content' => 'required']));
 
-        return redirect('posts');
+        return back();
     }
 
     public function update_image(Post $post, Request $request)
@@ -159,7 +159,7 @@ class PostsController extends Controller
         return back();
     }
 
-    public function likes(Request $request, Post $post, Like $like) {
+    public function like(Request $request, Post $post, Like $like) {
 
         $like->like = '1';
         $like->user()->associate($request->user());
@@ -168,5 +168,12 @@ class PostsController extends Controller
 
         return back();
 
+    }
+
+    public function dislike(Like $like)
+    {
+        $like->delete();
+
+        return back();
     }
 }
