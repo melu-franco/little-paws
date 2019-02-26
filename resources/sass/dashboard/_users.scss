@@ -1,0 +1,26 @@
+.users {
+    padding: 1em;
+    &__user {
+        width:25%;
+        align-items:center;
+        margin-bottom:1em;
+        flex-direction: column;
+        &__avatar {
+            border-radius:50%;height:5em;object-fit:contain;
+        }
+        &__name {
+            color: $black;
+            text-align: center;
+            font-family: $montserrat;
+        }
+        .btn-icon {
+            i {
+                margin: 0;
+            }
+            span {
+                display: none;
+            }
+        }
+    }
+    
+}
