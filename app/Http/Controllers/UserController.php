@@ -38,7 +38,26 @@ class UserController extends Controller
         $user->update(request()->validate([
             'name' => 'required',
             'description' => 'max:500',
+            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]));
+
+        if($request->hasfile('avatar')){
+            $avatar = $request->file('avatar');
+            $filename  = public_path('uploads/avatars/').$user->avatar;
+            $filename_new = 'user_'. $user->id .'_'. time() . '.' . $avatar->getClientOriginalExtension();
+
+            Image::make($avatar->getRealPath())
+            ->resize(180, 180,function ($constraint) {
+                $constraint->aspectRatio();
+            })
+            ->save(public_path('uploads/avatars/' . $filename_new));
+
+            if(File::exists($filename) && $user->avatar != 'user.png') {
+                File::delete($filename);
+            }
+
+            $user->update(['avatar' => $filename_new]);
+        }
 
         return redirect()->route('profile', [$user]);
     }
