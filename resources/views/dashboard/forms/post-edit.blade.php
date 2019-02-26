@@ -3,101 +3,74 @@
     <div class="modal-content post-edit">
 
         <div class="modal-header d-flex">
-            <h4 class="modal-title">Editar post</h4>
+            <h4 class="modal-title">
+                <i class="material-icons">edit</i>
+                Editar post
+            </h4>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
-        <div class="modal-body">
-            <form method="POST" action="/posts/{{ $post->id }}">
-                @method('PATCH')
-                @csrf
+        <form method="POST" id="updatePost" class="form" action="/posts/{{ $post->id }}" enctype="multipart/form-data">
+            @method('PATCH')
+            @csrf
 
-                <div class="field">
-                    <label class="label" for="content">Editar comentario</label>
+            <div class="form-group w-pad">
+                <label class="label" for="content">Editar comentario</label>
 
-                    <div class="control">
-                        <textarea class="textarea {{ $errors->has('content') ? 'is-danger' : '' }}" name="content" id="content" cols="30" rows="10">{{ $post->content }}</textarea>
-                    </div>
-                    @if ($errors->any())
-                        @foreach ($errors->all() as $error)
-                            <p class="help is-danger">{{ $error }}</p>
-                        @endforeach
-                    @endif
+                <div class="control">
+                    <textarea class="textarea {{ $errors->has('content') ? 'is-danger' : '' }}" name="content" id="content" cols="30" rows="10">{{ $post->content }}</textarea>
                 </div>
-
-                <div class="field is-pulled-left">
-                    <div class="control">
-                        <button type="submit" class="button is-primary">Guardar</button>
-                    </div>
-                </div>
-            </form>
-
-            @if($post->image != '')
-                <img src="/uploads/posts/thumbnail/{{ $post->image }}" alt="Post image" style="width:90px;">
-
-                <form method="POST" action="/posts/{{ $post->id }}/update_image" enctype="multipart/form-data">
-                    @method('PATCH')
-                    @csrf
-
-                    <div class="field">
-                        <label for="image" class="button"><i class="fas fa-pen"></i></label>
-
-                        <div class="col-md-6">
-                            <input id="image" type="file" name="image" onChange="this.form.submit()" style="visibility:hidden;display:none;" class="input form-control">
-                        </div>
-                    </div>
-                </form>
-
-                <form method="POST" action="/posts/{{ $post->id }}/delete_image" class="is-pulled-left" enctype="multipart/form-data">
-                    @method('DELETE')
-                    @csrf
-                    <div class="field">
-                        <div class="control">
-                            <button type="submit" class="button is-light"><i class="fas fa-times-circle"></i></button>
-                        </div>
-                    </div>
-                </form>
-
-                @if ($errors->has('image'))
+                @if ($errors->any())
                     @foreach ($errors->all() as $error)
                         <p class="help is-danger">{{ $error }}</p>
                     @endforeach
                 @endif
+            </div>
 
-            @else
+            <div class="form-group add-image w-pad">
 
-                <form method="POST" action="/posts/{{ $post->id }}/update_image" enctype="multipart/form-data">
-                    @method('PATCH')
-                    @csrf
+                <div class="setting image_picker -no-pad">
+                    <div class="settings_wrap post-foto">
+                        <div class="d-flex absolute">
+                            <label class="drop_target drop_target_modal image-hidden d-flex">
+                                <div class="image_preview image_preview_modal"></div>
+                                <input class="hidden" id="inputFileModal" name="image" type="file"/>
+                            </label>
 
-                    <div class="field">
-                        <label for="image" class="button"><i class="fas fa-image"></i> Foto</label>
-
-                        <div class="col-md-6">
-                            <input id="image" type="file" name="image" onChange="this.form.submit()" class="input form-control">
+                            <a class="disabled remove remover_modal" data-action="remove_current_image"><i class="material-icons">cancel</i></a>
                         </div>
+
+                        <label for="inputFileModal" class="label-image btn btn-border btn-icon{{ $post->image != '' ? ' margin-top' : '' }}"><i class="material-icons">image</i> Foto</label>
                     </div>
+                </div>
+
+            </div>
+
+        </form>
+
+        @if($post->image != '')
+            <div class="d-flex thumbnail-preview">
+                <img src="/uploads/posts/thumbnail/{{ $post->image }}" alt="Post image" class="post-thumbnail">
+
+                <form method="POST" action="/posts/{{ $post->id }}/delete_image" enctype="multipart/form-data">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="btn remove-image"><i class="material-icons">cancel</i></button>
                 </form>
+            </div>
+        @endif
 
-
-            @endif
-
-
-
+        <div class="modal-footer d-flex">
             <form method="POST" action="/posts/{{ $post->id }}">
                 @method('DELETE')
                 @csrf
 
-                <div class="field">
-                    <div class="control">
-                        <button type="submit" class="button is-light">Eliminar Post</button>
-                    </div>
-                </div>
+                <button type="submit" class="btn btn-round -small -red">Eliminar Post</button>
             </form>
+            <a href="/posts/{{ $post->id }}" onclick="event.preventDefault(); document.getElementById('updatePost').submit();" class="btn btn-round -small -blue">
+                Guardar
+            </a>
         </div>
 
-        <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
-        </div>
     </div>
 </div>

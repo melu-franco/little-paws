@@ -31,7 +31,7 @@
             <button type="submit" class="button is-light"><i class="fas fa-trash-alt"></i></button>
         </form>
 
-        <form id="updatePost" method="POST" class="form" action="/profile/{{ $user->id }}">
+        <form id="updateProfile" method="POST" class="form" action="/profile/{{ $user->id }}">
             @method('PATCH')
             @csrf
 
@@ -65,7 +65,7 @@
         </form>
 
         <div class="modal-footer">
-            <a href="/profile/{{ $user->id }}" onclick="event.preventDefault(); document.getElementById('updatePost').submit();" class="btn btn-round -small -blue">
+            <a href="/profile/{{ $user->id }}" onclick="event.preventDefault(); document.getElementById('updateProfile').submit();" class="btn btn-round -small -blue">
                 Guardar
             </a>
         </div>

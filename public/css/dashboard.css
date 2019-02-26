@@ -13842,6 +13842,14 @@ a:hover {
   text-align: center;
 }
 
+.absolute {
+  position: absolute;
+}
+
+.relative {
+  position: relative;
+}
+
 .hidden-sm {
   display: block !important;
 }
@@ -14618,6 +14626,40 @@ a:hover {
   font-family: "Montserrat", sans-serif;
 }
 
+.users {
+  width: 100%;
+  padding: 1em;
+}
+
+.users__user {
+  width: 25%;
+  align-items: center;
+  margin-bottom: 1em;
+  flex-direction: column;
+}
+
+.users__user__avatar {
+  width: 5em;
+  height: 5em;
+  -o-object-fit: cover;
+     object-fit: cover;
+  border-radius: 50%;
+}
+
+.users__user__name {
+  color: #414852;
+  text-align: center;
+  font-family: "Montserrat", sans-serif;
+}
+
+.users__user .btn-icon i {
+  margin: 0;
+}
+
+.users__user .btn-icon span {
+  display: none;
+}
+
 .modal-content .form-group {
   border-top: 1px solid #eaeaea;
 }
@@ -14632,7 +14674,46 @@ a:hover {
 .modal-content .form .textarea {
   display: block;
   border: none;
-  padding: 1em;
+  padding: 1em 0;
+  width: 100%;
+}
+
+.modal-content .form label.margin-top {
+  margin-top: 7em;
+}
+
+.modal .post-thumbnail {
+  width: 5em;
+  height: 5em;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.modal .thumbnail-preview {
+  position: absolute;
+  bottom: 138px;
+  z-index: 2;
+  left: 1em;
+}
+
+.modal .remove-image {
+  cursor: pointer;
+  color: #555;
+  font-size: 14px;
+  line-height: 24px;
+  text-align: left;
+  padding: 0 0.2em;
+  transition: color 0.2s;
+}
+
+.modal .remove-image i {
+  font-size: 20px;
+  width: 1.25em;
+  text-align: center;
+}
+
+.modal .remove-image:hover {
+  color: #fa4169;
 }
 
 .modal-title {

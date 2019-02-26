@@ -30,11 +30,6 @@ class PostsController extends Controller
         return view('dashboard.index', compact('posts','user','comment'));
     }
 
-    public function create()
-    {
-        //
-    }
-
     public function store(Request $request, Post $post, User $user)
     {
         $user_id = auth()->user()->id;
@@ -59,13 +54,15 @@ class PostsController extends Controller
 
             if ($file->getClientOriginalExtension() == 'gif') {
                 copy($file->getRealPath(), $original_path . $imageName);
-                $image->resize(90, 90,function ($constraint) {
+                $image->resize(180, 180,function ($constraint) {
                     $constraint->aspectRatio();
                 })
                 ->save($thumbnail_path . $imageName);
             } else {
                 $image->save($original_path . $imageName)
-                      ->resize(90, 90)
+                      ->resize(180, 180,function ($constraint) {
+                          $constraint->aspectRatio();
+                      })
                       ->save($thumbnail_path . $imageName);
             }
 
@@ -85,18 +82,13 @@ class PostsController extends Controller
         return view('dashboard.post-edit', compact('post'));
     }
 
-    public function update(Post $post)
+    public function update(Request $request, Post $post)
     {
-        $post->update(request()->validate(['content' => 'required']));
 
-        return back();
-    }
-
-    public function update_image(Post $post, Request $request)
-    {
-        $request->validate([
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+        $post->update(request()->validate([
+            'content' => ['required_without:image','max:1000'],
+            'image' => ['image','mimes:jpeg,png,jpg,gif,svg','max:2048'],
+        ]));
 
         if($request->hasfile('image')){
             $file = $request->file('image');
@@ -110,13 +102,15 @@ class PostsController extends Controller
 
             if ($file->getClientOriginalExtension() == 'gif') {
                 copy($file->getRealPath(), $original_path . $filename_new);
-                $image_new->resize(90, 90,function ($constraint) {
+                $image_new->resize(180, 180,function ($constraint) {
                     $constraint->aspectRatio();
                 })
                 ->save($thumbnail_path . $filename_new);
             } else {
                 $image_new->save($original_path . $filename_new)
-                      ->resize(90, 90)
+                        ->resize(180, 180,function ($constraint) {
+                            $constraint->aspectRatio();
+                        })
                       ->save($thumbnail_path . $filename_new);
             }
 

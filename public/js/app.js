@@ -36393,9 +36393,13 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 var $dropzone = $('.image_picker'),
     $droptarget = $('.drop_target'),
+    $droptargetmodal = $('.drop_target_modal'),
     $dropinput = $('#inputFile'),
+    $dropinputmodal = $('#inputFileModal'),
     $dropimg = $('.image_preview'),
+    $dropimgmodal = $('.image_preview_modal'),
     $remover = $('[data-action="remove_current_image"]');
+$removermodal = $('.remover_modal');
 $dropzone.on('dragover', function () {
   $droptarget.addClass('dropping');
   return false;
@@ -36433,11 +36437,28 @@ $dropinput.change(function (e) {
 
   reader.readAsDataURL(file);
 });
+$dropinputmodal.change(function (e) {
+  $droptargetmodal.addClass('dropped');
+  $removermodal.removeClass('disabled');
+  $('.image_title input').val('');
+  $('.thumbnail-preview').css('visibility', 'hidden');
+  $('.label-image').addClass('margin-top');
+  var file = $dropinputmodal.get(0).files[0],
+      reader = new FileReader();
+
+  reader.onload = function (event) {
+    $dropimgmodal.css('background-image', 'url(' + event.target.result + ')').attr('data-image', 'true');
+  };
+
+  reader.readAsDataURL(file);
+});
 $remover.on('click', function () {
   $dropimg.css('background-image', '').removeAttr("data-image");
   $droptarget.removeClass('dropped');
   $remover.addClass('disabled');
   $('.image_title input').val('');
+  $('.thumbnail-preview').css('visibility', 'visible');
+  $('.label-image').removeClass('margin-top');
 });
 $('.image_title input').blur(function () {
   if ($(this).val() != '') {

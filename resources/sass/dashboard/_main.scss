@@ -34,6 +34,14 @@ a {
     text-align: center;
 }
 
+.absolute {
+    position: absolute;
+}
+
+.relative {
+    position: relative;
+}
+
 .hidden-sm {
     display: block !important;
     @include mobile {
@@ -108,6 +116,7 @@ a {
 @import 'sidebar';
 @import 'section';
 @import 'profile';
+@import 'users';
 @import 'modal';
 @import '../elements/text';
 @import '../elements/form';

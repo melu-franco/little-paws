@@ -1,4 +1,5 @@
 .users {
+    width: 100%;
     padding: 1em;
     &__user {
         width:25%;
@@ -6,7 +7,10 @@
         margin-bottom:1em;
         flex-direction: column;
         &__avatar {
-            border-radius:50%;height:5em;object-fit:contain;
+            width: 5em;
+            height: 5em;
+            object-fit: cover;
+            border-radius: 50%;
         }
         &__name {
             color: $black;
@@ -22,5 +26,5 @@
             }
         }
     }
-    
+
 }
