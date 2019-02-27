@@ -36555,9 +36555,9 @@ if (token) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\wamp64\www\little-paws\resources\js\app.js */"./resources/js/app.js");
-__webpack_require__(/*! C:\wamp64\www\little-paws\resources\sass\dashboard.scss */"./resources/sass/dashboard.scss");
-module.exports = __webpack_require__(/*! C:\wamp64\www\little-paws\resources\sass\styles.scss */"./resources/sass/styles.scss");
+__webpack_require__(/*! /Users/macbook/www/little-paws/resources/js/app.js */"./resources/js/app.js");
+__webpack_require__(/*! /Users/macbook/www/little-paws/resources/sass/dashboard.scss */"./resources/sass/dashboard.scss");
+module.exports = __webpack_require__(/*! /Users/macbook/www/little-paws/resources/sass/styles.scss */"./resources/sass/styles.scss");
 
 
 /***/ })

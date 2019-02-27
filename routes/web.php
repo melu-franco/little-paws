@@ -23,9 +23,10 @@ Route::group(['middleware' => ['auth', 'verified']], function()
     Route::delete('/posts/likes/{like}', 'PostsController@dislike')->name('dislike');
 
     //Users controller
-    Route::get('/profile/{user}', 'UserController@profile');
+    Route::get('/profile/{user}', 'UserController@profile')->name('profile');
     Route::get('/profile/{user}/edit', 'UserController@edit')->name('user.edit');
-    Route::patch('/profile/{user}', 'UserController@update')->name('profile');
+    Route::patch('/profile/{user}', 'UserController@update');
+    Route::patch('/profile/{user}', 'UserController@update_description')->name('user.description');
     Route::patch('/profile/{user}/update_avatar', 'UserController@update_avatar')->name('user-avatar.edit');
     Route::delete('/profile/{user}/delete_avatar', 'UserController@delete_avatar')->name('user-avatar.delete');
     Route::patch('/profile/{user}/update_cover', 'UserController@update_cover')->name('user-cover.edit');
@@ -60,7 +61,7 @@ Route::group(['middleware' => ['auth', 'verified']], function()
     Route::get('/pet/{pet}/edit', 'PetController@edit')->name('pet.edit');
     Route::patch('/pet/{pet}', 'PetController@update');
     Route::patch('/pet/{pet}/update_avatar', 'PetController@update_image');
-    Route::delete('/pet/{pet}/delete_avatar', 'PetController@delete_image');
+    Route::delete('/pet/{pet}/delete_avatar', 'PetController@delete_avatar');
     Route::delete('/pet/{pet}', 'PetController@destroy')->name('pet.delete');
 
 

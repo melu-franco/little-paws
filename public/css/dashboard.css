@@ -13662,6 +13662,13 @@ q {
   quotes: none;
 }
 
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 0;
+}
+
 blockquote:before,
 blockquote:after,
 q:before,
@@ -13990,6 +13997,7 @@ a:hover {
 .nav-link {
   padding: 0;
   color: #414852;
+  transition: all 0.15s ease-in-out;
 }
 
 .nav-link.avatar img {
@@ -13998,6 +14006,14 @@ a:hover {
   height: 2em;
   -o-object-fit: cover;
      object-fit: cover;
+}
+
+.nav-link.h-blue:hover {
+  color: #4380ff;
+}
+
+.nav-link.h-green:hover {
+  color: #58dd95;
 }
 
 .nav__ul {
@@ -14104,8 +14120,22 @@ a:hover {
 }
 
 .sidebar__title {
+  margin-bottom: 1em;
   font-weight: 600;
   font-family: "Open Sans", sans-serif;
+}
+
+.sidebar__ul li {
+  padding: 0.5em 0;
+}
+
+.sidebar__ul a {
+  color: #414852;
+  line-height: 1.4;
+}
+
+.sidebar__ul a i {
+  margin-right: 0.5em;
 }
 
 .aside {
@@ -14547,13 +14577,15 @@ a:hover {
   font-size: 0.875rem;
 }
 
-.profile__intro a {
+.profile__intro .link {
+  margin: auto;
   color: #58dd95;
   display: block;
   font-size: 0.875rem;
   text-align: center;
   font-weight: 400;
   font-family: "Montserrat", sans-serif;
+  padding: 0;
 }
 
 .profile .pets {
@@ -14632,7 +14664,8 @@ a:hover {
 }
 
 .users__user {
-  width: 25%;
+  width: 20%;
+  padding: 1em;
   align-items: center;
   margin-bottom: 1em;
   flex-direction: column;
@@ -14665,9 +14698,16 @@ a:hover {
 }
 
 .modal-content .form-group .pets__pet .pet {
+  width: 25%;
   display: flex;
+  margin: 1em 0 0;
   flex-direction: column;
   align-items: center;
+}
+
+.modal-content .form-group .pets__pet .pet img {
+  height: 6em;
+  width: 6em;
 }
 
 .modal-content .form .input,

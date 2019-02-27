@@ -11,6 +11,7 @@
 
     <!-- Scripts -->
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+    <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"

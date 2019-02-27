@@ -64,12 +64,7 @@ class PetController extends Controller
             $pet->update(['avatar' => $avatarName]);
         }
 
-        return redirect('/home');
-    }
-
-    public function show(User $user, Pet $pet)
-    {
-        return view('dashboard.pet-profile', compact('user','pet'));
+        return redirect('/profile/'.$user_id);
     }
 
     public function edit(Pet $pet)
@@ -77,27 +72,23 @@ class PetController extends Controller
         return view('dashboard.pet-profile-edit', compact('pet'));
     }
 
-    public function update(Pet $pet)
+    public function update(Pet $pet, Request $request)
     {
         $pet->update(request()->validate([
             'name' => 'required',
             'description' => 'max:500',
-        ]));
-
-        return back();
-    }
-
-    public function update_avatar(Pet $pet, Request $request)
-    {
-        $request->validate([
             'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+        ]));
 
         if($request->hasfile('avatar')){
             $avatar = $request->file('avatar');
             $filename  = public_path('uploads/avatars/pets/').$pet->avatar;
             $filename_new = 'pet_'. $pet->id .'_'. time() . '.' . $avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(180, 180)->save(public_path('uploads/avatars/pets/' . $filename_new));
+            Image::make($avatar)
+            ->resize(180, 180,function ($constraint) {
+                $constraint->aspectRatio();
+            })
+            ->save(public_path('uploads/avatars/pets/' . $filename_new));
 
             if(File::exists($filename)) {
                 File::delete($filename);
@@ -116,6 +107,8 @@ class PetController extends Controller
             File::delete($avatar);
         }
 
+        $pet->update(['avatar' => null]);
+
         return back();
     }
 
@@ -124,5 +117,7 @@ class PetController extends Controller
         $pet->delete();
         $avatar  = public_path('uploads/avatars/pets/').$pet->avatar;
         File::delete($avatar);
+
+        return back();
     }
 }

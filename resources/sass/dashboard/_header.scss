@@ -44,11 +44,22 @@
     &-link {
         padding: 0;
         color: $black;
+        @include transition(.15s);
         &.avatar img {
             border-radius:50%;
             width:2em;
             height:2em;
             object-fit:cover;
+        }
+        &.h-blue {
+            &:hover {
+                color: $blue;
+            }
+        }
+        &.h-green {
+            &:hover {
+                color: $green;
+            }
         }
     }
 

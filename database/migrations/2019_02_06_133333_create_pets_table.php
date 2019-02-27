@@ -25,8 +25,7 @@ class CreatePetsTable extends Migration
 
         Schema::table('pets', function (Blueprint $table)
         {
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('pet_type_id')->references('id')->on('pets');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

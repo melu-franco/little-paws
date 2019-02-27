@@ -84,14 +84,26 @@
                 <div class="profile__info">
                     <div class="profile__intro">
                         <h2 class="title title--medium">Intro</h2>
-                        <p>Agrega datos personales para que las personas sepan más sobre ti.</p>
-                        <a href="">Agregar datos personales</a>
+                            @if ($user->description != '')
+                                <p>{{$user->description}}</p>
+                                @if(Auth::user()->id == $user->id)
+                                    <button class="btn link -color-green" data-toggle="modal"  data-target="#userEditIntro">Editar datos personales</button>
+                                @endif
+                            @else
+                            @if(Auth::user()->id == $user->id)
+                                <p>Agrega datos personales para que las personas sepan más sobre vos.</p>
+                                <button class="btn link -color-green" data-toggle="modal"  data-target="#userEditIntro">Agregar datos personales</button>
+                            @else
+                                <p>Éste usuario aún no tiene datos personales cargados.</p>
+                            @endif
+                        @endif
+                        
                     </div>
                     <div class="section--pets pets">
                         <h2 class="title title--medium">Mascotas</h2>
                         <div class="pets__list d-flex flex-wrap">
                             @foreach ($pets as $pet)
-                                    <button data-toggle="modal"  data-target="#PetEditModal" class="pets__list__item">
+                                    <button data-toggle="modal" data-target="#PetEditModal{{$pet->id}}" class="pets__list__item">
                                     <img src="{{$pet->avatar}}" alt="{{$pet->name}}">
                                     <span class="pets__list__name">{{$pet->name}}</span>
                                 </button>
@@ -176,18 +188,49 @@
     @include('dashboard.forms.profile-edit')
 </div>
 
+<div id="deleteUserModal" class="modal form-modal delete-post-modal">
+    <div class="modal-dialog">
+        <!-- Modal content-->
+        <div class="modal-content post-delete">
+            <div class="modal-header d-flex">
+                <h4 class="modal-title"><i class="fas fa-user-slash"></i> Eliminar cuenta</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estas seguro que querés eliminar tu cuenta de usuario?</p>
+                <p>Ésta acción no puede deshacerse.</p>
+            </div>
+            <div class="modal-footer">
+                <form method="POST" action="/profile/{{ $user->id }}">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="btn btn-round -small -blue">Aceptar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="userEditIntro" class="modal form-modal">
+    @include('dashboard.forms.profile-intro-edit')
+</div>
+
 <div id="addPetModal" class="modal form-modal">
     @include('dashboard.forms.pet-create')
 </div>
 
 @if($user->pets->count())
-<div id="PetEditModal" class="modal form-modal">
-    @include('dashboard.forms.pet-edit')
-</div>
+    @foreach ($pets as $pet)
+        <div id="PetEditModal{{$pet->id}}" class="modal form-modal">
+            @include('dashboard.forms.pet-edit')
+        </div>
+    @endforeach
 @endif
 
 <div id="addPostModal" class="modal form-modal post-modal">
     @include('dashboard.forms.create-post-modal')
 </div>
+
+
 
 @endsection

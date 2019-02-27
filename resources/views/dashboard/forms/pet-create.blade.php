@@ -7,7 +7,7 @@
             <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
 
-            <form method="POST" class="form" action="{{ route('pet.store') }}" enctype="multipart/form-data">
+            <form method="POST" id="petCreate" class="form" action="{{ route('pet.store') }}" enctype="multipart/form-data">
                 @csrf
     
                 <div class="form-group pets w-pad">
@@ -69,17 +69,12 @@
                     @endif
                 </div>
     
-                <div class="form-group w-pad">
-                    <button type="submit" class="btn btn-round -large -blue">
-                        Crear
-                    </button>
-                </div>
-    
-    
             </form>
 
         <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            <a href="{{ route('pet.store') }}" onclick="event.preventDefault(); document.getElementById('petCreate').submit();" class="btn btn-round -small -blue">
+                Crear
+            </a>
         </div>
 
         </div>

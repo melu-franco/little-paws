@@ -18,12 +18,12 @@
                     <li class="nav__links hidden-sm">
                        <ul class="d-flex flex-ai-center">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ url('/home') }}">
+                                <a class="nav-link h-blue" href="{{ url('/home') }}">
                                     <i class="material-icons">public</i>
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a href="{{ route('users') }}" class="nav-link">
+                                <a href="{{ route('users') }}" class="nav-link h-green">
                                     <i class="material-icons">people</i>
                                 </a>
                             </li>

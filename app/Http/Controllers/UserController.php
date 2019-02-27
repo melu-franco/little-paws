@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Post;
 use App\Pet;
+use App\Like;
 use Image;
 use File;
 use DB;
@@ -33,7 +34,7 @@ class UserController extends Controller
         return view('dashboard.profile-edit', compact('user'));
     }
 
-    public function update(User $user)
+    public function update(User $user, Request $request)
     {
         $user->update(request()->validate([
             'name' => 'required',
@@ -60,6 +61,15 @@ class UserController extends Controller
         }
 
         return redirect()->route('profile', [$user]);
+    }
+
+    public function update_description(User $user)
+    {
+        $user->update(request()->validate([
+            'description' => 'max:500',
+        ]));
+
+        return back();
     }
 
     public function update_avatar(User $user, Request $request)
@@ -158,8 +168,13 @@ class UserController extends Controller
     {
         $user->delete();
         $avatar  = public_path('uploads/avatars/').$user->avatar;
-        File::delete($avatar);
+
+        if (File::exists($avatar) && $user->avatar != 'user.png' ) {
+            File::delete($avatar);
+        }
+
         Post::where('user_id', $user->id)->delete();
+        Like::where('user_id', $user->id)->delete();
 
         return redirect('/register');
     }

@@ -32,6 +32,11 @@ ol, ul {
 blockquote, q {
 	quotes: none;
 }
+a,button,input,textarea {
+	&:focus {
+		outline: 0;
+	}
+}
 blockquote:before, blockquote:after,
 q:before, q:after {
 	content: '';

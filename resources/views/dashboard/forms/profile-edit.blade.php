@@ -7,7 +7,9 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-        <img src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" style="border-radius:50%;height:5em;width:5em;object-fit:cover;">
+        <div class="w-pad">
+            <img src="/uploads/avatars/{{ Auth::user()->avatar }}" alt="{{ Auth::user()->name }}" style="border-radius:50%;height:5em;width:5em;object-fit:cover;">
+        </div>
 
 
         <form method="POST" action="/profile/{{ $user->id }}/delete_avatar" class="is-pulled-left"  enctype="multipart/form-data">
@@ -20,7 +22,7 @@
             @method('PATCH')
             @csrf
 
-            <div class="form-group avatar">
+            <div class="form-group avatar w-pad">
                 <div class="setting image_picker">
                     <div class="settings_wrap d-flex">
                         <label class="drop_target">
@@ -65,11 +67,9 @@
         </form>
 
         <div class="modal-footer d-flex">
-            <form method="POST" action="/profile/{{ $user->id }}">
-                @method('DELETE')
-                @csrf
-                <button type="submit" class="btn btn-round -small -red">Eliminar cuenta</button>
-            </form>
+            <a class="btn btn-round -small -red" href="javascript.void(0);" data-toggle="modal" data-target="#deleteUserModal">
+                Eliminar cuenta
+            </a>
             <a href="/profile/{{ $user->id }}" onclick="event.preventDefault(); document.getElementById('updateProfile').submit();" class="btn btn-round -small -blue">
                 Guardar
             </a>
