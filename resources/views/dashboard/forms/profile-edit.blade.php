@@ -18,30 +18,9 @@
             <button type="submit" class="button is-light"><i class="fas fa-trash-alt"></i></button>
         </form>
 
-        <form id="updateProfile" method="POST" class="form" action="/profile/{{ $user->id }}" enctype="multipart/form-data">
+        <form id="updateProfile" method="POST" action="/profile/{{ $user->id }}/edit" class="form" >
             @method('PATCH')
             @csrf
-
-            <div class="form-group avatar w-pad">
-                <div class="setting image_picker">
-                    <div class="settings_wrap d-flex">
-                        <label class="drop_target">
-                            <div class="image_preview"></div>
-                            <input id="inputFile" name="avatar" type="file"/>
-                        </label>
-                        <div class="settings_actions vertical">
-                            <label for="inputFile" class="choose-file"><i class="fa fa-picture-o"></i> Subir archivo</label>
-                            <a class="disabled delete" data-action="remove_current_image"><i class="fa fa-ban"></i> <span>Eliminar archivo</span></a>
-                        </div>
-                    </div>
-                </div>
-
-                @if ($errors->has('avatar'))
-                    <span class="invalid-feedback" role="alert">
-                        <strong>{{ $errors->first('avatar') }}</strong>
-                    </span>
-                @endif
-            </div>
 
             <div class="form-group w-pad">
                 <label for="name" class="label"><i class="material-icons">person</i>Nombre</label>
@@ -70,7 +49,7 @@
             <a class="btn btn-round -small -red" href="javascript.void(0);" data-toggle="modal" data-target="#deleteUserModal">
                 Eliminar cuenta
             </a>
-            <a href="/profile/{{ $user->id }}" onclick="event.preventDefault(); document.getElementById('updateProfile').submit();" class="btn btn-round -small -blue">
+            <a href="/profile/{{ $user->id }}/edit" onclick="event.preventDefault(); document.getElementById('updateProfile').submit();" class="btn btn-round -small -blue">
                 Guardar
             </a>
         </div>

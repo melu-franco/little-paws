@@ -15,8 +15,8 @@
             width: 50%;
             height: 100vh;
             &.register__bg {
-                background: url('/img/bg-register.png') no-repeat center;
-                background-size: contain;
+                background: url('/img/bg-registro.jpg') no-repeat center;
+                background-size: cover;
             }
             @include mobile {
                 display: none;
@@ -91,3 +91,128 @@
         }
     }
 }
+
+.section {
+    overflow: hidden;
+    @include mobile {
+      padding-top: 4em;
+      padding-bottom: 4em;
+    }
+
+    @at-root #{&}__title {
+      font-weight: $bold;
+      font-size: $font-size-medium;
+      font-family: $secondary-font;
+      margin-bottom: .5em;
+    }
+    @at-root #{&}__text {
+      font-size: $font-size-medium;
+    }
+    @at-root #{&}--desc {
+      padding-top: 8em;
+      padding-bottom: 8em;
+      .section__text {
+        max-width: 40em;
+        margin-bottom: 2em;
+      }
+    } 
+    @at-root #{&}--info {
+      padding-top: 10em;
+      padding-bottom: 10em;
+      @include bg-img($bg-home--info, center,cover);
+      .section__text {
+        max-width: 40em;
+      }
+    }
+    @at-root #{&}--cta {
+      padding-top: 2em;
+      padding-bottom: 2em;
+    }
+
+    @at-root #{&}--faqs {
+      .dropdown {
+          width: 100%;
+          max-width: 40em;
+          margin: auto;
+          padding: 2em 0;
+          position: relative;
+          border-bottom: 1px solid $border-color;
+          @include transition(.2s);
+          input[type=checkbox] {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            opacity: 0;
+            cursor: pointer;
+            margin: 4px 0 0;
+            margin-top: 1px\9;
+            line-height: normal;
+          }
+
+          @at-root #{&}__question {
+            cursor: pointer;
+            display: block;
+            position: relative;
+            font-size: $font-size-medium;
+            line-height: 24px;
+            font-weight: $bold;
+            padding-right: 10%;
+            padding-left: 2em;
+            font-family: $secondary-font;
+            @include tablet {
+              font-size: $font-size-medium - .2em;
+            }
+            &::before {
+              content: "+";
+              position: absolute;
+              left: 0;
+              @include transition(.2s);
+            }
+          }
+
+          @at-root #{&}__answer {
+            max-height: 0;
+            overflow: hidden;
+            font-size: $font-size-small;
+            line-height: 24px;
+            color: $gray;
+          }
+
+          input[type=checkbox]:checked ~ .answer {
+            max-height: 100%;
+            margin: 1em 0;
+          }
+          input[type=checkbox]:checked ~ .dropdown__question::before {
+            @include rotate (45deg);
+          }
+
+      }
+    }
+
+    @at-root #{&}--form {
+      padding-left: 10%;
+      padding-right: 10%; 
+      @include desktop {
+        min-height: 82vh;
+      }
+      @include tablet {
+        &.col.half {
+          width: 60%;
+        }
+      } 
+    }
+
+    @at-root #{&}--bg {
+      &.col.half {
+        @include tablet {
+          width: 40%;
+        } 
+      }
+      @include mobile {
+        height: 15em;
+      }
+    }
+}
+

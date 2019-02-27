@@ -19,3 +19,51 @@
         flex-direction: column;
     }
 }
+
+//Grids
+.row {
+    margin: 0;
+    width: 100%;
+}
+
+.flex {
+    display: flex !important;
+    @at-root #{&}--wrap {
+        flex-wrap: wrap;
+    }
+    @at-root #{&}--column {
+        flex-direction: column;
+        @include mobile {
+            @at-root #{&}__mobile {
+                flex-direction: column;
+            }
+        }
+    }
+    @at-root #{&}--justify-center {
+        justify-content: center;
+    }
+    @at-root #{&}--justify-end {
+        justify-content: flex-end;
+    }
+    @at-root #{&}--space-between {
+        justify-content: space-between;
+    }
+    @at-root #{&}--space-around {
+        justify-content: space-around;
+    }
+    @at-root #{&}--align-center {
+        align-items: center;
+    }
+    @at-root #{&}--row-reverse {
+        flex-direction: row-reverse;
+    }
+}
+
+.col {
+    &.half {
+        width: 50%;
+        @include mobile {
+            width: 100%!important;
+        }
+    }
+}

@@ -21,11 +21,12 @@ Route::group(['middleware' => ['auth', 'verified']], function()
     Route::delete('/posts/{post}', 'PostsController@destroy')->name('post.delete');
     Route::post('/posts/likes', 'PostsController@like')->name('like');
     Route::delete('/posts/likes/{like}', 'PostsController@dislike')->name('dislike');
+    Route::post('/posts/tags', 'PostsController@tag')->name('tag');
+    Route::delete('/posts/tags/{tag}', 'PostsController@delete_tag')->name('tag.delete');
 
     //Users controller
     Route::get('/profile/{user}', 'UserController@profile')->name('profile');
-    Route::get('/profile/{user}/edit', 'UserController@edit')->name('user.edit');
-    Route::patch('/profile/{user}', 'UserController@update');
+    Route::patch('/profile/{user}/edit', 'UserController@update')->name('profile.edit');
     Route::patch('/profile/{user}', 'UserController@update_description')->name('user.description');
     Route::patch('/profile/{user}/update_avatar', 'UserController@update_avatar')->name('user-avatar.edit');
     Route::delete('/profile/{user}/delete_avatar', 'UserController@delete_avatar')->name('user-avatar.delete');

@@ -92,10 +92,31 @@
                 @endif
             </a>
 
-            <a href="#" class="btn-reaction">
-                <i class="material-icons">share</i>
-                <span>Compartir</span>
-            </a>
+            @if (Auth::user()->tags->where('post_id', $post->id)->count())
+                <a href="{{ route('tag.delete', [Auth::user()->tags()->where('post_id', $post->id)->first()]) }}"
+                onclick="event.preventDefault();
+                                document.getElementById('tag-delete').submit();" class="btn-reaction">
+                    <i class="material-icons -color-green">bookmark</i>
+                    <span class="hidden-sm">Guardar</span>
+                </a>
+
+                <form id="tag-delete" action="{{ route('tag.delete', [Auth::user()->tags()->where('post_id', $post->id)->first()]) }}" method="POST" style="display: none;">
+                    @csrf
+                    @method('DELETE')
+                </form>
+            @else
+                <a href="{{ route('tag') }}"
+                onclick="event.preventDefault();
+                                document.getElementById('tag-form').submit();" class="like btn-reaction">
+                    <i class="material-icons">bookmark_border</i>
+                    <span class="hidden-sm">Guardar</span>
+                </a>
+
+                <form id="tag-form" action="{{ route('tag') }}" method="POST" style="display: none;">
+                    @csrf
+                    <input type="hidden" name="post_id" value="{{ $post->id }}" />
+                </form>
+            @endif
         </div>
 
         @include('dashboard.forms.comment-post')

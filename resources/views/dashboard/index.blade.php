@@ -34,6 +34,12 @@
                     @endforeach
                 </div> <!-- Siguiendo -->
 
+                <div id="Tagged" class="section--posts tabcontent">
+                    @foreach ($posts_tagged as $post)
+                        @include('dashboard.posts')
+                    @endforeach
+                </div> <!-- Guardados -->
+
             @endif
         </section>
 
@@ -41,8 +47,9 @@
 
     <div class="aside">
         <div class="tab">
-            <button class="btn tablinks active" onclick="openTab(event, 'Latest')">Recientes</button>
-            <button class="btn tablinks" onclick="openTab(event, 'Following')">Siguiendo</button>
+            <button class="btn btn-border btn-icon tablinks active" onclick="openTab(event, 'Latest')" style="margin-bottom:1em;margin-right:1em;">Recientes</button>
+            <button class="btn btn-border btn-icon tablinks" onclick="openTab(event, 'Following')" style="margin-bottom:1em;margin-right:1em;">Siguiendo</button>
+            <button class="btn btn-border btn-icon tablinks hidden-sm" onclick="openTab(event, 'Tagged')" style="margin-bottom:1em;margin-right:1em;">Guardados</button>
         </div>
     </div>
 </div>

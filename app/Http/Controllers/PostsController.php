@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\User;
 use App\Post;
 use App\Like;
+use App\Tag;
 use App\Comment;
 use Auth;
 use Validator;
@@ -167,6 +168,24 @@ class PostsController extends Controller
     public function dislike(Like $like)
     {
         $like->delete();
+
+        return back();
+    }
+
+    public function tag(Request $request, Post $post, Tag $tag) {
+
+        $tag->tag = '1';
+        $tag->user()->associate($request->user());
+        $post = Post::find($request->get('post_id'));
+        $post->likes()->save($tag);
+
+        return back();
+
+    }
+
+    public function delete_tag(Tag $tag)
+    {
+        $tag->delete();
 
         return back();
     }

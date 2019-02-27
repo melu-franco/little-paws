@@ -1,0 +1,84 @@
+//Header
+
+.header {
+    @at-root #{&}--home {
+        height: 100vh;
+        position: relative;
+        @include bg-img($header--home, center, cover);
+    }  
+    @at-root #{&}__title {
+        font-weight: $bold;
+        font-size: $title-size-big;
+        line-height: $base-line-height;
+        @at-root #{&}--smaller {
+          font-size: $title-size-medium; 
+        }
+    }
+    @at-root #{&}__desc {
+        margin-top: 7px;
+    }
+    @at-root #{&}--faqs {
+        height: 20em;
+        @include bg-img($header--faqs, center, cover);
+    }
+}
+
+/* Navigation */
+.nav {
+    top: 0;
+    z-index: 5;
+    width: 100%;
+    height: 5em;
+    padding: 0 5%;
+
+    @at-root #{&}__logo {
+      height: 4em;
+      text-indent: -9999px;
+    }
+    
+    @at-root #{&}--main {
+      position: fixed;
+      background: white;
+      -webkit-box-shadow: $box-shadow-nav;
+      -moz-box-shadow: $box-shadow-nav;
+      box-shadow: $box-shadow-nav;
+      .nav__logo {
+        @include bg-img($logo--black, center, contain);
+      }
+    }
+
+    @at-root #{&}--home {
+      position: absolute;
+      background: transparent;
+      .nav__logo {
+        @include bg-img($logo--white, center, contain);
+      }
+      .nav__link {
+        color: white!important;
+      }
+    }
+
+    @at-root #{&}__menu {
+      margin-left: auto;
+    }
+    @at-root #{&}__link {
+      color: $black;
+      margin-left: 2.5em;
+      font-size: $font-size-small;
+      text-transform: uppercase;
+      @include mobile {
+        margin-left: 1.5em;
+      }
+      &.-color-white {
+        color: white;
+      }
+      &.active {
+        color: $light-gray;
+      }
+      &:hover {
+        color: $color-primary;
+      }
+    }
+}
+
+

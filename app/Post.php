@@ -19,6 +19,11 @@ class Post extends Model
         return $this->hasMany(Like::class);
     }
 
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
+
     public function likesCounter()
     {
         return $this->likes->count();

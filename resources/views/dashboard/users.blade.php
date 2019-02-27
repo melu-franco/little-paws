@@ -12,7 +12,7 @@
         <div class="d-flex flex-wrap">
             @foreach ($users as $user)
             <div class="users__user d-flex">
-                <a href="/profile/{{$user->id}}">
+                <a href="/profile/{{$user->id}}" style="margin:auto;text-align:center;">
                     <img class="users__user__avatar" src="/uploads/avatars/{{ $user->avatar }}" alt="{{ $user->name }}">
                     <p class="users__user__name">{{ $user->name }}</p>
                 </a>
@@ -24,7 +24,7 @@
                         @include('dashboard.forms.user-follow')
                     @endif
 
-                    <a href="/profile/{{$user->id}}" class="btn btn-border btn-icon"><i class="fas fa-eye"></i></a>
+                    <a href="/profile/{{$user->id}}" class="btn btn-border btn-icon -white edit-profile"><i class="fas fa-eye"></i><span>Perfil</span></a>
                 </div>
 
             </div>

@@ -13702,6 +13702,30 @@ table {
   color: #414852;
 }
 
+.color-primary {
+  color: #58dd95;
+}
+
+.-color-secondary {
+  color: #4380ff;
+}
+
+.-color-black {
+  color: #414852;
+}
+
+.-color-white {
+  color: white;
+}
+
+.-bg-black {
+  background-color: #414852;
+}
+
+.-bg-primary {
+  background-color: #58dd95;
+}
+
 .btn {
   border: none;
   background: transparent;
@@ -13732,6 +13756,7 @@ table {
 .btn-icon {
   font-size: 0.875rem;
   font-weight: 600;
+  background: #fff;
 }
 
 .btn-icon i {
@@ -13788,6 +13813,10 @@ table {
   width: 100%;
 }
 
+.btn:focus {
+  box-shadow: none;
+}
+
 .d-flex {
   display: flex;
 }
@@ -13810,6 +13839,63 @@ table {
 
 .flex-column {
   flex-direction: column;
+}
+
+.row {
+  margin: 0;
+  width: 100%;
+}
+
+.flex {
+  display: flex !important;
+}
+
+.flex--wrap {
+  flex-wrap: wrap;
+}
+
+.flex--column {
+  flex-direction: column;
+}
+
+@media (max-width: 768px) {
+  .flex--column__mobile {
+    flex-direction: column;
+  }
+}
+
+.flex--justify-center {
+  justify-content: center;
+}
+
+.flex--justify-end {
+  justify-content: flex-end;
+}
+
+.flex--space-between {
+  justify-content: space-between;
+}
+
+.flex--space-around {
+  justify-content: space-around;
+}
+
+.flex--align-center {
+  align-items: center;
+}
+
+.flex--row-reverse {
+  flex-direction: row-reverse;
+}
+
+.col.half {
+  width: 50%;
+}
+
+@media (max-width: 768px) {
+  .col.half {
+    width: 100% !important;
+  }
 }
 
 * {
@@ -14143,9 +14229,7 @@ a:hover {
   width: 20%;
   right: 3em;
   position: fixed;
-  background: #fff;
   border-radius: 5px;
-  border: 1px solid #eaeaea;
 }
 
 @media (max-width: 768px) {
@@ -14681,12 +14765,14 @@ a:hover {
 
 .users__user__name {
   color: #414852;
+  font-size: 14px;
   text-align: center;
   font-family: "Montserrat", sans-serif;
 }
 
 .users__user .btn-icon i {
   margin: 0;
+  font-size: 14px;
 }
 
 .users__user .btn-icon span {

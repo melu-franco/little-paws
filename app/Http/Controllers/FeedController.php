@@ -22,11 +22,15 @@ class FeedController extends Controller
         $ids = auth()->user()->following()->pluck("followed_id")->toArray();
         $posts_following = Post::whereIn('user_id', $ids)
                      ->latest()->take(20)->get();
+
+        $tags = auth()->user()->tags()->pluck("post_id")->toArray();
+        $posts_tagged = Post::whereIn('id', $tags)->latest()->get();
+
         $posts = Post::latest()->take(20)->get();
 
         $pets = Pet::where('user_id', auth()->user()->id)->get();
 
-        return view('dashboard.index', compact('posts','posts_following','user','comment','pets'));
+        return view('dashboard.index', compact('posts','posts_following','posts_tagged','user','comment','pets'));
     }
 
 }

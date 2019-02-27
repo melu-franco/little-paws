@@ -15,12 +15,14 @@
         }
         &__name {
             color: $black;
+            font-size: 14px;
             text-align: center;
             font-family: $montserrat;
         }
         .btn-icon {
             i {
                 margin: 0;
+                font-size:14px;
             }
             span {
                 display: none;

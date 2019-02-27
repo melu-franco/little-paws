@@ -27,6 +27,11 @@ class User extends Authenticatable
         return $this->hasMany(Like::class);
     }
 
+    public function tags()
+    {
+        return $this->hasMany(Tag::class);
+    }
+
     public function pets()
     {
         return $this->hasMany(Pet::class);

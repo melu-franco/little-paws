@@ -11,9 +11,11 @@ var $dropzone = $('.image_picker'),
     $droptarget = $('.drop_target'),
     $droptargetmodal = $('.drop_target_modal'),
     $dropinput = $('#inputFile'),
+    $dropinputprofile = $('#inputFileProfile'),
     $dropinputmodal = $('#inputFileModal'),
     $dropimg = $('.image_preview'),
     $dropimgmodal = $('.image_preview_modal'),
+    $dropimgprofile = $('.image_preview_profile'),
     $remover = $('[data-action="remove_current_image"]');
     $removermodal = $('.remover_modal');
 
@@ -56,6 +58,21 @@ $dropinput.change(function(e) {
 
   reader.onload = function(event) {
     $dropimg.css('background-image', 'url(' + event.target.result + ')').attr('data-image','true');
+  }
+
+  reader.readAsDataURL(file);
+});
+
+$dropinputprofile.change(function(e) {
+  $droptarget.addClass('dropped');
+  $remover.removeClass('disabled');
+  $('.image_title input').val('');
+
+  var file = $dropinput.get(0).files[0],
+      reader = new FileReader();
+
+  reader.onload = function(event) {
+    $dropimgprofile.css('background-image', 'url(' + event.target.result + ')').attr('data-image','true');
   }
 
   reader.readAsDataURL(file);

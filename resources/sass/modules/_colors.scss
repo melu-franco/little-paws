@@ -9,6 +9,7 @@ $light-gray: #eaeaea;
 $very-light-gray: #FBFBFD;
 
 $border-color: $light-gray;
+$box-shadow-nav: 0px 2px 12px -6px rgba(0,0,0,0.5);
 
 $blue-op: #4380ff50;
 $red-op: #fa416950;
@@ -27,5 +28,30 @@ $red-op: #fa416950;
 }
 .-color-black {
     color: $black;
+}
+
+
+$color-primary: $green;
+$color-secondary: $blue;
+$error-color: $red;
+
+.color-primary {
+    color: $color-primary;
+} 
+.-color-secondary {
+    color: $color-secondary;
+}
+.-color-black {
+    color: $black;
+}
+.-color-white {
+    color: white;
+}
+
+.-bg-black {
+    background-color: $black;
+}
+.-bg-primary{
+    background-color: $color-primary;
 }
 

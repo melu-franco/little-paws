@@ -32,9 +32,7 @@
     width: 20%;
     right: 3em;
     position: fixed;
-    background: $white;
     border-radius: 5px;
-    border: 1px solid $border-color;
     @include mobile {
         order: 1;
         right: 0;

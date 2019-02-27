@@ -99,23 +99,27 @@
                         @endif
                         
                     </div>
-                    <div class="section--pets pets">
-                        <h2 class="title title--medium">Mascotas</h2>
-                        <div class="pets__list d-flex flex-wrap">
-                            @foreach ($pets as $pet)
-                                    <button data-toggle="modal" data-target="#PetEditModal{{$pet->id}}" class="pets__list__item">
-                                    <img src="{{$pet->avatar}}" alt="{{$pet->name}}">
-                                    <span class="pets__list__name">{{$pet->name}}</span>
+                    @if($user->pets->count())
+                        <div class="section--pets pets">
+                            <h2 class="title title--medium">Mascotas</h2>
+                            <div class="pets__list d-flex flex-wrap">
+                                @foreach ($pets as $pet)
+                                        <button data-toggle="modal" data-target="#PetEditModal{{$pet->id}}" class="pets__list__item">
+                                        <img src="{{$pet->avatar}}" alt="{{$pet->name}}">
+                                        <span class="pets__list__name">{{$pet->name}}</span>
+                                    </button>
+                                @endforeach
+                                @if(Auth::user()->id == $user->id)
+                                <button data-toggle="modal" data-target="#addPetModal" class="btn pets__list__item">
+                                    <div class="add">
+                                        <i class="material-icons">add</i>
+                                    </div>
+                                    <span class="pets__list__name">Agregar</span>
                                 </button>
-                            @endforeach
-                            <button data-toggle="modal" data-target="#addPetModal" class="btn pets__list__item">
-                                <div class="add">
-                                    <i class="material-icons">add</i>
-                                </div>
-                                <span class="pets__list__name">Agregar</span>
-                            </button>
+                                @endif
+                            </div>
                         </div>
-                    </div>
+                    @endif
                 </div>
 
                 <div class="profile__content">
@@ -165,13 +169,53 @@
                         </div>
                     </div>
                     <div id="Followers" class="tabcontent">
-                        <div class="card">
+                        <div class="card users">
                             <h2 class="title title--medium">Seguidores</h2>
+                            @if ($user->followers()->count())
+                                <div class="d-flex flex-wrap">
+                                    @foreach ($followers as $follower)
+                                    <div class="users__user d-flex">
+                                            <a href="/profile/{{$follower->id}}">
+                                                <img class="users__user__avatar" src="/uploads/avatars/{{ $follower->avatar }}" alt="{{ $follower->name }}">
+                                                <p class="users__user__name">{{ $follower->name }}</p>
+                                            </a>
+                                        </div>
+                                    @endforeach
+                                </div>
+                            @else 
+                                <p>
+                                    @if(Auth::user()->id == $user->id)
+                                    Aún no ténes seguidores
+                                    @else
+                                    Este usuario aun no tiene seguidores.
+                                    @endif
+                                </p>
+                            @endif
                         </div>
                     </div>
                     <div id="Following" class="tabcontent">
-                        <div class="card">
+                        <div class="card users">
                             <h2 class="title title--medium">Siguiendo a</h2>
+                            @if ($user->following()->count())
+                            <div class="d-flex flex-wrap">
+                                @foreach ($followings as $following)
+                                <div class="users__user d-flex">
+                                        <a href="/profile/{{$following->id}}">
+                                            <img class="users__user__avatar" src="/uploads/avatars/{{ $following->avatar }}" alt="{{ $following->name }}">
+                                            <p class="users__user__name">{{ $following->name }}</p>
+                                        </a>
+                                    </div>
+                                @endforeach
+                            </div>
+                            @else 
+                                <p>
+                                    @if(Auth::user()->id == $user->id)
+                                    Aún no ténes seguidores
+                                    @else
+                                    Este usuario aun no tiene seguidores.
+                                    @endif
+                                </p>
+                            @endif
                         </div>
                     </div>
 

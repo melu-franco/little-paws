@@ -25,8 +25,12 @@ class UserController extends Controller
         $posts = Post::where('user_id', $user->id)->latest()->take(20)->get();
         $pets = Pet::where('user_id', auth()->user()->id)->get();
         $pet_types = DB::table('pet_types')->get();
+        $followers_ids = $user->followers()->pluck("follower_id")->toArray();
+        $followers = User::whereIn('id',$followers_ids)->get();
+        $followings_ids = $user->following()->pluck("followed_id")->toArray();
+        $followings = User::whereIn('id',$followings_ids)->get();
 
-        return view('dashboard.profile', compact('user','posts','pets','pet_types'));
+        return view('dashboard.profile', compact('user','posts','pets','pet_types','followings','followers'));
     }
 
     public function edit(User $user)
@@ -39,26 +43,7 @@ class UserController extends Controller
         $user->update(request()->validate([
             'name' => 'required',
             'description' => 'max:500',
-            'avatar' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]));
-
-        if($request->hasfile('avatar')){
-            $avatar = $request->file('avatar');
-            $filename  = public_path('uploads/avatars/').$user->avatar;
-            $filename_new = 'user_'. $user->id .'_'. time() . '.' . $avatar->getClientOriginalExtension();
-
-            Image::make($avatar->getRealPath())
-            ->resize(180, 180,function ($constraint) {
-                $constraint->aspectRatio();
-            })
-            ->save(public_path('uploads/avatars/' . $filename_new));
-
-            if(File::exists($filename) && $user->avatar != 'user.png') {
-                File::delete($filename);
-            }
-
-            $user->update(['avatar' => $filename_new]);
-        }
 
         return redirect()->route('profile', [$user]);
     }
