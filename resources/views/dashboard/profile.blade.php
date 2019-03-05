@@ -32,7 +32,7 @@
                             <p class="help is-danger">{{ $error }}</p>
                         @endforeach
                     @endif
-                    <button data-toggle="modal" data-target="#profileModal" class="btn btn-border btn-icon -white edit-profile"><i class="fas fa-edit"></i> Editar perfil</button>
+                    <button data-toggle="modal" data-target="#profileModal" class="btn btn-border btn-icon -white edit-profile"><i class="fas fa-edit"></i> <span>Editar perfil</span></button>
 
                 @else
 
@@ -71,10 +71,10 @@
 
                 <div class="profile__tabs">
                     <ul class="d-flex">
-                        <li class="profile__tabs__item"><button class="btn tablinks active" onclick="openTab(event, 'Posts')">Posts</button></li>
-                        <li class="profile__tabs__item"><button class="btn tablinks" onclick="openTab(event, 'Pets')">Mascotas</button></li>
-                        <li class="profile__tabs__item"><button class="btn tablinks" onclick="openTab(event, 'Followers')">Seguidores <span class="-color-gray">{{$user->followers->count()}}</span></button></li>
-                        <li class="profile__tabs__item"><button class="btn tablinks" onclick="openTab(event, 'Following')">Siguiendo <span class="-color-gray">{{$user->following->count()}}</span></button></li>
+                        <li class="profile__tabs__item"><button class="btn tablinks active" onclick="openTab(event, 'Posts')"><i class="fas fa-user-clock visible-sm"></i><span class="text hidden-sm">Posts</span></button></li>
+                        <li class="profile__tabs__item"><button class="btn tablinks" onclick="openTab(event, 'Pets')"><i class="fas fa-paw visible-sm"></i><span class="text hidden-sm">Mascotas</span></button></li>
+                        <li class="profile__tabs__item"><button class="btn tablinks" onclick="openTab(event, 'Followers')"><i class="fas fa-user-friends visible-sm"></i><span class="text hidden-sm">Seguidores</span> <span class="-color-gray">{{$user->followers->count()}}</span></button></li>
+                        <li class="profile__tabs__item"><button class="btn tablinks" onclick="openTab(event, 'Following')"><i class="fas fa-user-check visible-sm"></i><span class="text hidden-sm">Siguiendo</span> <span class="-color-gray">{{$user->following->count()}}</span></button></li>
                     </ul>
                 </div>
 

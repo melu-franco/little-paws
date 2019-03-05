@@ -13928,6 +13928,14 @@ button {
   display: none;
 }
 
+.-auto {
+  margin: auto;
+}
+
+.t-center {
+  text-align: center;
+}
+
 .title--medium {
   color: #414852;
   font-size: 0.9375rem;

@@ -14077,6 +14077,7 @@ a:hover {
 @media (max-width: 768px) {
   .nav__brand {
     padding: 0 0.5em;
+    font-size: 14px;
   }
 }
 
@@ -14422,6 +14423,12 @@ a:hover {
   background-repeat: no-repeat;
 }
 
+@media (max-width: 768px) {
+  .profile__cover__bg {
+    background-image: none !important;
+  }
+}
+
 .profile__cover__bg .edit-profile {
   right: 1em;
   bottom: 5em;
@@ -14437,6 +14444,23 @@ a:hover {
   font-size: 1rem;
 }
 
+@media (max-width: 768px) {
+  .profile__cover__bg .edit-profile {
+    color: #4380ff;
+    top: 1em;
+    height: 40px;
+    border: none;
+  }
+
+  .profile__cover__bg .edit-profile span {
+    display: none;
+  }
+
+  .profile__cover__bg .edit-profile i {
+    font-size: 1.2rem;
+  }
+}
+
 .profile__cover__bg .edit-cover {
   cursor: pointer;
   transition: all 0.2s ease-in-out;
@@ -14450,6 +14474,12 @@ a:hover {
 .profile__cover__bg .edit-cover span,
 .profile__cover__bg .edit-cover i {
   transition: all 0.2s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .profile__cover__bg .edit-cover {
+    display: none;
+  }
 }
 
 .profile__cover__bg .delete-cover {
@@ -14601,6 +14631,13 @@ a:hover {
 
 .profile__tabs__item .tablinks span {
   font-family: "Open Sans", sans-serif;
+  float: left;
+  margin-left: 0.3em;
+}
+
+.profile__tabs__item .tablinks i {
+  font-size: 20px;
+  float: left;
 }
 
 .profile .card {
@@ -14755,12 +14792,25 @@ a:hover {
   flex-direction: column;
 }
 
+@media (max-width: 768px) {
+  .users__user {
+    width: 33%;
+  }
+}
+
 .users__user__avatar {
   width: 5em;
   height: 5em;
   -o-object-fit: cover;
      object-fit: cover;
   border-radius: 50%;
+}
+
+@media (max-width: 768px) {
+  .users__user__avatar {
+    width: 4em;
+    height: 4em;
+  }
 }
 
 .users__user__name {

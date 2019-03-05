@@ -28,6 +28,14 @@ input, textarea, button {
     display:none;
 }
 
+.-auto {
+    margin: auto;
+}
+
+.t-center {
+    text-align: center;
+}
+
 @import 'text';
 @import 'form';
 @import 'section';

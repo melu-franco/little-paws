@@ -3,7 +3,6 @@
 
 //Show web sections
 Route::get('/', 'PagesController@index');
-Route::get('/faq', 'PagesController@faq');
 
 Auth::routes();
 Route::get('logout', '\App\Http\Controllers\Auth\LoginController@logout');

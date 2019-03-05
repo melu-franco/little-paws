@@ -7,11 +7,18 @@
         align-items:center;
         margin-bottom:1em;
         flex-direction: column;
+        @include mobile {
+            width: 33%;
+        }
         &__avatar {
             width: 5em;
             height: 5em;
             object-fit: cover;
             border-radius: 50%;
+            @include mobile {
+                width: 4em;
+                height: 4em;
+            }
         }
         &__name {
             color: $black;

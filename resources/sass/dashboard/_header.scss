@@ -38,6 +38,7 @@
         border-right: 1px solid $border-color;
         @include mobile {
             padding: 0 .5em;
+            font-size: 14px;
         }
     }
 
